@@ -1,0 +1,21 @@
+.SearchBar {
+    display: flex;
+    gap: 0.5rem;
+    width: 20rem;
+    
+    .search-bar-input-tags {
+        padding-block: 0.5rem;
+        border-radius: 2px;
+        border: none;
+    }
+    
+    #searchBarInput {
+        padding-inline: 0.5rem;
+        width: 100%;
+    }
+    
+    #searchBarSubmit {
+        padding-inline: 1rem;
+        &:hover { cursor: pointer; }
+    }
+}
