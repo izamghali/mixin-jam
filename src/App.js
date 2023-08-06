@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.scss';
 import { SearchBar } from './presentational/SearchBar/SearchBar';
 import { SearchResults } from './presentational/SearchResults/SearchResults';
+import { Track } from './presentational/Track/Track';
 
 function App() {
   return (
@@ -20,7 +21,9 @@ function App() {
       </header>
 
       <SearchBar />
-      <SearchResults />
+      <SearchResults>
+      </SearchResults>
+      <Track />
     </div>
   );
 }
