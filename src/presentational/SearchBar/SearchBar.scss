@@ -2,10 +2,11 @@
     display: flex;
     gap: 0.5rem;
     width: 20rem;
+    padding-block: 2rem;
     
     .search-bar-input-tags {
         padding-block: 0.5rem;
-        border-radius: 2px;
+        border-radius: 6px;
         border: none;
     }
     
