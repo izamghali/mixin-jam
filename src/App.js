@@ -2,6 +2,7 @@ import './App.scss';
 import { SearchBar } from './presentational/SearchBar/SearchBar';
 import { SearchResults } from './presentational/SearchResults/SearchResults';
 import { Track } from './presentational/Track/Track';
+import { Playlist } from './presentational/Playlist/Playlist';
 
 function App() {
   return (
@@ -11,10 +12,16 @@ function App() {
       </header>
 
       <div className='Body'> 
-      <SearchBar />
+        <SearchBar /> 
+
+        <div className='MixinJam'>
+          <SearchResults>
+          </SearchResults>
+          <Playlist>
+          </Playlist>
+        </div>
+        
       </div>
-      <SearchResults>
-      </SearchResults>
       <Track />
     </div>
   );

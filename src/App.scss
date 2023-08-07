@@ -4,16 +4,21 @@
   border: 10px solid salmon;
   .App-header {
     border: 10px solid orange;
-
     @extend %flex-justify-align-center;
-    
-    h1 {
-    }
   }
   
   .Body {
     @extend %flex-justify-align-center;
-    // flex-direction: column;
     background-color: dodgerblue;
+    flex-direction: column;
+    
+    .MixinJam {
+      width: 100%;
+      border: solid orange;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+
+    }
   }
 }
