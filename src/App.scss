@@ -1,12 +1,19 @@
+@use '/src/sass-helpers/placeholders'; 
+
 .App {
+  border: 10px solid salmon;
   .App-header {
+    border: 10px solid orange;
+
+    @extend %flex-justify-align-center;
     
+    h1 {
+    }
   }
   
   .Body {
-    display: flex;
-    justify-content: center;
+    @extend %flex-justify-align-center;
+    // flex-direction: column;
     background-color: dodgerblue;
-
   }
 }

@@ -1,5 +1,7 @@
+@use '/src/sass-helpers/placeholders'; 
+
 .SearchBar {
-    display: flex;
+    @extend %flex-justify-align-center;
     gap: 0.5rem;
     width: 20rem;
     padding-block: 2rem;

@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.scss';
 import { SearchBar } from './presentational/SearchBar/SearchBar';
 import { SearchResults } from './presentational/SearchResults/SearchResults';
@@ -12,10 +11,10 @@ function App() {
       </header>
 
       <div className='Body'> 
-        <SearchBar />
+      <SearchBar />
       </div>
-        <SearchResults>
-        </SearchResults>
+      <SearchResults>
+      </SearchResults>
       <Track />
     </div>
   );
