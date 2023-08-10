@@ -1,0 +1,17 @@
+.Card {
+    display: flex;
+    border: solid black;
+    border-radius: 8px;
+    gap: 1.5rem;
+    align-items: center;
+    max-width: 25rem;
+    height: auto;
+    padding: 1rem;
+    .card-img-div {
+        width: 8rem;
+        height: 8rem;
+        object-fit: cover;
+        overflow: hidden;
+        img { width: 100%; }
+    }
+}
