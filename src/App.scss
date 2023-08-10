@@ -1,6 +1,7 @@
 @use '/src/sass-helpers/placeholders'; 
 
 .App {
+  padding: 2rem; // temporary until Card is stylized
   .App-header {
     @extend %flex-justify-align-center;
   }
