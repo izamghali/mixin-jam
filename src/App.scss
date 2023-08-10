@@ -1,9 +1,7 @@
 @use '/src/sass-helpers/placeholders'; 
 
 .App {
-  border: 10px solid salmon;
   .App-header {
-    border: 10px solid orange;
     @extend %flex-justify-align-center;
   }
   
@@ -14,11 +12,9 @@
     
     .MixinJam {
       width: 100%;
-      border: solid orange;
       display: flex;
       justify-content: space-around;
       align-items: center;
-
     }
   }
 }

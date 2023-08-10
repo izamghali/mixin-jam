@@ -1,5 +1,5 @@
 import './App.scss';
-import { SearchBar } from './presentational/SearchBar/SearchBar';
+import { SearchBar } from './container/SearchBar/SearchBar';
 import { SearchResults } from './presentational/SearchResults/SearchResults';
 import { Track } from './presentational/Track/Track';
 import { Playlist } from './presentational/Playlist/Playlist';
@@ -12,8 +12,7 @@ function App() {
       </header>
 
       <div className='Body'> 
-        <SearchBar /> 
-
+        <SearchBar/>
         <div className='MixinJam'>
           <SearchResults>
           </SearchResults>

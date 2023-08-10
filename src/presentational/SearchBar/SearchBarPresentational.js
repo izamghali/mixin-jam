@@ -1,14 +1,16 @@
 import React from 'react';
-import './SearchBar.scss';
+import './SearchBarPresentational.scss';
 
-export function SearchBar() {
+export function SearchBarPresentational(props) {
     return (
-        <form className="SearchBar">
+        <form className="SearchBar" onSubmit={props.handleSubmit}>
             <input 
                 type="text" 
                 className="search-bar-input-tags" 
                 id='searchBarInput' 
                 placeholder='What song are you looking for?'
+                onChange={props.handleChange}
+                value={props.inputText}
             />
             <input 
                 type="submit" 
