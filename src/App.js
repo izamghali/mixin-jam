@@ -1,9 +1,8 @@
 import './App.scss';
 import { SearchBar } from './container/SearchBar/SearchBar';
-import { SearchResults, SearchResultsPresentational } from './presentational/SearchResults/SearchResultsPresentational';
-import { Track } from './presentational/Track/Track';
+import { SearchResultPresentational } from './presentational/SearchResult/SearchResultPresentational';
 import { Playlist } from './presentational/Playlist/Playlist';
-import { Card } from './container/Card/Card';
+import { Track } from './container/Track/Track';
 
 function App() {
   return (
@@ -15,14 +14,14 @@ function App() {
       <div className='Body'> 
         <SearchBar/>
         <div className='MixinJam'>
-          <SearchResultsPresentational>
-          </SearchResultsPresentational>
+          <SearchResultPresentational>
+          </SearchResultPresentational>
           <Playlist>
           </Playlist>
         </div>
         
       </div>
-      <Card/>
+      <Track/>
     </div>
   );
 }

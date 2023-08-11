@@ -1,9 +1,9 @@
 import React from 'react';
-import './SearchResultsPresentational.scss'
+import './SearchResultPresentational.scss'
 
 const test = <h3>This is search results</h3>
 
-export function SearchResultsPresentational() {
+export function SearchResultPresentational() {
     return (
         <>
         <div id='SearchResults'>
