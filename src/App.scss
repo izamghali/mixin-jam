@@ -8,14 +8,20 @@
   
   .Body {
     @extend %flex-justify-align-center;
-    background-color: dodgerblue;
     flex-direction: column;
+    background-color: dodgerblue;
     
     .MixinJam {
       width: 100%;
       display: flex;
       justify-content: space-around;
       align-items: center;
+      background-color: aliceblue;
+      padding-block: 1.5rem;
+    }
+
+    .SearchResult {
+      // border: solid red;
     }
   }
 }
