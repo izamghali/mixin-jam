@@ -1,3 +1,5 @@
+@use '../../sass-helpers/placeholders';
+
 .Card {
     display: flex;
     border: solid black;
@@ -13,5 +15,26 @@
         object-fit: cover;
         overflow: hidden;
         img { width: 100%; }
+    }
+
+    .card-content {
+
+
+        button {
+            border: none;
+            border-radius: 8px;
+            @extend %flex-justify-align-center;
+            gap: 0.4rem;
+            padding: 0.7rem;
+            background-color: #caf55c;
+            transition-duration: 150ms;
+            &:hover {
+                cursor: pointer;
+                transform: scale(1.05);
+                background-color: hsl(77, 88%, 75%);
+            }
+
+            svg { fill: black; }
+        }
     }
 }
