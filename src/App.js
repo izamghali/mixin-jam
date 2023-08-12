@@ -36,7 +36,7 @@ function App() {
       </header>
 
       <div className='Body'> 
-        <SearchBar/>
+        <SearchBar accessToken={accessToken} />
         <div className='MixinJam'>
           <SearchResult SearchResult='SearchResult'>
             { testArr.map(arr => {
