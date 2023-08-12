@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mixin-jam/static/css/main.116dc46b.css",
-    "main.js": "/mixin-jam/static/js/main.0828a686.js",
+    "main.css": "/mixin-jam/static/css/main.e1e9b1f1.css",
+    "main.js": "/mixin-jam/static/js/main.47a1fd50.js",
     "static/js/787.62d5a415.chunk.js": "/mixin-jam/static/js/787.62d5a415.chunk.js",
     "index.html": "/mixin-jam/index.html",
-    "main.116dc46b.css.map": "/mixin-jam/static/css/main.116dc46b.css.map",
-    "main.0828a686.js.map": "/mixin-jam/static/js/main.0828a686.js.map",
+    "main.e1e9b1f1.css.map": "/mixin-jam/static/css/main.e1e9b1f1.css.map",
+    "main.47a1fd50.js.map": "/mixin-jam/static/js/main.47a1fd50.js.map",
     "787.62d5a415.chunk.js.map": "/mixin-jam/static/js/787.62d5a415.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.116dc46b.css",
-    "static/js/main.0828a686.js"
+    "static/css/main.e1e9b1f1.css",
+    "static/js/main.47a1fd50.js"
   ]
 }
