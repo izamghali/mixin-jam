@@ -4,10 +4,12 @@ import { SearchBar } from './components/SearchBar';
 import { SearchResult } from './components/SearchResult';
 import { Playlist } from './components/Playlist';
 import { Track } from './components/Track';
+import { Album } from './components/Album';
 
 function App() {
 
   const [ accessToken, setAccessToken ] = useState('')
+  const [ albums, setAlbums ] = useState([])
 
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
@@ -27,8 +29,6 @@ function App() {
         .then(data => setAccessToken(data.access_token))
   }, [])
 
-  const testArr = [1, 2, 3, 4]
-
   return (
     <div className="App">
       <header className="App-header">
@@ -36,12 +36,12 @@ function App() {
       </header>
 
       <div className='Body'> 
-        <SearchBar accessToken={accessToken} />
+        <SearchBar setAlbums={setAlbums} accessToken={accessToken}/>
         <div className='MixinJam'>
           <SearchResult SearchResult='SearchResult'>
-            { testArr.map(arr => {
-                return <Track />
-            }) }
+            {albums.map(album => {
+              return <Album albumNames={album.name} albumImgSrc={album.images[0].url}/>
+            })}
           </SearchResult>
           <Playlist>
           </Playlist>
