@@ -1,3 +1,6 @@
 .SearchResult {
-    border: solid red;
+    column-count: 1;
+    column-gap: 1.2rem; // column-gap here equals to margin-bottom of .Album
+    padding-top: 1.2rem;
+    display: inline;
 }

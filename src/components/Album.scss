@@ -2,16 +2,17 @@
 
 .Album {
     border: solid black;
-    padding: 1rem;
+    padding: 1.2rem;
     border-radius: 8px;
-    display: flex;
-    flex-direction: column;
+    @extend %flex-col-direction;
     align-items: center;
+    justify-content: space-between;
     text-align: center;
+    width: 15rem;
+    height: 25rem;
+    margin-bottom: 1.2rem;
 
     .album-img-div {
-        width: 15rem;
-        height: 15rem;
         overflow: hidden;
         img { width: 100%; }
     }

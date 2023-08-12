@@ -28,6 +28,7 @@ export function SearchBar(props) {
         // GET request artist album using artist ID
         const getArtistAlbum = await (await fetch(url + '/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=10', searchParams)).json()
         props.setAlbums(getArtistAlbum.items)
+        console.log(getArtistAlbum.items)
     }
 
     return (

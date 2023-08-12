@@ -29,6 +29,8 @@ function App() {
         .then(data => setAccessToken(data.access_token))
   }, [])
 
+  let testArr = [1, 2, 3]
+
   return (
     <div className="App">
       <header className="App-header">
