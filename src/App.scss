@@ -6,26 +6,38 @@
     @extend %flex-justify-align-center;
     background-color: $standard-bg-color1;
     padding-top: 2rem;
-    h1 {
-      color: whitesmoke;
-      margin: 0;
-    }
+    h1 { color: whitesmoke; margin: 0; }
   }
   
   .Body {
     @extend %flex-justify-align-center;
     flex-direction: column;
-    background-color: $standard-bg-color1;
+    background-color: whitesmoke;
+    
+    
+    .SearchBar {
+      background-color: $standard-bg-color1;
+      // border: solid red;
+      padding-block: 1rem;
+      width: 100%;
+    }
     
     .MixinJam {
-      width: 100%;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      background-color: whitesmoke;
+      @extend %flex-justify-between;
+      align-items: start;
+      padding-inline: 3%;
+      padding-block: 2rem;
+      gap: 5rem;
 
       .SearchResult {
         display: flex;
+        column-count: 1;
+        column-gap: 1.2rem; 
+
+        .SearchResult-Album-div {
+          @extend %flex-col-direction;
+          gap: 1rem;
+        }
 
         .SearchResult-Track-div {
           @extend %flex-col-direction;

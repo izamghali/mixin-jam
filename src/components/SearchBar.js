@@ -34,6 +34,8 @@ export function SearchBar(props) {
         const getArtistTracks = await (await fetch(url + '/artists/' + artistID + '/top-tracks' + '?market=US&limit=5', searchParams)).json()
         props.setTracks(getArtistTracks.tracks)
         console.log(getArtistTracks)
+
+        // GET request tracks
     }
 
     return (
