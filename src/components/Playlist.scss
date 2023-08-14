@@ -1,0 +1,21 @@
+@import '../sass-helpers/placeholders';
+
+.Playlist {
+    border: solid red;
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    @extend %flex-col-direction;
+    align-items: center;
+
+    form {
+        input {
+            padding-block: 0.5rem;
+            padding-inline: 0.7rem;
+            background-color: whitesmoke;
+            border: none;
+            outline: none;
+            border-bottom: solid black;
+        }
+    }
+}
