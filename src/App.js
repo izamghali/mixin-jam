@@ -39,8 +39,10 @@ function App() {
       </header>
 
       <div className='Body'> 
-        <SearchBar setAlbums={setAlbums} setTracks={setTracks} accessToken={accessToken}/>
-        <div className='MixinJam'>
+        <div className="SearchBar">
+          <SearchBar setAlbums={setAlbums} setTracks={setTracks} accessToken={accessToken}/>
+        </div>
+        <div className="MixinJam">
           <SearchResult SearchResult='SearchResult' className="SearchResult">
             <div className='SearchResult-Album-div'>
               {albums.map(album => {
@@ -51,11 +53,9 @@ function App() {
               {tracks.map(track => {
                 return <Track artistName={track.artists[0].name} artistUrl={track.artists[0].external_urls.spotify} trackName={track.name} trackImgSrc={track.album.images[0].url} trackUrl={track.external_urls.spotify} />
               })}
-              
             </div>
-            
           </SearchResult>
-          <Playlist>
+          <Playlist Playlist="Playlist" >
           </Playlist>
         </div>
         

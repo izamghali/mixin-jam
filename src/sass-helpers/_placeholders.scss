@@ -8,3 +8,8 @@
     display: flex;
     flex-direction: column;
 }
+
+%flex-justify-between {
+    display: flex;
+    justify-content: space-between;
+}
