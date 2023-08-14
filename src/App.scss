@@ -1,22 +1,37 @@
 @use '/src/sass-helpers/placeholders'; 
+@import '../src/sass-helpers/variables';
 
 .App {
-  padding: 2rem; // temporary until Card is stylized
   .App-header {
     @extend %flex-justify-align-center;
+    background-color: $standard-bg-color1;
+    padding-top: 2rem;
+    h1 {
+      color: whitesmoke;
+      margin: 0;
+    }
   }
   
   .Body {
     @extend %flex-justify-align-center;
     flex-direction: column;
-    background-color: dodgerblue;
+    background-color: $standard-bg-color1;
     
     .MixinJam {
       width: 100%;
       display: flex;
       justify-content: space-around;
       align-items: center;
-      background-color: aliceblue;
+      background-color: whitesmoke;
+
+      .SearchResult {
+        display: flex;
+
+        .SearchResult-Track-div {
+          @extend %flex-col-direction;
+          gap: 1rem;
+        }
+      }
     }
 
   }

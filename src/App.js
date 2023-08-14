@@ -41,13 +41,18 @@ function App() {
       <div className='Body'> 
         <SearchBar setAlbums={setAlbums} setTracks={setTracks} accessToken={accessToken}/>
         <div className='MixinJam'>
-          <SearchResult SearchResult='SearchResult'>
-            {albums.map(album => {
-              return <Album albumNames={album.name} albumImgSrc={album.images[0].url}/>
-            })}
-            {tracks.map(track => {
-              return <Track artistName={track.artists[0].name} artistUrl={track.artists[0].external_urls.spotify} trackName={track.name} trackImgSrc={track.album.images[0].url} trackUrl={track.external_urls.spotify} />
-            })}
+          <SearchResult SearchResult='SearchResult' className="SearchResult">
+            <div className='SearchResult-Album-div'>
+              {albums.map(album => {
+                return <Album albumNames={album.name} albumImgSrc={album.images[0].url}/>
+              })}
+            </div>
+            <div className='SearchResult-Track-div'>
+              {tracks.map(track => {
+                return <Track artistName={track.artists[0].name} artistUrl={track.artists[0].external_urls.spotify} trackName={track.name} trackImgSrc={track.album.images[0].url} trackUrl={track.external_urls.spotify} />
+              })}
+              
+            </div>
             
           </SearchResult>
           <Playlist>

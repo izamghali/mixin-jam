@@ -43,7 +43,7 @@ export function SearchBar(props) {
                 type="text" 
                 className="search-bar-input-tags" 
                 id='searchBarInput' 
-                placeholder='What song are you looking for?'
+                placeholder="What do you wanna listen to?"
                 onChange={handleChange}
                 value={searchInput}
             />
