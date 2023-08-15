@@ -8,8 +8,8 @@
     align-items: center;
     justify-content: space-between;
     text-align: center;
-    min-width: 15rem;
-    min-height: 25rem;
+    max-width: 15rem;
+    max-height: 25rem;
 
     .album-img-div {
         overflow: hidden;

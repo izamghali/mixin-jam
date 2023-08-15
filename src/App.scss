@@ -25,14 +25,17 @@
     .MixinJam {
       @extend %flex-justify-between;
       align-items: start;
-      padding-inline: 3%;
-      padding-block: 2rem;
+      // padding-inline: 3%;
+      // padding-block: 2rem;
       gap: 5rem;
-
+      border: solid blue;
+      display: block;
+      
       .SearchResult {
         display: flex;
         column-count: 1;
         column-gap: 1.2rem; 
+        border: solid orange;
 
         .SearchResult-Album-div {
           @extend %flex-col-direction;

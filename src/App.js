@@ -49,7 +49,7 @@ function App() {
           />
         </div>
         <div className="MixinJam">
-          <SearchResult SearchResult='SearchResult' className="SearchResult">
+          <SearchResult className="SearchResult" SearchResult='SearchResult'>
             <div className='SearchResult-Album-div'>
               {albums.map(album => {
                 return <Album albumNames={album.name} albumImgSrc={album.images[0].url}/>

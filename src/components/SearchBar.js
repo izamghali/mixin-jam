@@ -27,19 +27,20 @@ export function SearchBar(props) {
       
         // GET request artist album using artist ID
         const getArtistAlbums = await (await fetch(url + '/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=5', searchParams)).json()
-        props.setAlbums(getArtistAlbums.items)
-        // console.log(getArtistAlbums.items)
+        const artistAlbums = getArtistAlbums.items;
+        props.setAlbums(artistAlbums)
 
         // GET request artist tracks using artist ID
         const getArtistTracks = await (await fetch(url + '/artists/' + artistID + '/top-tracks' + '?market=US&limit=5', searchParams)).json()
-        props.setArtistTracks(getArtistTracks.tracks)
-        // console.log(getArtistTracks)
+        const artistTracks = getArtistTracks.tracks;
+        props.setArtistTracks(artistTracks)
         
         // GET request tracks
         const getTrackID = await ( await fetch(url + '/search?q=' + searchInput + '&type=track&market=US&limit=10&include_external=audio&offset=5', searchParams)).json();
         const tracks = getTrackID.tracks.items;
         props.setTracks(tracks)
-        console.log(tracks)
+
+        
     }
 
     return (

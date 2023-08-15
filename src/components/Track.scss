@@ -1,5 +1,6 @@
 @use '../sass-helpers/placeholders';
 @import '../sass-helpers/variables';
+@import '../sass-helpers/components';
 
 .Track {
     display: flex;
@@ -24,20 +25,7 @@
         }
 
         button {
-            border: none;
-            border-radius: 8px;
-            @extend %flex-justify-align-center;
-            gap: 0.4rem;
-            padding: 0.7rem;
-            background-color: $standard-accent-color1;
-            transition-duration: 150ms;
-            &:hover {
-                cursor: pointer;
-                transform: scale(1.03);
-                background-color: $standard-accent-color1-more-light;
-            }
-
-            svg { fill: black; }
+            @extend %add-button;
         }
     }
 }
