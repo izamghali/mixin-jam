@@ -2,7 +2,6 @@
 @import '../sass-helpers/components';
 
 .Playlist {
-    border: solid red;
     // width: 100%;
     height: auto;
     padding: 1rem;
@@ -12,8 +11,6 @@
     form {
         display: flex;
         flex-direction: column;
-        input {
-        }
         
         .playlist-title {
             border: none;
@@ -23,8 +20,6 @@
             outline: none;
         }
 
-        .playlist-submit {
-            @extend %add-button;
-        }
+        .playlist-submit { @extend %add-button; }
     }
 }

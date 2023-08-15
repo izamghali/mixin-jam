@@ -12,6 +12,7 @@ function App() {
   const [ albums, setAlbums ] = useState([])
   const [ artistTracks, setArtistTracks ] = useState([])
   const [ tracks, setTracks ] = useState([])
+  const [ searchResultLayout, setSearchResultLayout ] = useState({});
 
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
@@ -31,8 +32,6 @@ function App() {
         .then(data => setAccessToken(data.access_token))
   }, [])
 
-  let testArr = [1, 2, 3]
-
   return (
     <div className="App">
       <header className="App-header">
@@ -42,13 +41,14 @@ function App() {
       <div className='Body'> 
         <div className="SearchBar">
           <SearchBar
+            setSearchResultLayout={setSearchResultLayout}
             setTracks={setTracks}
             setAlbums={setAlbums}
             setArtistTracks={setArtistTracks}
             accessToken={accessToken}
           />
         </div>
-        <div className="MixinJam">
+        <div style={searchResultLayout} className="MixinJam">
           <SearchResult className="SearchResult" SearchResult='SearchResult'>
             <div className='SearchResult-Album-div'>
               {albums.map(album => {
@@ -61,7 +61,10 @@ function App() {
               })}
             </div>
           </SearchResult>
-          <Playlist Playlist="Playlist" >
+          <Playlist
+            // className & Playlist props are set to Playlist so we can style Playlist component in App.scss & Playlist.scss
+            className="Playlist"
+            Playlist="Playlist" > 
           </Playlist>
         </div>
         
