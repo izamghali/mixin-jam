@@ -1,21 +1,30 @@
 @import '../sass-helpers/placeholders';
+@import '../sass-helpers/components';
 
 .Playlist {
     border: solid red;
-    width: 100%;
+    // width: 100%;
     height: auto;
     padding: 1rem;
     @extend %flex-col-direction;
     align-items: center;
 
     form {
+        display: flex;
+        flex-direction: column;
         input {
+        }
+        
+        .playlist-title {
+            border: none;
+            background-color: whitesmoke;
             padding-block: 0.5rem;
             padding-inline: 0.7rem;
-            background-color: whitesmoke;
-            border: none;
             outline: none;
-            border-bottom: solid black;
+        }
+
+        .playlist-submit {
+            @extend %add-button;
         }
     }
 }
