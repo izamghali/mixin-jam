@@ -10,6 +10,7 @@ function App() {
 
   const [ accessToken, setAccessToken ] = useState('')
   const [ albums, setAlbums ] = useState([])
+  const [ artistTracks, setArtistTracks ] = useState([])
   const [ tracks, setTracks ] = useState([])
 
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
@@ -40,7 +41,12 @@ function App() {
 
       <div className='Body'> 
         <div className="SearchBar">
-          <SearchBar setAlbums={setAlbums} setTracks={setTracks} accessToken={accessToken}/>
+          <SearchBar
+            setTracks={setTracks}
+            setAlbums={setAlbums}
+            setArtistTracks={setArtistTracks}
+            accessToken={accessToken}
+          />
         </div>
         <div className="MixinJam">
           <SearchResult SearchResult='SearchResult' className="SearchResult">
@@ -51,7 +57,7 @@ function App() {
             </div>
             <div className='SearchResult-Track-div'>
               {tracks.map(track => {
-                return <Track artistName={track.artists[0].name} artistUrl={track.artists[0].external_urls.spotify} trackName={track.name} trackImgSrc={track.album.images[0].url} trackUrl={track.external_urls.spotify} />
+                return <Track trackName={track.name} artistName={track.artists[0].name} trackUrl={track.external_urls.spotify} imgSrc={track.album.images[0].url} />
               })}
             </div>
           </SearchResult>

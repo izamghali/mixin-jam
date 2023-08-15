@@ -7,11 +7,11 @@ export function Track(props) {
         <>
         <div className='Track'>
             <div className='track-img-div'>
-                <img src={props.trackImgSrc} alt="a person doing some skating trick" />
+                <img src={props.imgSrc} alt="a person doing some skating trick" />
             </div>
             <div className='track-content'>
                 <h3>{props.trackName}</h3>
-                <a href={props.artistUrl}>
+                <a href={props.trackUrl}>
                     <p>{props.artistName}</p>
                 </a>
                 <button>
