@@ -4,6 +4,7 @@ import { SearchBar } from './components/SearchBar';
 import { SearchResult } from './components/SearchResult';
 import { Playlist } from './components/Playlist';
 import { Track } from './components/Track';
+import { CompactTrack } from './components/CompactTrack';
 import { Album } from './components/Album';
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
   const [ artistTracks, setArtistTracks ] = useState([])
   const [ tracks, setTracks ] = useState([])
   const [ searchResultLayout, setSearchResultLayout ] = useState({});
+  const [ addedTracks, setAddedTracks ] = useState([]);
 
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
@@ -57,7 +59,7 @@ function App() {
             </div>
             <div className='SearchResult-Track-div'>
               {tracks.map(track => {
-                return <Track trackName={track.name} artistName={track.artists[0].name} trackUrl={track.external_urls.spotify} imgSrc={track.album.images[0].url} />
+                return <Track addedTracks={addedTracks} setAddedTracks={setAddedTracks} trackName={track.name} artistName={track.artists[0].name} trackUrl={track.external_urls.spotify} imgSrc={track.album.images[0].url} />
               })}
             </div>
           </SearchResult>
@@ -65,6 +67,11 @@ function App() {
             // className & Playlist props are set to Playlist so we can style Playlist component in App.scss & Playlist.scss
             className="Playlist"
             Playlist="Playlist" > 
+            <div>
+              {addedTracks.map(track => {
+                return <CompactTrack trackTitle={track.trackTitle} artistName={track.artistName} />
+              })}
+            </div>
           </Playlist>
         </div>
         
