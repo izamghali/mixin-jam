@@ -13,8 +13,10 @@ function App() {
   const [ albums, setAlbums ] = useState([])
   const [ artistTracks, setArtistTracks ] = useState([])
   const [ tracks, setTracks ] = useState([])
-  const [ searchResultLayout, setSearchResultLayout ] = useState({});
   const [ addedTracks, setAddedTracks ] = useState([]);
+
+  // style
+  const [ searchResultLayout, setSearchResultLayout ] = useState({});
 
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
@@ -51,7 +53,7 @@ function App() {
           />
         </div>
         <div style={searchResultLayout} className="MixinJam">
-          <SearchResult className="SearchResult" SearchResult='SearchResult'>
+          <SearchResult albums={albums} className="SearchResult" SearchResult='SearchResult'>
             <div className='SearchResult-Album-div'>
               {albums.map(album => {
                 return <Album albumNames={album.name} albumImgSrc={album.images[0].url}/>
