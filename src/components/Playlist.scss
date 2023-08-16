@@ -9,7 +9,8 @@
     align-items: center;
     gap: 0.5rem;
     border: solid red;
-    
+    width: 25rem;
+
     form {
         display: flex;
         flex-direction: column;
@@ -34,6 +35,8 @@
     .playlist-added-tracks {
         @extend %flex-col-direction;
         gap: 0.5rem;
+        align-items: start;
+        width: 100%;
     }
 
     .playlist-submit { @extend %add-button; }
