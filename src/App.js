@@ -67,13 +67,10 @@ function App() {
           </SearchResult>
           <Playlist
             // className & Playlist props are set to Playlist so we can style Playlist component in App.scss & Playlist.scss
-            className="Playlist"
-            Playlist="Playlist" > 
-            <div>
-              {addedTracks.map(track => {
-                return <CompactTrack trackTitle={track.trackTitle} artistName={track.artistName} />
-              })}
-            </div>
+            > 
+            {addedTracks.map(track => {
+              return <CompactTrack trackTitle={track.trackTitle} artistName={track.artistName} />
+            })}
           </Playlist>
         </div>
         

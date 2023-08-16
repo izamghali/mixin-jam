@@ -3,8 +3,6 @@ import './Playlist.scss';
 
 export function Playlist(props) {
 
-    let dummyText = 'New Playlist'
-
     const [ playlistTitle, setPlaylistTitle ] = useState('')
 
     const handleChange = ({target}) => {
@@ -24,7 +22,7 @@ export function Playlist(props) {
                         >
                     </input>
                 </form>
-                <div>
+                <div className='playlist-added-tracks'>
                     { props.children }
                 </div>
                 <button 

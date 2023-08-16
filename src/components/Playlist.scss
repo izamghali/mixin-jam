@@ -8,6 +8,7 @@
     @extend %flex-col-direction;
     align-items: center;
     gap: 0.5rem;
+    border: solid red;
     
     form {
         display: flex;
@@ -28,6 +29,11 @@
             }
         }
 
+    }
+
+    .playlist-added-tracks {
+        @extend %flex-col-direction;
+        gap: 0.5rem;
     }
 
     .playlist-submit { @extend %add-button; }

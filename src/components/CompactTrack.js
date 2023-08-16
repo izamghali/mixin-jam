@@ -1,4 +1,5 @@
 import React from 'react';
+import './CompactTrack.scss';
 
 export function CompactTrack(props) {
 
@@ -9,7 +10,7 @@ export function CompactTrack(props) {
     return (
         <>
             <div className='CompactTrack'>
-                <div>
+                <div className='compact-content'>
                     <h3>{props.trackTitle}</h3>
                     <p>{props.artistName}</p>
                 </div>

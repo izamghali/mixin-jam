@@ -1,0 +1,22 @@
+@import '../sass-helpers/placeholders';
+
+.CompactTrack {
+    @extend %flex-justify-between;
+    border: solid green;
+    min-width: 10rem;
+    padding-inline: 1rem;
+    padding-block: 0.5rem;
+    
+    .compact-content {
+
+        h3, p {
+            margin: 0;
+        }
+    }
+
+    button {
+        margin-left: 1rem;
+        border: none;
+        background-color: transparent;
+    }
+}

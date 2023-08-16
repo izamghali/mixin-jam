@@ -24,11 +24,10 @@
     .MixinJam {
       padding-inline: 3%;
       padding-block: 2rem;
-      gap: 5rem;
+      gap: 1.2rem;
       
       .SearchResult {
         display: flex;
-        column-count: 1;
 
         .SearchResult-Album-div {
           @extend %flex-col-direction;
@@ -39,6 +38,10 @@
           @extend %flex-col-direction;
           gap: 1rem;
         }
+      }
+
+      .Playlist {
+
       }
     }
 
