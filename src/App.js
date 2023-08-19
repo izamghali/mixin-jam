@@ -61,7 +61,15 @@ function App() {
             </div>
             <div className='SearchResult-Track-div'>
               {tracks.map(track => {
-                return <Track addedTracks={addedTracks} setAddedTracks={setAddedTracks} trackName={track.name} artistName={track.artists[0].name} trackUrl={track.external_urls.spotify} imgSrc={track.album.images[0].url} />
+                return <Track 
+                          addedTracks={addedTracks} 
+                          trackID={track.id}
+                          setAddedTracks={setAddedTracks} 
+                          trackTitle={track.name} 
+                          artistName={track.artists[0].name} 
+                          trackUrl={track.external_urls.spotify} 
+                          imgSrc={track.album.images[0].url} 
+                        />
               })}
             </div>
           </SearchResult>
@@ -69,7 +77,14 @@ function App() {
             // className & Playlist props are set to Playlist so we can style Playlist component in App.scss & Playlist.scss
             > 
             {addedTracks.map(track => {
-              return <CompactTrack trackTitle={track.trackTitle} artistName={track.artistName} />
+              return <CompactTrack
+                        tracks={tracks}
+                        setAddedTracks={setAddedTracks}
+                        addedTracks={addedTracks}
+                        trackTitle={track.trackTitle}
+                        artistName={track.artistName} 
+                        trackID={track.trackID}
+                      />
             })}
           </Playlist>
         </div>
