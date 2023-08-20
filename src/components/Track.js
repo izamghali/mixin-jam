@@ -4,19 +4,18 @@ import './Track.scss'
 export function Track(props) {
 
     const addTrackToPlaylist = () => {
-        const addedTrackIDs = props.addedTracks.map(track => { return track.trackID });
+
         const trackToAdd = {
             trackTitle: props.trackTitle,
             artistName: props.artistName,
             trackID: props.trackID,
         }
 
-        if (props.addedTracks.length > 0 && addedTrackIDs.includes(trackToAdd.trackID)) {
+        if (props.addedTracks.length > 0 && props.addedTrackIDs.includes(trackToAdd.trackID)) {
             return // should tell that the track is already in the playlist
         } else {
             props.setAddedTracks(prevTracks => [trackToAdd, ...prevTracks])
         }
-
     }
 
     return (

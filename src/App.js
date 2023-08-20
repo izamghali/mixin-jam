@@ -15,6 +15,8 @@ function App() {
   const [ tracks, setTracks ] = useState([])
   const [ addedTracks, setAddedTracks ] = useState([]);
 
+  const addedTrackIDs = addedTracks.map(track => { return track.trackID });
+
   // style
   const [ searchResultLayout, setSearchResultLayout ] = useState({});
 
@@ -62,6 +64,7 @@ function App() {
             <div className='SearchResult-Track-div'>
               {tracks.map(track => {
                 return <Track 
+                          addedTrackIDs={addedTrackIDs}
                           addedTracks={addedTracks} 
                           trackID={track.id}
                           setAddedTracks={setAddedTracks} 
@@ -78,6 +81,7 @@ function App() {
             > 
             {addedTracks.map(track => {
               return <CompactTrack
+                        addedTrackIDs={addedTrackIDs}
                         tracks={tracks}
                         setAddedTracks={setAddedTracks}
                         addedTracks={addedTracks}
