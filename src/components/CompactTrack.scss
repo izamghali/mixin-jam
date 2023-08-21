@@ -1,31 +1,37 @@
 @import '../sass-helpers/placeholders';
+@import '../sass-helpers/variables';
 
 .CompactTrack {
     @extend %flex-justify-between;
     align-items: center;
-    // border: solid green;
-    // width: auto;
+    border: solid black;
+    // border: solid $standard-accent-color3;
     width: 100%;
-    // padding: 1rem;
-    // height: 5rem;
     transition-duration: 350ms;
     border-radius: 8px;
     &:hover{
         cursor: pointer;
-        // background-color: dodgerblue; 
-    }
-    
-    .compact-content {
-        @extend %flex-col-direction;
-        gap: 0.4rem;
-        h3, p { margin: 0; }
     }
 
-    button {
-        width: 2rem;
-        height: 2rem;
-        border: none;
-        background-color: transparent;
-        &:hover{cursor: pointer;}
+    .compact-track-inner-div {
+        @extend %flex-justify-between;
+        align-items: center;
+        width: 100%;
+        padding: 1rem;
+        
+        .compact-content {
+            @extend %flex-col-direction;
+            gap: 0.4rem;
+            h3, p { margin: 0; }
+        }
+    
+        button {
+            width: 2rem;
+            height: 2rem;
+            border: none;
+            background-color: transparent;
+            &:hover{cursor: pointer;}
+        }
     }
+    
 }
