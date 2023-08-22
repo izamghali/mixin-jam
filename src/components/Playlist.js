@@ -25,6 +25,11 @@ export function Playlist(props) {
                 <div className='playlist-added-tracks'>
                     { props.children }
                 </div>
+                <div>
+                    <form>
+                        <input type='text'></input>
+                    </form>
+                </div>
                 <button 
                         className='playlist-submit'
                         type='submit'

@@ -10,7 +10,8 @@ export function CompactTrack(props) {
     const removeTrack = () => {
         props.setAddedTracks(prevTracks => {
             if (props.addedTrackIDs.includes(props.trackID)) {
-                return prevTracks.filter(track => track.trackID !== props.trackID)
+                const trackToRemove = prevTracks.filter(track => track.trackID !== props.trackID)
+                return trackToRemove;
             }
         })
     }
