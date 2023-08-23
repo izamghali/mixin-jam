@@ -7,14 +7,13 @@
     padding: 1rem;
     @extend %flex-col-direction;
     align-items: center;
-    gap: 0.5rem;
+    gap: 2rem;
     // border-right: solid black;
     // border-left: solid black;
     width: 25rem;
 
-    form {
-        display: flex;
-        flex-direction: column;
+    .playlist-title-form {
+        @extend %flex-col-direction;
         gap: 1rem;
         
         .playlist-title {
@@ -38,6 +37,16 @@
         gap: 0.5rem;
         align-items: start;
         width: 100%;
+    }
+    
+    .playlist-desc-form {
+        @extend %flex-col-direction;
+        gap: 1rem;
+        textarea {
+            border-radius: 8px;
+            outline: none;
+            padding: 1rem
+        }
     }
 
     .playlist-submit { @extend %add-button; }

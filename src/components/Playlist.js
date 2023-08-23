@@ -12,7 +12,7 @@ export function Playlist(props) {
     return (
         <>
             <div className='Playlist'>
-                <form>
+                <form className='playlist-title-form'>
                     <input 
                         className='playlist-title'
                         type='text'
@@ -25,13 +25,13 @@ export function Playlist(props) {
                 <div className='playlist-added-tracks'>
                     { props.children }
                 </div>
-                <div>
-                    <form>
-                        <input type='text'></input>
-                    </form>
-                </div>
-                <button 
-                        className='playlist-submit'
+                <form className='playlist-desc-form'>
+                    <label for="">Tell us what the playlist is about</label>
+                    <textarea>
+
+                    </textarea>
+                </form>
+                <button className='playlist-submit'
                         type='submit'
                         value=''
                         >
