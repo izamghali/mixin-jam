@@ -7,4 +7,6 @@ mixin-jam is a web app where you can:
 
 ## How to use
 
-Soon..
+The web app is being developed :hammer_and_wrench: :computer:
+
+but try to look for some songs, albums, or artists :tipping_hand_man: [here](https://izamghali.github.io/mixin-jam/)
