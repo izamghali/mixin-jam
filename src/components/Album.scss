@@ -1,4 +1,5 @@
 @use '../sass-helpers/placeholders';
+@import '../sass-helpers/variables';
 
 .Album {
     border: solid black;
@@ -10,6 +11,12 @@
     text-align: center;
     max-width: 15rem;
     max-height: 25rem;
+    transition-duration: $standard-transition-duration-quick;
+
+    &:hover {
+        cursor: pointer;
+        background-color: chocolate;
+    }
 
     .album-img-div {
         overflow: hidden;

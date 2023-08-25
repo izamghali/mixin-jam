@@ -16,6 +16,14 @@ function App() {
   const [ addedTracks, setAddedTracks ] = useState([]);
 
   const addedTrackIDs = addedTracks.map(track => { return track.trackID });
+  const url = 'https://api.spotify.com/v1' 
+  const searchParams = {
+    method: 'GET',
+    headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + accessToken
+    }
+  }
 
   // style
   const [ searchResultLayout, setSearchResultLayout ] = useState({});
@@ -45,8 +53,11 @@ function App() {
       </header>
 
       <div className='Body'> 
+
         <div className="SearchBar">
           <SearchBar
+            url={url}
+            searchParams={searchParams}
             setSearchResultLayout={setSearchResultLayout}
             setTracks={setTracks}
             setAlbums={setAlbums}
@@ -54,13 +65,22 @@ function App() {
             accessToken={accessToken}
           />
         </div>
+
         <div style={searchResultLayout} className="MixinJam">
+
           <SearchResult albums={albums} className="SearchResult" SearchResult='SearchResult'>
             <div className='SearchResult-Album-div'>
               {albums.map(album => {
-                return <Album albumNames={album.name} albumImgSrc={album.images[0].url}/>
+                return <Album 
+                        url={url}
+                        albums={albums}
+                        searchParams={searchParams}
+                        albumNames={album.name} 
+                        albumID={album.id}
+                        albumImgSrc={album.images[0].url }/>
               })}
             </div>
+
             <div className='SearchResult-Track-div'>
               {tracks.map(track => {
                 return <Track 
@@ -75,7 +95,9 @@ function App() {
                         />
               })}
             </div>
+
           </SearchResult>
+
           <Playlist
             // className & Playlist props are set to Playlist so we can style Playlist component in App.scss & Playlist.scss
             > 
@@ -91,6 +113,7 @@ function App() {
                       />
             })}
           </Playlist>
+
         </div>
         
       </div>

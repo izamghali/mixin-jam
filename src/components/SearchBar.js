@@ -3,6 +3,8 @@ import './SearchBar.scss'
 
 export function SearchBar(props) {
 
+    const { url, searchParams, setArtistID } = props
+
     const [ searchInput, setSearchInput ] = useState('')
     const handleChange = ({target}) => {
         setSearchInput(target.value)
@@ -10,27 +12,18 @@ export function SearchBar(props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
-        const url = 'https://api.spotify.com/v1' 
-        const searchParams = {
-          method: 'GET',
-          headers: {
-              'Content-Type': 'application/json',
-              'Authorization': 'Bearer ' + props.accessToken
-          }
-        }
 
         if (searchInput.length > 0) {
             // GET request artist ID
             const getArtistID = await (await fetch(url + '/search?q=' + searchInput + '&type=artist', searchParams)).json()
             const artistID = getArtistID.artists.items[0].id
             const artistNAME = getArtistID.artists.items[0].name
-          
+
             // GET request artist album using artist ID
             const getArtistAlbums = await (await fetch(url + '/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=5', searchParams)).json()
             const artistAlbums = getArtistAlbums.items;
             props.setAlbums(artistAlbums)
-    
+
             // GET request artist tracks using artist ID
             const getArtistTracks = await (await fetch(url + '/artists/' + artistID + '/top-tracks' + '?market=US&limit=5', searchParams)).json()
             const artistTracks = getArtistTracks.tracks;
