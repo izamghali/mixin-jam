@@ -5,10 +5,11 @@ export function Album(props) {
 
     const { url, searchParams, albums, albumNames, albumImgSrc, albumID } = props;
 
-    const handleClick = async ({target}) => {
+    const handleClick = async (event) => {
+        event.preventDefault();
 
         // GET request album tracks using album ID
-        const getAlbumTracks = await (await fetch(url + '/albums/' + albumID + 'tracks', searchParams)).json()
+        const getAlbumTracks = await (await fetch(`${url}/albums/${albumID}/tracks`, searchParams)).json()
         console.log(getAlbumTracks)
     
     }
