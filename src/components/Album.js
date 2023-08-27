@@ -28,6 +28,7 @@ export function Album(props) {
                 View Album
             </button> */}
         </div>
+        <div className='ShadowAlbum'></div>
         </>
     )
 }
