@@ -26,7 +26,7 @@ export function Track(props) {
             </div>
             <div className='track-content'>
                 <h3>{props.trackTitle}</h3>
-                <a href={props.trackUrl}>
+                <a href={props.trackUrl} target='_blank'>
                     <p>{props.artistName}</p>
                 </a>
                 <button 

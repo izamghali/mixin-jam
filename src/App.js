@@ -64,6 +64,7 @@ function App() {
             setAlbums={setAlbums}
             setArtistTracks={setArtistTracks}
             accessToken={accessToken}
+            albums={albums}
           />
         </div>
 

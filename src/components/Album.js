@@ -10,7 +10,6 @@ export function Album(props) {
 
         // GET request album tracks using album ID
         const getAlbumTracks = await (await fetch(`${url}/albums/${albumID}/tracks`, searchParams)).json()
-        console.log(getAlbumTracks)
     
     }
 

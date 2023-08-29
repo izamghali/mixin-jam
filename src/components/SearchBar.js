@@ -3,7 +3,7 @@ import './SearchBar.scss'
 
 export function SearchBar(props) {
 
-    const { url, searchParams, setArtistID } = props
+    const { url, searchParams, setArtistID, albums } = props
 
     const [ searchInput, setSearchInput ] = useState('')
     const handleChange = ({target}) => {
