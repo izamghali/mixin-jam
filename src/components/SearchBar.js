@@ -18,11 +18,13 @@ export function SearchBar(props) {
             const getArtistID = await (await fetch(url + '/search?q=' + searchInput + '&type=artist', searchParams)).json()
             const artistID = getArtistID.artists.items[0].id
             const artistNAME = getArtistID.artists.items[0].name
-
+            // console.log(getArtistID)
+            
             // GET request artist album using artist ID
             const getArtistAlbums = await (await fetch(url + '/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=5', searchParams)).json()
             const artistAlbums = getArtistAlbums.items;
             props.setAlbums(artistAlbums)
+            // console.log(artistAlbums)
 
             // GET request artist tracks using artist ID
             const getArtistTracks = await (await fetch(url + '/artists/' + artistID + '/top-tracks' + '?market=US&limit=5', searchParams)).json()

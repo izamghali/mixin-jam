@@ -7,6 +7,7 @@ import { Playlist } from './components/Playlist';
 import { Track } from './components/Track';
 import { CompactTrack } from './components/CompactTrack';
 import { Album } from './components/Album';
+import { UserPlaylist } from './components/UserPlaylist';
 
 function App() {
 
@@ -116,6 +117,10 @@ function App() {
             })}
           </Playlist>
 
+        </div>
+
+        <div>
+            <UserPlaylist/>
         </div>
         
       </div>
