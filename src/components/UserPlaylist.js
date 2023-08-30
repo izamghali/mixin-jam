@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
 
-export function UserPlaylist() {
+export function UserPlaylist(props) {
+
+    const { searchParams } = props;
 
     const [ inputText, setInputText ] = useState('')
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (inputText.length > 0) {
-            alert(inputText)
 
-            // POST request to fetch 
-
+            // GET request to fetch 
+            const getUserPlaylist = await (await fetch(`https://api.spotify.com/v1/users/${inputText}/playlists`, searchParams)).json()
+            console.log(getUserPlaylist)
         }
 
     }

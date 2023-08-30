@@ -120,7 +120,9 @@ function App() {
         </div>
 
         <div>
-            <UserPlaylist/>
+            <UserPlaylist
+              searchParams = {searchParams}
+            />
         </div>
         
       </div>
