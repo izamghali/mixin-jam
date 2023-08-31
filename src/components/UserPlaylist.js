@@ -10,9 +10,13 @@ export function UserPlaylist(props) {
         event.preventDefault();
         if (inputText.length > 0) {
 
-            // GET request to fetch 
+            // GET request to fetch user's playlists
             const getUserPlaylist = await (await fetch(`https://api.spotify.com/v1/users/${inputText}/playlists`, searchParams)).json()
             console.log(getUserPlaylist)
+            
+            // GET request to fetch user
+            const getUser = await (await fetch(`https://api.spotify.com/v1/users/${inputText}`, searchParams)).json()
+            console.log(getUser)
         }
 
     }
