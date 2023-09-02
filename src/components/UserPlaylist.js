@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './UserPlaylist.scss'
 
 export function UserPlaylist(props) {
 
@@ -27,7 +28,7 @@ export function UserPlaylist(props) {
 
     return (
         <>
-            <div>
+            <div className='UserPlaylist'>
                 <h2>User Playlist test</h2>
                 <form onSubmit={handleSubmit}>
                     <input
