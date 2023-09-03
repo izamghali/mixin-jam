@@ -122,6 +122,7 @@ function App() {
         <div>
             <UserPlaylist
               searchParams = {searchParams}
+              CLIENT_ID={CLIENT_ID}
             />
         </div>
         
