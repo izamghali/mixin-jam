@@ -3,14 +3,14 @@ import './UserPlaylist.scss'
 
 export function UserPlaylist(props) {
 
-    const { searchParams, clientID } = props;
+    const { searchParams, clientId } = props;
 
     const [ inputText, setInputText ] = useState('')
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // if (inputText.length > 0) {
 
+        // if (inputText.length > 0) {
             // GET request to fetch user's playlists
             // const getUserPlaylist = await (await fetch(`https://api.spotify.com/v1/users/${inputText}/playlists`, searchParams)).json()
             // console.log(getUserPlaylist)
@@ -19,9 +19,9 @@ export function UserPlaylist(props) {
             // const getUser = await (await fetch(`https://api.spotify.com/v1/users/${inputText}`, searchParams)).json()
         // }
 
-        // generating code verifier
         
-        function generateRandomString(length) {
+        // generating code verifier
+        let generateRandomString = (length) => {
             let text = '';
             let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
           
@@ -32,7 +32,7 @@ export function UserPlaylist(props) {
         }
 
         // hashing code verifier using SHA256 algorithm
-        async function generateCodeChallenge(codeVerifier) {
+        let generateCodeChallenge = async (codeVerifier) => {
             function base64encode(string) {
               return btoa(String.fromCharCode.apply(null, new Uint8Array(string)))
                 .replace(/\+/g, '-')
@@ -46,15 +46,13 @@ export function UserPlaylist(props) {
           
             return base64encode(digest);
         }
-
-        const clientId = clientID;
-        const redirectUri = 'http://localhost:8080';
+        
         let codeVerifier = generateRandomString(128);
 
-        generateCodeChallenge(codeVerifier).then(codeChallenge => {
+        const redirectUri = 'http://localhost:3000';
+
         let state = generateRandomString(16);
         let scope = 'user-read-private user-read-email';
-
         localStorage.setItem('code_verifier', codeVerifier);
 
         let args = new URLSearchParams({
@@ -64,11 +62,10 @@ export function UserPlaylist(props) {
             redirect_uri: redirectUri,
             state: state,
             code_challenge_method: 'S256',
-            code_challenge: codeChallenge
+            code_challenge: await generateCodeChallenge(codeVerifier)
         });
 
-        window.location = 'https://accounts.spotify.com/authorize?' + args;
-        });
+        window.location = `https://accounts.spotify.com/authorize?${args}`;
 
     }
 
