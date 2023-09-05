@@ -7,7 +7,7 @@ import { Playlist } from './components/Playlist';
 import { Track } from './components/Track';
 import { CompactTrack } from './components/CompactTrack';
 import { Album } from './components/Album';
-import { UserPlaylist } from './components/UserPlaylist';
+import { LoginSpotifyButton } from './components/LoginSpotifyButton';
 
 function App() {
 
@@ -120,7 +120,7 @@ function App() {
         </div>
 
         <div>
-            <UserPlaylist
+            <LoginSpotifyButton
               searchParams = {searchParams}
               clientId={CLIENT_ID}
             />

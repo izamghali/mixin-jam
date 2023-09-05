@@ -1,0 +1,29 @@
+@import '../sass-helpers/placeholders';
+@import '../sass-helpers/variables';
+
+.LoginSpotifyButton {
+    border-radius: 40px;
+    padding: 1rem 5rem;
+    background-color: black;
+    gap: 0.5rem;
+    @extend %flex-justify-align-center;
+
+    &:hover {
+        cursor: pointer;
+    }
+    
+    svg {
+        fill: $spotify-color;
+        width: 20px;
+        height: 20px;
+    }
+
+    input {
+        border: none; 
+        background-color: transparent;
+        color: whitesmoke;
+        font-size: large;
+
+        &:hover { cursor: pointer; }
+    }
+}
