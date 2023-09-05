@@ -50,9 +50,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <h1>Mixin' Jam</h1>
-      </header>
+      </header> */}
 
       <LoginPage />
 

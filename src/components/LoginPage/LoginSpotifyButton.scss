@@ -2,15 +2,20 @@
 @import '../../sass-helpers/variables';
 
 .LoginSpotifyButton {
-    border-radius: 40px;
     padding: 1rem 5rem;
-    background-color: black;
+    background-color: whitesmoke;
     gap: 0.5rem;
+    border-radius: 12px;
+    transition-duration: 400ms;
+    box-shadow: 10px 20px 40px hsla(0, 0%, 0%, 0.416);
     @extend %flex-justify-align-center;
-    width: 15rem;
-
+    
     &:hover {
         cursor: pointer;
+        box-shadow: 20px 40px 20px hsla(0, 0%, 0%, 0.416);
+        border-radius: 40px;
+        background-color: black;
+        input { color: whitesmoke; }
     }
     
     svg {
@@ -20,9 +25,8 @@
     }
 
     input {
-        border: none; 
+        border: none;
         background-color: transparent;
-        color: whitesmoke;
         font-size: large;
 
         &:hover { cursor: pointer; }

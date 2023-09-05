@@ -1,14 +1,29 @@
 
 
 .LoginPage {
-    border: solid orange;
+    // border: solid orange;
+    margin-top: 5rem;
+    display: flex;
+    justify-content: space-between;
+    // gap: 2rem;
+    padding-inline: 5%;
+    // border: solid dodgerblue;
     
-
     .login-img-div {
-
+        // border: solid orange;
+        height: 35rem;
+        img {
+            height: 100%;
+            border-radius: 12px;
+        }
+    }
+    
+    .login-content {
+        // border: solid darkgreen;
+        width: 25rem;
     }
 
-    .login-contnet {
-        
+    .login-spotify-button {
+        margin-top: 4rem;
     }
 }
