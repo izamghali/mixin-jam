@@ -7,7 +7,7 @@
     gap: 0.5rem;
     border-radius: 12px;
     transition-duration: 400ms;
-    box-shadow: 10px 20px 40px hsla(0, 0%, 0%, 0.416);
+    box-shadow: 10px 30px 30px hsla(0, 0%, 0%, 0.416);
     @extend %flex-justify-align-center;
     
     &:hover {

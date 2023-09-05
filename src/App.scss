@@ -1,5 +1,6 @@
 @use '/src/sass-helpers/placeholders'; 
 @import '../src/sass-helpers/variables';
+@import '../src/sass-helpers/breakpoints';
 
 .App {
   .App-header {

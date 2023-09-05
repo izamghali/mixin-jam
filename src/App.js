@@ -54,7 +54,7 @@ function App() {
         <h1>Mixin' Jam</h1>
       </header> */}
 
-      <LoginPage />
+      <LoginPage clientId={CLIENT_ID} />
 
       {/* <div className='Body'> 
 
@@ -119,13 +119,6 @@ function App() {
             })}
           </Playlist>
 
-        </div>
-
-        <div>
-            <LoginSpotifyButton
-              searchParams = {searchParams}
-              clientId={CLIENT_ID}
-            />
         </div>
         
       </div> */}

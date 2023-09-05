@@ -1,24 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../LoginPage/LoginSpotifyButton.scss'
 
 export function LoginSpotifyButton(props) {
 
-    const { searchParams, clientId } = props;
-
-    const [ inputText, setInputText ] = useState('')
+    const { clientId } = props;
 
     const handleClick = async (event) => {
         event.preventDefault();
-
-        // if (inputText.length > 0) {
-            // GET request to fetch user's playlists
-            // const getUserPlaylist = await (await fetch(`https://api.spotify.com/v1/users/${inputText}/playlists`, searchParams)).json()
-            // console.log(getUserPlaylist)
-            
-            // GET request to fetch user
-            // const getUser = await (await fetch(`https://api.spotify.com/v1/users/${inputText}`, searchParams)).json()
-        // }
-
         
         // generating code verifier
         let generateRandomString = (length) => {
