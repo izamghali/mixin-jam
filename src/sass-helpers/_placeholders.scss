@@ -1,7 +1,11 @@
-%flex-justify-align-center {
+%flex-align-center {
     display: flex;
-    justify-content: center;
     align-items: center;
+}
+
+%flex-justify-align-center {
+    @extend %flex-align-center;
+    justify-content: center;
 }
 
 %flex-col-direction {
@@ -12,4 +16,9 @@
 %flex-justify-between {
     display: flex;
     justify-content: space-between;
+}
+
+%flex-justify-between-align-center {
+    @extend %flex-justify-between;
+    align-items: center;
 }
