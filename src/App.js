@@ -7,7 +7,7 @@ import { Playlist } from './components/Playlist';
 import { Track } from './components/Track';
 import { CompactTrack } from './components/CompactTrack';
 import { Album } from './components/Album';
-import { LoginSpotifyButton } from './components/LoginSpotifyButton';
+import { LoginPage } from './components/LoginPage/LoginPage';
 
 function App() {
 
@@ -54,7 +54,9 @@ function App() {
         <h1>Mixin' Jam</h1>
       </header>
 
-      <div className='Body'> 
+      <LoginPage />
+
+      {/* <div className='Body'> 
 
         <div className="SearchBar">
           <SearchBar
@@ -126,7 +128,7 @@ function App() {
             />
         </div>
         
-      </div>
+      </div> */}
     </div>
   );
 }

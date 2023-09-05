@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './LoginSpotifyButton.scss'
+import '../LoginPage/LoginSpotifyButton.scss'
 
 export function LoginSpotifyButton(props) {
 

@@ -1,5 +1,5 @@
-@import '../sass-helpers/placeholders';
-@import '../sass-helpers/variables';
+@import '../../sass-helpers/placeholders';
+@import '../../sass-helpers/variables';
 
 .LoginSpotifyButton {
     border-radius: 40px;
@@ -7,6 +7,7 @@
     background-color: black;
     gap: 0.5rem;
     @extend %flex-justify-align-center;
+    width: 15rem;
 
     &:hover {
         cursor: pointer;

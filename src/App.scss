@@ -3,7 +3,7 @@
 
 .App {
   .App-header {
-    @extend %flex-justify-align-center;
+    // @extend %flex-justify-align-center;
     background-color: $standard-bg-color1;
     padding-block: 2rem;
     padding-inline: 5%;
