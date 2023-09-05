@@ -10,6 +10,11 @@
     align-items: center;
     max-width: 27rem;
     padding: 1rem;
+
+    &:hover {
+        cursor: pointer;
+    }
+
     .track-img-div {
         width: 8rem;
         height: 8rem;
@@ -23,7 +28,5 @@
             text-decoration: none;
             color: $standard-accent-color2;
         }
-
-        button { @extend %add-button; }
     }
 }

@@ -5,7 +5,8 @@
   .App-header {
     @extend %flex-justify-align-center;
     background-color: $standard-bg-color1;
-    padding-top: 2rem;
+    padding-block: 2rem;
+    padding-inline: 5%;
     h1 { color: whitesmoke; margin: 0; }
   }
   
@@ -13,7 +14,6 @@
     @extend %flex-justify-align-center;
     flex-direction: column;
     background-color: whitesmoke;
-    
     
     .SearchBar {
       background-color: $standard-bg-color1;
