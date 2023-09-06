@@ -10,18 +10,17 @@
     border-radius: 12px;
     transition-duration: 400ms;
     box-shadow: 10px 30px 30px hsla(0, 0%, 0%, 0.416);
-    width: auto;
+    max-width: auto;
     @extend %flex-justify-align-center;
     
     @include tablet {
         border-radius: 40px;
-        
     }
     @include mobile-landscape {
-
+        padding: 0.7rem 2rem;
     }
     @include mobile-portrait {
-        padding: 0.4rem 4rem;
+        padding: 0.4rem 2rem;
         width: 11rem;
     }
     
@@ -38,10 +37,13 @@
         width: 20px;
         height: 20px;
         transition-duration: 400ms;
+        @include mobile-landscape {
+            width: 24px;
+            height: 24px;
+        }
         @include mobile-portrait {
             width: 30px;
             height: 30px;
-
         }
     }
 
@@ -49,7 +51,7 @@
         border: none;
         background-color: transparent;
         font-size: large;
-        @include mobile-portrait {
+        @include mobile-landscape {
             font-size: medium;
         }
 
