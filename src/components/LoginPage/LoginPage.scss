@@ -1,42 +1,179 @@
+@import '../../sass-helpers/breakpoints';
 @import '../../sass-helpers/placeholders';
 
 .LoginPage {
-    margin-top: 5rem;
-    display: flex;
-    justify-content: space-between;
+    // margin-top: 5rem;
+    // display: flex;
+    // justify-content: space-between;
     padding-inline: 5%;
+    padding-block: 100px;
+
+    // webflow
+    grid-column-gap: 84px;
+    
+    background-color:forestgreen;
+
+    @include tablet {
+        background-color: dodgerblue;
+
+        // webflow
+        grid-column-gap: 40px;
+    }
+    @include mobile-landscape {
+        background-color: gold;
+
+        // webflow
+        display: flex;
+        padding-right: 3%;
+        padding-left: 3%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        grid-column-gap: 0px;
+    }
+    @include mobile-portrait {
+        background-color: pink;
+    }
     
     .login-img-div {
-        height: 35rem;
+        // width: 50rem;
+
+        @include mobile-landscape {
+            // webflow
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
 
         .login-slogan {
-            position: relative;
-            left: 5%;
-            top: 80%;
+            @include tablet {
+                position: relative;
+                left: 5%;
+                top: 80%;
+            }
 
             h2 {
-                margin: 0;
-                letter-spacing: 1.5px;
-                font-weight: 500;
+                // margin: 0;
+                // letter-spacing: 1.5px;
+                // font-weight: 500;
+                // position: absolute;
+                // color: whitesmoke;
+
+                // webflow
                 position: absolute;
-                color: whitesmoke;
+                top: 298px;
+                width: 564px;
+                padding-right: 39px;
+                padding-left: 39px;
+                border-top-style: solid;
+                border-top-width: 0px;
+                border-top-color: hsla(0, 100.00%, 50.00%, 1.00);
+                border-right-style: solid;
+                border-right-width: 0px;
+                border-right-color: hsla(0, 100.00%, 50.00%, 1.00);
+                border-bottom-style: solid;
+                border-bottom-width: 0px;
+                border-bottom-color: hsla(0, 100.00%, 50.00%, 1.00);
+                border-left-style: solid;
+                border-left-width: 0px;
+                border-left-color: hsla(0, 100.00%, 50.00%, 1.00);
+                color: hsla(0, 0.00%, 100.00%, 1.00);
+                font-size: 28px;
+                font-style: italic;
+                text-align: left;
+                  
+                @include tablet {
+                    // webflow
+                    top: 160px;
+                    width: 429px;
+                    font-size: 25px;
+                }
+
+                @include mobile-landscape {
+                    // webflow
+                    top: 52px;
+                    display: none;
+                    width: 549px;
+                    padding-left: 0px;
+                    font-size: 18px;
+                    line-height: 23px;
+                }
+
+                @include mobile-portrait {
+                    // webflow
+                    display: none;
+                    width: 378px;
+                    padding-right: 10px;
+                    padding-left: 10px;
+                    flex-wrap: wrap;
+                    align-content: flex-start;
+                    font-size: 20px;
+                }
             }
         }
 
         img {
-            height: 100%;
+            width: 100%;
             border-radius: 12px;
+
+            // webflow
+            mix-blend-mode: normal;
         }
     }
     
     .login-content {
-        width: 25rem;
+        // width: 25rem;
+
+        @include tablet {
+            // webflow
+            display: block;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        @include mobile-landscape {
+            // webflow
+            display: block;
+            margin-top: 20px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @include mobile-portrait {
+            // webflow
+            margin-top: 15px;
+        }
         
         .login-content-header {
             @extend %flex-justify-between-align-center;
-            h1 { margin: 0; }
+            h1 {
+                margin: 0;
+
+                @include tablet {
+                    // webflow
+                    margin-top: 0px;
+                    margin-bottom: 0px;
+                }
+
+                @include mobile-landscape {
+                    // webflow
+                    font-size: 30px;
+                }
+            }
+        }
+
+        .login-spotify-button {
+            // margin-top: 4rem;
+            
+            // webflow
+            margin-top: 80px;
+
+            @include tablet {
+                // webflow
+                margin-top: 34px;
+            }              
         }
     }
-
-    .login-spotify-button { margin-top: 4rem; }
 }
