@@ -18,7 +18,7 @@ export function LoginPage(props) {
                 <div className='login-content'>
                     <div className='login-content-header'>
                         <h1>Mixin' Jam</h1>
-                        <DarkLightModeButton />
+                        <DarkLightModeButton className="login-dark-light-button"/>
                     </div>
                     <p>Mixin' Jam is a React web app where you can search songs, artists, and albums, from Spotify.</p>
                     <div className='login-spotify-button'>

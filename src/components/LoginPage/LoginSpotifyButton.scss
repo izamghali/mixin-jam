@@ -1,5 +1,7 @@
 @import '../../sass-helpers/placeholders';
 @import '../../sass-helpers/variables';
+@import '../../sass-helpers/breakpoints';
+
 
 .LoginSpotifyButton {
     padding: 1rem 5rem;
@@ -8,7 +10,20 @@
     border-radius: 12px;
     transition-duration: 400ms;
     box-shadow: 10px 30px 30px hsla(0, 0%, 0%, 0.416);
+    width: auto;
     @extend %flex-justify-align-center;
+    
+    @include tablet {
+        border-radius: 40px;
+        
+    }
+    @include mobile-landscape {
+
+    }
+    @include mobile-portrait {
+        padding: 0.4rem 4rem;
+        width: 11rem;
+    }
     
     &:hover {
         cursor: pointer;
@@ -22,12 +37,21 @@
         fill: $spotify-color;
         width: 20px;
         height: 20px;
+        transition-duration: 400ms;
+        @include mobile-portrait {
+            width: 30px;
+            height: 30px;
+
+        }
     }
 
     input {
         border: none;
         background-color: transparent;
         font-size: large;
+        @include mobile-portrait {
+            font-size: medium;
+        }
 
         &:hover { cursor: pointer; }
     }

@@ -2,37 +2,29 @@
 @import '../../sass-helpers/placeholders';
 
 .LoginPage {
-    // margin-top: 5rem;
-    // display: flex;
-    // justify-content: space-between;
+    @extend %flex-justify-between;
     padding-inline: 5%;
     padding-block: 100px;
-
-    // webflow
-    grid-column-gap: 84px;
+    gap: 5rem;
     
-    background-color:forestgreen;
-
+    // background-color:forestgreen;
+    
     @include tablet {
-        background-color: dodgerblue;
-
-        // webflow
-        grid-column-gap: 40px;
+        // background-color: dodgerblue;
+        padding-inline: 3%;
+        justify-content: center;
     }
     @include mobile-landscape {
-        background-color: gold;
+        // background-color: gold;
 
         // webflow
         display: flex;
-        padding-right: 3%;
-        padding-left: 3%;
-        flex-direction: column;
-        justify-content: center;
         align-items: center;
-        grid-column-gap: 0px;
+        flex-direction: column;
+        gap: 2rem;
     }
     @include mobile-portrait {
-        background-color: pink;
+        // background-color: pink;
     }
     
     .login-img-div {
@@ -40,13 +32,14 @@
 
         @include mobile-landscape {
             // webflow
-            display: flex;
             flex-direction: row;
+            display: flex;
             justify-content: center;
             align-items: center;
         }
 
         .login-slogan {
+            display: none;
             @include tablet {
                 position: relative;
                 left: 5%;
@@ -116,64 +109,58 @@
         img {
             width: 100%;
             border-radius: 12px;
-
-            // webflow
-            mix-blend-mode: normal;
+            transition-duration: 400ms;
+            @include tablet {
+                width: 110%;
+            }
+            @include mobile-landscape {
+                width: 100%;
+            }
         }
     }
     
     .login-content {
-        // width: 25rem;
-
-        @include tablet {
-            // webflow
-            display: block;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
+        // border: solid orangered;
+        transition-duration: 400ms;
+        
         @include mobile-landscape {
-            // webflow
-            display: block;
-            margin-top: 20px;
+            width: auto;
+            display: flex;
             flex-direction: column;
-            align-items: flex-start;
-        }
-
-        @include mobile-portrait {
-            // webflow
-            margin-top: 15px;
+            align-items: center;
         }
         
         .login-content-header {
+            width: 100%;
             @extend %flex-justify-between-align-center;
+
             h1 {
                 margin: 0;
 
-                @include tablet {
-                    // webflow
-                    margin-top: 0px;
-                    margin-bottom: 0px;
-                }
-
                 @include mobile-landscape {
-                    // webflow
                     font-size: 30px;
+                }
+                @include mobile-portrait {
+                    font-size: 20px;
                 }
             }
         }
 
-        .login-spotify-button {
-            // margin-top: 4rem;
+        p {
+            transition-duration: 400ms;
             
-            // webflow
-            margin-top: 80px;
+            @include mobile-portrait {
+                font-size: small;
+                margin-bottom: 2.5rem;
+            }
+        }
 
-            @include tablet {
-                // webflow
-                margin-top: 34px;
-            }              
+        .login-spotify-button {
+            margin-top: 2.7rem;
+            transition-duration: 400ms;
+        
+            @include mobile-landscape { margin-top: 1.7rem; }
+            @include mobile-portrait { margin-top: 0rem; }
         }
     }
 }
