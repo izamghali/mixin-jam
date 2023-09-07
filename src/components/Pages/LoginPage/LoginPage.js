@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LoginSpotifyButton } from './LoginSpotifyButton';
-import { DarkLightModeButton } from '../DarkLightModeButton';
+import { DarkLightModeButton } from '../../DarkLightModeButton';
 import './LoginPage.scss'
 
 export function LoginPage(props) {

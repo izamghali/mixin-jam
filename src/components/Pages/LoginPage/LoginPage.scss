@@ -1,6 +1,6 @@
-@import '../../sass-helpers/breakpoints';
-@import '../../sass-helpers/placeholders';
-@import '../../sass-helpers/variables';
+@import '../../../sass-helpers/breakpoints';
+@import '../../../sass-helpers/placeholders';
+@import '../../../sass-helpers/variables';
 
 .LoginPage {
     @extend %flex-justify-between;
