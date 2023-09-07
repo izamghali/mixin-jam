@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../LoginPage/LoginSpotifyButton.scss'
+// import { useNavigate } from 'react-router-dom';
 
 export function LoginSpotifyButton(props) {
 
+    const [ currentProfile, setCurrentProfile ] = useState('');
     const { clientId } = props;
 
     const handleClick = async (event) => {
         event.preventDefault();
-        
         // generating code verifier
         let generateRandomString = (length) => {
             let text = '';
@@ -53,8 +54,67 @@ export function LoginSpotifyButton(props) {
             code_challenge: await generateCodeChallenge(codeVerifier)
         });
 
+        
         window.location = `https://accounts.spotify.com/authorize?${args}`;
+    }
 
+    const handleCheckProfile = async (event) => {
+        event.preventDefault();
+
+        // request access token
+        const urlParams = new URLSearchParams(window.location.search);
+        let code = urlParams.get('code');
+
+        let codeVerifier = localStorage.getItem('code_verifier');
+
+        let body = new URLSearchParams({
+        grant_type: 'authorization_code',
+        code: code,
+        redirect_uri: 'http://localhost:3000',
+        client_id: clientId,
+        code_verifier: codeVerifier
+        });
+
+        // POST request to store the access token
+        let response = async () => {
+            await fetch('https://accounts.spotify.com/api/token', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: body
+            })
+            .then(response => {
+                if (!response.ok) {
+                throw new Error('HTTP status ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                localStorage.setItem('access_token', data.access_token);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+
+        }
+
+        let getProfile = async() => {
+            let accessToken = localStorage.access_token;
+          
+            const response = await fetch('https://api.spotify.com/v1/me', {
+              headers: {
+                Authorization: 'Bearer ' + accessToken
+              }
+            });
+          
+            const data = await response.json();
+            return data;
+        }
+
+        let currentProfile = await getProfile();
+        console.log(currentProfile)
+    
     }
 
     return (
@@ -66,6 +126,13 @@ export function LoginSpotifyButton(props) {
                 <input
                     type='submit'
                     value='Login using Spotify'
+                    >
+                </input>
+            </form>
+            <form onClick={handleCheckProfile}>
+                <input
+                    type='submit'
+                    value='Check profile'
                     >
                 </input>
             </form>
