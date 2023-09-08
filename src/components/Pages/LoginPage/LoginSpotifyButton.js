@@ -61,18 +61,34 @@ export function LoginSpotifyButton(props) {
     const handleCheckProfile = async (event) => {
         event.preventDefault();
 
-        // request access token
         const urlParams = new URLSearchParams(window.location.search);
         let code = urlParams.get('code');
 
         let codeVerifier = localStorage.getItem('code_verifier');
 
+        // refresh access token
+        const refreshAccessToken = await fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: {
+                grant_type: 'refresh_token',
+                refresh_token: code,
+                client_id: clientId
+            }
+        })
+
+        console.log(refreshAccessToken)
+        console.log(localStorage)
+
+        // request access token
         let body = new URLSearchParams({
-        grant_type: 'authorization_code',
-        code: code,
-        redirect_uri: 'http://localhost:3000',
-        client_id: clientId,
-        code_verifier: codeVerifier
+            grant_type: 'authorization_code',
+            code: code,
+            redirect_uri: 'http://localhost:3000',
+            client_id: clientId,
+            code_verifier: codeVerifier
         });
 
         // POST request to store the access token
@@ -108,7 +124,7 @@ export function LoginSpotifyButton(props) {
               }
             });
           
-            const data = await response.json();
+            let data = await response.json();
             return data;
         }
 
