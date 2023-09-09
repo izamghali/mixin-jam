@@ -40,11 +40,8 @@ function App() {
 
   // Router
   const router = createBrowserRouter(createRoutesFromElements(
-    <Route path='/mixin-jam' element={ <LoginPage 
-      clientId={CLIENT_ID} 
-      accessToken={accessToken}
-    /> } >
-      <Route path='homepage' element={ <HomePage /> } />
+    <Route path='/mixin-jam' element={ <LoginPage clientId={CLIENT_ID} accessToken={accessToken} /> } >
+      <Route path='home' element={ <HomePage /> } />
     </Route>
   ))
 
@@ -70,7 +67,7 @@ function App() {
         <h1>Mixin' Jam</h1>
       </header> */}
 
-      <LoginPage clientId={CLIENT_ID} accessToken={accessToken} />
+      {/* <LoginPage clientId={CLIENT_ID} accessToken={accessToken} /> */}
 
       <div className='Body'> 
 

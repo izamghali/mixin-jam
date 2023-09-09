@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../LoginPage/LoginSpotifyButton.scss'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link, NavLink } from 'react-router-dom';
 
 export function LoginSpotifyButton(props) {
 
@@ -133,6 +133,8 @@ export function LoginSpotifyButton(props) {
     
     }
 
+    const lineBreak = <br/>;
+
     return (
         <>
             <form onClick={handleClick} className='LoginSpotifyButton'>
@@ -145,13 +147,13 @@ export function LoginSpotifyButton(props) {
                     >
                 </input>
             </form>
-            <form onClick={handleCheckProfile}>
+            {/* <form onClick={handleCheckProfile}>
                 <input
                     type='submit'
                     value='Check profile'
                     >
                 </input>
-            </form>
+            </form> */}
         </>
     )
 }
