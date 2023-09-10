@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import '../LoginPage/LoginSpotifyButton.scss'
-import { useNavigate, Link, NavLink } from 'react-router-dom';
+import './LoginSpotifyButton.scss'
+// import { useNavigate, Link, NavLink } from 'react-router-dom';
 
 export function LoginSpotifyButton(props) {
 
-    const [ currentProfile, setCurrentProfile ] = useState('');
     const { clientId } = props;
 
     const handleClick = async (event) => {
@@ -132,8 +131,6 @@ export function LoginSpotifyButton(props) {
         console.log(currentProfile)
     
     }
-
-    const lineBreak = <br/>;
 
     return (
         <>

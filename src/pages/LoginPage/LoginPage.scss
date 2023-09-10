@@ -1,13 +1,13 @@
-@import '../../../sass-helpers/breakpoints';
-@import '../../../sass-helpers/placeholders';
-@import '../../../sass-helpers/variables';
+@import './../../sass-helpers/breakpoints';
+@import './../../sass-helpers/placeholders';
+@import './../../sass-helpers/variables';
 
 .LoginPage {
     @extend %flex-justify-between;
     padding-inline: 5%;
     padding-block: 100px;
     gap: 5rem;
-    transition-duration: 400ms;
+    transition-duration: $regular-transition-duration-normal;
 
     @include tablet { padding-inline: 3%; }
     @include mobile-landscape {
@@ -22,7 +22,7 @@
         position: relative;     
 
         .login-slogan {
-            transition-duration: 400ms;
+            transition-duration: $regular-transition-duration-normal;
             position: absolute;
             display: inline;
             bottom: $banner-padding-desktop + 2rem;
@@ -51,7 +51,7 @@
                 letter-spacing: 1.2px;
                 font-weight: 300;
                 font-size: 2.5rem;
-                transition-duration: 400ms;
+                transition-duration: $regular-transition-duration-normal;
 
                 @include desktop {
                     font-size: 2rem;
@@ -72,7 +72,7 @@
         img {
             width: 100%;
             border-radius: 12px;
-            transition-duration: 400ms;
+            transition-duration: $regular-transition-duration-normal;
             display: block;
             @include tablet {
                 width: 110%;
@@ -84,7 +84,7 @@
     }
     
     .login-content {
-        transition-duration: 400ms;
+        transition-duration: $regular-transition-duration-normal;
         
         @include mobile-landscape {
             width: 100%;
@@ -100,7 +100,7 @@
     
                 h1 {
                     margin: 0;
-                    transition-duration: 400ms;
+                    transition-duration: $regular-transition-duration-normal;
     
                     @include mobile-landscape { font-size: 30px; }
                     @include mobile-portrait { font-size: 20px; }
@@ -108,7 +108,7 @@
             }
     
             p {
-                transition-duration: 400ms;
+                transition-duration: $regular-transition-duration-normal;
                 
                 @include mobile-portrait {
                     font-size: small;
@@ -120,7 +120,7 @@
 
         .login-spotify-button {
             margin-top: 2.7rem;
-            transition-duration: 400ms;
+            transition-duration: $regular-transition-duration-normal;
             display: flex;
             justify-content: center;
         

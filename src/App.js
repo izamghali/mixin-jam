@@ -1,13 +1,7 @@
 import './App.scss';
 import React, { useState, useEffect } from 'react';
-import { SearchBar } from './components/SearchBar';
-import { SearchResult } from './components/SearchResult';
-import { Playlist } from './components/Playlist';
-import { Track } from './components/Track';
-import { CompactTrack } from './components/CompactTrack';
-import { Album } from './components/Album';
-import { LoginPage } from './components/Pages/LoginPage/LoginPage';
-import { HomePage } from './components/Pages/HomePage/HomePage';
+import { LoginPage } from './pages/LoginPage/LoginPage'
+import { HomePage } from './pages//HomePage/HomePage';
 
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
 
@@ -20,8 +14,6 @@ function App() {
   const [ artistTracks, setArtistTracks ] = useState([])
   const [ tracks, setTracks ] = useState([])
   const [ addedTracks, setAddedTracks ] = useState([]);
-
-  const addedTrackIDs = addedTracks.map(track => { return track.trackID });
 
   // API
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
@@ -40,8 +32,23 @@ function App() {
 
   // Router
   const router = createBrowserRouter(createRoutesFromElements(
-    <Route path='/mixin-jam' element={ <LoginPage clientId={CLIENT_ID} accessToken={accessToken} /> } >
-      <Route path='home' element={ <HomePage /> } />
+    <Route path='/mixin-jam' >
+      <Route path='login' element={ <LoginPage 
+        clientId={CLIENT_ID} 
+        accessToken={accessToken}/> }
+      />
+      <Route path='home' element={ <HomePage 
+        accessToken={accessToken}
+        setAccessToken={setAccessToken}
+        url={url} searchParams={searchParams}
+
+        albums={albums} setAlbums={setAlbums} 
+        tracks={tracks} setTracks={setTracks}
+        addedTracks={addedTracks} setAddedTracks={setAddedTracks}
+        artistTracks={artistTracks} setArtistTracks={setArtistTracks}
+        searchResultLayout={searchResultLayout} setSearchResultLayout={setSearchResultLayout}
+        /> }
+      />
     </Route>
   ))
 
@@ -61,81 +68,16 @@ function App() {
   }, [])
 
   return (
-    // <RouterProvider router={router} />
-    <div className="App">
-      {/* <header className="App-header">
-        <h1>Mixin' Jam</h1>
-      </header> */}
+    <RouterProvider router={router} />
+    // <div className="App">
+    //   {/* <header className="App-header">
+    //     <h1>Mixin' Jam</h1>
+    //   </header> */}
 
-      {/* <LoginPage clientId={CLIENT_ID} accessToken={accessToken} /> */}
+    //   {/* <LoginPage clientId={CLIENT_ID} accessToken={accessToken} /> */}
 
-      <div className='Body'> 
-
-        <div className="SearchBar">
-          <SearchBar
-            url={url}
-            searchParams={searchParams}
-            setSearchResultLayout={setSearchResultLayout}
-            setTracks={setTracks}
-            setAlbums={setAlbums}
-            setArtistTracks={setArtistTracks}
-            accessToken={accessToken}
-            albums={albums}
-          />
-        </div>
-
-        <div style={searchResultLayout} className="MixinJam">
-
-          <SearchResult albums={albums} className="SearchResult" SearchResult='SearchResult'>
-            <div className='SearchResult-Album-div'>
-              {albums.map(album => {
-                return <Album 
-                        url={url}
-                        albums={albums}
-                        searchParams={searchParams}
-                        albumNames={album.name} 
-                        albumID={album.id}
-                        albumImgSrc={album.images[0].url }/>
-              })}
-            </div>
-
-            <div className='SearchResult-Track-div'>
-              {tracks.map(track => {
-                return <Track 
-                          addedTrackIDs={addedTrackIDs}
-                          addedTracks={addedTracks} 
-                          trackID={track.id}
-                          setAddedTracks={setAddedTracks} 
-                          trackTitle={track.name} 
-                          artistName={track.artists[0].name} 
-                          trackUrl={track.external_urls.spotify} 
-                          imgSrc={track.album.images[0].url} 
-                        />
-              })}
-            </div>
-
-          </SearchResult>
-
-          <Playlist
-            // className & Playlist props are set to Playlist so we can style Playlist component in App.scss & Playlist.scss
-            > 
-            {addedTracks.map(track => {
-              return <CompactTrack
-                        addedTrackIDs={addedTrackIDs}
-                        tracks={tracks}
-                        setAddedTracks={setAddedTracks}
-                        addedTracks={addedTracks}
-                        trackTitle={track.trackTitle}
-                        artistName={track.artistName} 
-                        trackID={track.trackID}
-                      />
-            })}
-          </Playlist>
-
-        </div>
-        
-      </div>
-    </div>
+    //   <HomePage />
+    // </div>
   );
 }
 

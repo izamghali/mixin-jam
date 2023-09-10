@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 // import { NavLink } from 'react-router-dom';
 import { LoginSpotifyButton } from './LoginSpotifyButton';
-import { DarkLightModeButton } from '../../DarkLightModeButton';
+import { DarkLightModeButton } from '../../components/DarkLightModeButton';
 import './LoginPage.scss'
 
 export function LoginPage(props) {

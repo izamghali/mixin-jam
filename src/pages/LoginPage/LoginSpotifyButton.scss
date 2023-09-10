@@ -1,6 +1,6 @@
-@import '../../../sass-helpers/placeholders';
-@import '../../../sass-helpers/variables';
-@import '../../../sass-helpers/breakpoints';
+@import './../../sass-helpers/placeholders';
+@import './../../sass-helpers/variables';
+@import './../../sass-helpers/breakpoints';
 
 
 .LoginSpotifyButton {
@@ -8,7 +8,7 @@
     background-color: whitesmoke;
     gap: 0.5rem;
     border-radius: 12px;
-    transition-duration: 400ms;
+    transition-duration: $regular-transition-duration-normal;
     box-shadow: 10px 30px 30px hsla(0, 0%, 0%, 0.416);
     max-width: auto;
     @extend %flex-justify-align-center;
@@ -36,7 +36,7 @@
         fill: $spotify-color;
         width: 20px;
         height: 20px;
-        transition-duration: 400ms;
+        transition-duration: $regular-transition-duration-normal;
         @include mobile-landscape {
             width: 24px;
             height: 24px;
