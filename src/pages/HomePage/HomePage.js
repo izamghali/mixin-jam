@@ -8,12 +8,11 @@ import { MixinJam } from '../../components/MixinJam';
 export function HomePage(props) {
 
     const [ albums, setAlbums ] = useState([])
-    const [ artistTracks, setArtistTracks ] = useState([])
+    // const [ artistTracks, setArtistTracks ] = useState([])
     const [ tracks, setTracks ] = useState([])
     const [ addedTracks, setAddedTracks ] = useState([]);
 
     const { 
-        accessToken, setAccessToken,
         url, searchParams,
     } = props;
 
@@ -28,13 +27,10 @@ export function HomePage(props) {
             <div className='Body'> 
 
                 <SearchBar 
-                    url={url} searchParams={searchParams}
+                    url={url} searchParams={searchParams} setSearchResultLayout={setSearchResultLayout}
 
                     setTracks={setTracks}
                     setAlbums={setAlbums}
-                    setArtistTracks={setArtistTracks}
-
-                    setSearchResultLayout={setSearchResultLayout}
                 />
 
                 <MixinJam 

@@ -30,7 +30,7 @@ export function Track(props) {
                 </div>
                 <div className='track-content'>
                     <h3>{trackTitle}</h3>
-                    <a href={trackUrl} target='_blank'>
+                    <a href={trackUrl} target='_blank' rel='noreferrer'>
                         <p>{artistName}</p>
                     </a>
                 </div>

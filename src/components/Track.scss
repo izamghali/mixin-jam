@@ -27,6 +27,8 @@
         a {
             text-decoration: none;
             color: $standard-accent-color2;
+
+            &:hover { text-decoration: underline; }
         }
     }
 }

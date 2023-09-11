@@ -4,13 +4,8 @@ import './SearchBar.scss'
 export function SearchBar(props) {
 
     const {
-        url, searchParams, 
-        
-        setTracks, 
-        setAlbums, 
-        setArtistTracks,
-        
-        setSearchResultLayout, 
+        url, searchParams, setSearchResultLayout,
+        setTracks, setAlbums 
     } = props
 
     const [ searchInput, setSearchInput ] = useState('')
@@ -23,21 +18,17 @@ export function SearchBar(props) {
 
         if (searchInput.length > 0) {
             // GET request artist ID
-            const getArtistID = await (await fetch(url + '/search?q=' + searchInput + '&type=artist', searchParams)).json()
+            const getArtistID = await (await fetch(`${url}/search?q=${searchInput}&type=artist`, searchParams)).json()
             const artistID = getArtistID.artists.items[0].id
-            const artistNAME = getArtistID.artists.items[0].name
-            // console.log(getArtistID)
             
             // GET request artist album using artist ID
-            const getArtistAlbums = await (await fetch(url + '/artists/' + artistID + '/albums' + '?include_groups=album&market=US&limit=5', searchParams)).json()
+            const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
             const artistAlbums = getArtistAlbums.items;
             setAlbums(artistAlbums)
-            // console.log(artistAlbums)
 
             // GET request artist tracks using artist ID
-            const getArtistTracks = await (await fetch(url + '/artists/' + artistID + '/top-tracks' + '?market=US&limit=5', searchParams)).json()
-            const artistTracks = getArtistTracks.tracks;
-            setArtistTracks(artistTracks)
+            // const getArtistTracks = await (await fetch(`${url}/artists/${artistID}/top-tracks?market=US&limit=5`, searchParams)).json()
+            // const artistTracks = getArtistTracks.tracks;
             
             // GET request tracks
             const getTrackID = await ( await fetch(url + '/search?q=' + searchInput + '&type=track&market=US&limit=10&include_external=audio&offset=5', searchParams)).json();
