@@ -4,8 +4,9 @@
 .SearchBar {
     @extend %flex-justify-align-center;
     gap: 1.5rem;
-    width: 20rem;
+    width: 100%;
     padding-block: 2rem;
+    // border: solid orange;
     
     .search-bar-input-tags {
         padding-block: 0.5rem;

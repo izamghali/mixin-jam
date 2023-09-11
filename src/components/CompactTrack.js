@@ -2,15 +2,18 @@ import React from 'react';
 import './CompactTrack.scss';
 
 export function CompactTrack(props) {
-
-    const compactStyle = {
-        backgroundColor: 'transparent',
-    }
+    const { 
+        addedTrackIDs,
+        setAddedTracks,
+        trackTitle, 
+        artistName,
+        trackID
+    } = props;
 
     const removeTrack = () => {
-        props.setAddedTracks(prevTracks => {
-            if (props.addedTrackIDs.includes(props.trackID)) {
-                const trackToRemove = prevTracks.filter(track => track.trackID !== props.trackID)
+        setAddedTracks(prevTracks => {
+            if (addedTrackIDs.includes(trackID)) {
+                const trackToRemove = prevTracks.filter(track => track.trackID !== trackID)
                 return trackToRemove;
             }
         })
@@ -21,8 +24,8 @@ export function CompactTrack(props) {
             <div className='CompactTrack' onClick={removeTrack}>
                 <div className='compact-track-inner-div'>
                     <div className='compact-content'>
-                        <h3>{props.trackTitle}</h3>
-                        <p>{props.artistName}</p>
+                        <h3>{trackTitle}</h3>
+                        <p>{artistName}</p>
                     </div>
                     <button>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dash-lg" viewBox="0 0 16 16">

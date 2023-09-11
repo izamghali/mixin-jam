@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import './Playlist.scss';
 
+import { CompactTrack } from './CompactTrack';
+
 export function Playlist(props) {
+
+    const {
+        addedTracks, setAddedTracks, 
+        addedTrackIDs
+    } = props;
 
     const [ playlistTitle, setPlaylistTitle ] = useState('')
 
@@ -11,7 +18,7 @@ export function Playlist(props) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log("your playlist is saved!")
+        console.log("your playlist is saved!");
     }
 
     return (
@@ -28,7 +35,15 @@ export function Playlist(props) {
                     </input>
                 </form>
                 <div className='playlist-added-tracks'>
-                    { props.children }
+                    {addedTracks.map(track => {
+                        return <CompactTrack
+                                    addedTrackIDs={addedTrackIDs}
+                                    setAddedTracks={setAddedTracks}
+                                    trackTitle={track.trackTitle}
+                                    artistName={track.artistName} 
+                                    trackID={track.trackID}
+                                />
+                    })}
                 </div>
                 <form className='playlist-desc-form'>
                     <label for="">Tell us what the playlist is about</label>

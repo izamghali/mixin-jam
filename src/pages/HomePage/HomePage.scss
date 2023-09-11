@@ -5,20 +5,15 @@
     @extend %flex-justify-align-center;
     flex-direction: column;
     background-color: whitesmoke;
-    
-    .SearchBar {
-      background-color: $standard-bg-color1;
-      padding-block: 1rem;
-      width: 100%;
-    }
-    
+
     .MixinJam {
-      padding-inline: 3%;
-      padding-block: 2rem;
-      gap: 1.2rem;
+      // padding-inline: 3%;
+      // padding-block: 2rem;
+      // gap: 1.2rem;
       
       .SearchResult {
         display: flex;
+        justify-content: space-around;
 
         .SearchResult-Album-div {
           @extend %flex-col-direction;
@@ -31,5 +26,4 @@
         }
       }
     }
-
 }

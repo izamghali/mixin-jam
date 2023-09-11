@@ -10,7 +10,8 @@
     gap: 2rem;
     // border-right: solid black;
     // border-left: solid black;
-    width: 25rem;
+    // width: 25rem;
+    border: solid orange;
 
     .playlist-title-form {
         @extend %flex-col-direction;

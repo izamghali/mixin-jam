@@ -10,10 +10,7 @@ function App() {
   // State
   const [ accessToken, setAccessToken ] = useState('')
   const [ userAccessToken, setUserAccessToken ] = useState('')
-  const [ albums, setAlbums ] = useState([])
-  const [ artistTracks, setArtistTracks ] = useState([])
-  const [ tracks, setTracks ] = useState([])
-  const [ addedTracks, setAddedTracks ] = useState([]);
+  
 
   // API
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
@@ -26,14 +23,11 @@ function App() {
         'Authorization': 'Bearer ' + accessToken
     }
   }
-  
-  // Style
-  const [ searchResultLayout, setSearchResultLayout ] = useState({});
 
   // Router
   const router = createBrowserRouter(createRoutesFromElements(
-    <Route path='/mixin-jam' >
-      <Route path='login' element={ <LoginPage 
+    <Route path='' >
+      <Route path='/' element={ <LoginPage 
         clientId={CLIENT_ID} 
         accessToken={accessToken}/> }
       />
@@ -42,11 +36,10 @@ function App() {
         setAccessToken={setAccessToken}
         url={url} searchParams={searchParams}
 
-        albums={albums} setAlbums={setAlbums} 
-        tracks={tracks} setTracks={setTracks}
-        addedTracks={addedTracks} setAddedTracks={setAddedTracks}
-        artistTracks={artistTracks} setArtistTracks={setArtistTracks}
-        searchResultLayout={searchResultLayout} setSearchResultLayout={setSearchResultLayout}
+        // albums={albums} setAlbums={setAlbums} 
+        // tracks={tracks} setTracks={setTracks}
+        // addedTracks={addedTracks} setAddedTracks={setAddedTracks}
+        // artistTracks={artistTracks} setArtistTracks={setArtistTracks}
         /> }
       />
     </Route>
