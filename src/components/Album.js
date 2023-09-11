@@ -3,7 +3,10 @@ import './Album.scss'
 
 export function Album(props) {
 
-    const { url, searchParams, albums, albumNames, albumImgSrc, albumID } = props;
+    const {
+        url, searchParams, 
+        albumNames, albumID, albumImgSrc
+    } = props;
 
     const handleClick = async (event) => {
         event.preventDefault();
@@ -15,14 +18,14 @@ export function Album(props) {
 
     return (
         <>
-        <div className='ShadowAlbum'>
-            <div className='Album' onClick={handleClick}>
-                <div className='album-img-div'>
-                    <img src={albumImgSrc} alt="" />
+            <div className='ShadowAlbum'>
+                <div className='Album' onClick={handleClick}>
+                    <div className='album-img-div'>
+                        <img src={albumImgSrc} alt="" />
+                    </div>
+                    <h3 className='album-title'>{albumNames}</h3>
                 </div>
-                <h3 className='album-title'>{albumNames}</h3>
             </div>
-        </div>
         </>
     )
 }

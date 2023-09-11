@@ -8,22 +8,9 @@
 
     .MixinJam {
       // padding-inline: 3%;
-      // padding-block: 2rem;
-      // gap: 1.2rem;
+      padding-block: 2rem;
+      gap: 1.2rem;
+      transition-duration: $regular-transition-duration-normal;
       
-      .SearchResult {
-        display: flex;
-        justify-content: space-around;
-
-        .SearchResult-Album-div {
-          @extend %flex-col-direction;
-          gap: 1rem;
-        }
-
-        .SearchResult-Track-div {
-          @extend %flex-col-direction;
-          gap: 1rem;
-        }
-      }
     }
 }

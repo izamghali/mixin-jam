@@ -1,3 +1,17 @@
+@import '../sass-helpers/placeholders';
+@import '../sass-helpers/variables';
+
 .SearchResult {
+    display: flex;
+    justify-content: space-around;
     
-}
+    .SearchResult-Album-div {
+      @extend %flex-col-direction;
+      gap: 1rem;
+    }
+    
+    .SearchResult-Track-div {
+      @extend %flex-col-direction;
+      gap: 1rem;
+    }
+  }
