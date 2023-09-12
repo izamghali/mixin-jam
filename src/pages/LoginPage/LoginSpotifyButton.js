@@ -6,7 +6,6 @@ export function LoginSpotifyButton(props) {
 
     const {
         accessToken, setAccessToken,
-        searchParams,
         clientId
     } = props;
 
@@ -158,8 +157,25 @@ export function LoginSpotifyButton(props) {
             return text;
         }
 
+        // const searchParams = {
+        //     method: 'GET',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //         'Authorization': 'Bearer ' + accessToken,
+        //         'Access-Control-Allow-Origin': 'no-cors'
+        //     }
+        // }
+        const searchParams = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                // 'Authorization': 'Bearer ' + accessToken,
+                // 'Access-Control-Allow-Origin': '*',
+            },
+        }
+
         var url = 'https://accounts.spotify.com/authorize';
-        var redirectUri = 'http://localhost:3000/home';
+        var redirectUri = 'http://localhost:3000/';
         var scope = 'user-read-private user-read-email';
         var state = generateRandomString(16);
         // localStorage.setItem(stateKey, state);
@@ -169,11 +185,15 @@ export function LoginSpotifyButton(props) {
         url += '&scope=' + encodeURIComponent(scope);
         url += '&redirect_uri=' + encodeURIComponent(redirectUri);
         url += '&state=' + encodeURIComponent(state);
-        url += '&show_dialog=' + true;
+        // url += '&show_dialog=' + true;
 
-        // let getAuthorization = await (await fetch(url, searchParams)).json()
-        // console.log(getAuthorization)
-        // console.log(accessToken)
+        try {
+            let getAuthorization = await (await fetch(url, searchParams)).json()
+            console.log(getAuthorization)
+            // const getArtistTracks = await (await fetch(`${url}/artists/${artistID}/top-tracks?market=US&limit=5`, searchParams)).json()
+        } catch(error) {
+            console.log("error: " + error)
+        }
     }
 
     return (
