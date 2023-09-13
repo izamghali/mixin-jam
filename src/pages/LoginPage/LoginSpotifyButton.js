@@ -1,17 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './LoginSpotifyButton.scss'
 // import { useNavigate, Link, NavLink } from 'react-router-dom';
 
 export function LoginSpotifyButton(props) {
 
-    const {
-        accessToken, setAccessToken,
-        clientId
-    } = props;
-
-    // States
-    const [ authCode, setAuthCode ] = useState('');
-    const [ authState, setAuthState ] = useState('');
+    const { clientId } = props;
 
     const handleAuthorize = async(event) => {
         // Implicit grantFlow
@@ -26,32 +19,25 @@ export function LoginSpotifyButton(props) {
             return text;
         }
 
-        const searchParams = {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }
+        var client_id = clientId;
+        var redirect_uri = 'http://localhost:3000/home';
+
+        var state = generateRandomString(16);
+
+        localStorage.setItem('stateKey', state);
+        var scope = 'user-read-private user-read-email';
 
         var url = 'https://accounts.spotify.com/authorize';
-        var redirectUri = 'http://localhost:3000/home';
-        var scope = 'user-read-private user-read-email';
-        var state = generateRandomString(16);
-        // localStorage.setItem(stateKey, state);
-
         url += '?response_type=token';
-        url += '&client_id=' + encodeURIComponent(clientId);
+        url += '&client_id=' + encodeURIComponent(client_id);
         url += '&scope=' + encodeURIComponent(scope);
-        url += '&redirect_uri=' + encodeURIComponent(redirectUri);
+        url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
         url += '&state=' + encodeURIComponent(state);
-        // url += '&show_dialog=' + true;
 
         try {
-            let getAuthorization = await (await fetch(url, searchParams)).json()
-            console.log(getAuthorization)
-            // const getArtistTracks = await (await fetch(`${url}/artists/${artistID}/top-tracks?market=US&limit=5`, searchParams)).json()
+            window.location = url;
         } catch(error) {
-            console.log("error: " + error)
+            console.log(error)
         }
     }
 

@@ -22,38 +22,16 @@ function App() {
     }
   }
 
-  useEffect(() => {
-    // API Access Token
-    const tokenUrl = 'https://accounts.spotify.com/api/token'
-    const authParameters = {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: 'grant_type=client_credentials&client_id=' + CLIENT_ID + '&client_secret=' + CLIENT_SECRET
-    }
-    fetch(tokenUrl, authParameters)
-        .then(response => response.json())
-        .then(data => setAccessToken(data.access_token))
-  }, [])
-
   // Router
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' >
       <Route path='mixin-jam' element={ <LoginPage 
-        clientId={CLIENT_ID} 
-        accessToken={accessToken}/> }
+        clientId={CLIENT_ID}
+        setAccessToken={setAccessToken} /> }
       />
       <Route path='home' element={ <HomePage 
         accessToken={accessToken}
-        setAccessToken={setAccessToken}
-        url={url} searchParams={searchParams}
-
-        // albums={albums} setAlbums={setAlbums} 
-        // tracks={tracks} setTracks={setTracks}
-        // addedTracks={addedTracks} setAddedTracks={setAddedTracks}
-        // artistTracks={artistTracks} setArtistTracks={setArtistTracks}
-        /> }
+        url={url} searchParams={searchParams}/> }
       />
     </Route>
   ))
@@ -71,12 +49,5 @@ function App() {
     // </div>
   );
 }
-
-// App.use((req, res, next) => {
-//   res.setHeader("Access-Control-Allow-Origin", "http://localhost:3000/");
-//   res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
-//   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
-//   next();
-// })
 
 export default App;

@@ -5,7 +5,7 @@ import { DarkLightModeButton } from '../../components/DarkLightModeButton';
 import './LoginPage.scss'
 
 export function LoginPage(props) {
-    const { clientId, accessToken } = props;
+    const { clientId } = props;
 
     return (
         <>
@@ -25,10 +25,7 @@ export function LoginPage(props) {
                         <p>Mixin' Jam is a React web app where you can search songs, artists, and albums, from Spotify.</p>
                     </div>
                     <div className='login-spotify-button'>
-                        <LoginSpotifyButton 
-                            clientId={clientId} 
-                            accessToken={accessToken}
-                        />
+                        <LoginSpotifyButton clientId={clientId} />
                     </div>
                 </div>
             </div>
