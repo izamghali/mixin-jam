@@ -8,20 +8,18 @@ import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } 
 function App() {
 
   // State
-  const [ accessToken, setAccessToken ] = useState('')
+  let [ accessToken, setAccessToken ] = useState('')
 
   // API
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
   const url = 'https://api.spotify.com/v1' 
 
-
   // Router
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' >
       <Route path='mixin-jam' element={ <LoginPage 
-        clientId={CLIENT_ID} accessToken={accessToken}
-        setAccessToken={setAccessToken} /> }
+        clientId={CLIENT_ID} /> }
       />
       <Route path='home' element={ <HomePage 
         accessToken={accessToken} setAccessToken={setAccessToken}

@@ -14,15 +14,18 @@ export function HomePage(props) {
     const navigate = useNavigate();
 
     useEffect(()=> {
-        const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
         var error = urlParams.get("error")
         if (error === 'access_denied') {
             navigate('/mixin-jam')
         } else {
-            let accessToken = window.location.hash.split('&')[0].split('#access_token=')[1]
-            setAccessToken(accessToken)
+            var accessToken = window.location.hash.split('&')[0].split('#access_token=')[1]
+            // console.log(window.location)
+            // console.log(window.location.hash.split('&'))
+            setAccessToken(JSON.stringify(accessToken))
         }
+        
     })
 
     const searchParams = {
@@ -65,7 +68,7 @@ export function HomePage(props) {
                     addedTracks={addedTracks} setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}
                 />
-                
+
             </div>
         </>
     )

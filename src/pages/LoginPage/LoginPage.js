@@ -25,7 +25,7 @@ export function LoginPage(props) {
                         <p>Mixin' Jam is a React web app where you can search songs, artists, and albums, from Spotify.</p>
                     </div>
                     <div className='login-spotify-button'>
-                        <LoginSpotifyButton clientId={clientId} setAccessToken={setAccessToken} accessToken={accessToken} />
+                        <LoginSpotifyButton clientId={clientId} />
                     </div>
                 </div>
             </div>

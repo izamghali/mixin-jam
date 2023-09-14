@@ -4,7 +4,7 @@ import './LoginSpotifyButton.scss'
 
 export function LoginSpotifyButton(props) {
 
-    const { clientId, setAccessToken, accessToken } = props;
+    const { clientId } = props;
 
     const handleAuthorize = async(event) => {
         // Implicit grantFlow
@@ -39,10 +39,6 @@ export function LoginSpotifyButton(props) {
         } catch(error) {
             console.log(error)
         }
-        
-        setAccessToken(accessToken);
-        // const urlParams = new URLSearchParams(window.location.search);
-        // let accessToken = urlParams.get('access_token');
     }
 
     return (
