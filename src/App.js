@@ -26,12 +26,12 @@ function App() {
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' >
       <Route path='mixin-jam' element={ <LoginPage 
-        clientId={CLIENT_ID}
+        clientId={CLIENT_ID} accessToken={accessToken}
         setAccessToken={setAccessToken} /> }
       />
       <Route path='home' element={ <HomePage 
-        accessToken={accessToken}
-        url={url} searchParams={searchParams}/> }
+        accessToken={accessToken} setAccessToken={setAccessToken}
+        url={url} searchParams={searchParams} /> }
       />
     </Route>
   ))

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './HomePage.scss'
 
@@ -8,14 +8,8 @@ import { MixinJam } from '../../components/MixinJam';
 
 export function HomePage(props) {
     const { 
-        url, searchParams,
-        accessToken
+        url, searchParams, setAccessToken
     } = props;
-
-    const navigate = useNavigate() // not sure if it works
-    if (accessToken === '') { // we'll be back here in a minute
-        navigate('/mixin-jam')
-    }
 
     const [ albums, setAlbums ] = useState([])
     // const [ artistTracks, setArtistTracks ] = useState([])
@@ -28,13 +22,52 @@ export function HomePage(props) {
 
     // Style
     const [ searchResultLayout, setSearchResultLayout ] = useState({});
+
+    // useEffect(()=> {
+    //     if (accessToken !== '' || accessToken !== null) {
+    //         console.log(`The access token is: ${accessToken}`)
+    //     } else {
+    //         navigate('/mixin-jam')
+    //     }
+    // })
+
+    // const saveAccessToken = () => {
+    //     const urlParams = new URLSearchParams(window.location.search);
+    //     let accessToken = urlParams.get('access_token');
+    //     setAccessToken(accessToken);
+    // }
+
+    // const checkAccessToken = () => {
+    //     console.log(accessToken);
+    // }
+    
+    useEffect(() => {
+        let accessToken = handleRedirect();
+        console.log(accessToken);
+    })
+
+    const handleRedirect = () => {
+        let accessToken = getAccessToken();
+        return accessToken;
+    }
+
+    const getAccessToken = () => {
+        let accessToken = null;
+        const queryString = window.location.search;
+        if (queryString.length > 0) {
+            const urlParams = new URLSearchParams(queryString);
+            accessToken = urlParams.get('access_token');
+        }
+        return accessToken;
+    }
     
     return (
         <>
             <div className='Body'> 
 
                 <SearchBar 
-                    url={url} searchParams={searchParams} setSearchResultLayout={setSearchResultLayout}
+                    url={url} searchParams={searchParams}
+                    setSearchResultLayout={setSearchResultLayout} 
 
                     setTracks={setTracks}
                     setAlbums={setAlbums}
