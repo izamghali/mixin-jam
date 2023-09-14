@@ -1,7 +1,7 @@
 import './App.scss';
 import React, { useState, useEffect } from 'react';
 import { LoginPage } from './pages/LoginPage/LoginPage'
-import { HomePage } from './pages//HomePage/HomePage';
+import { HomePage } from './pages/HomePage/HomePage';
 
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
 
