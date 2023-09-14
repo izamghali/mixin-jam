@@ -8,8 +8,30 @@ import { MixinJam } from '../../components/MixinJam';
 
 export function HomePage(props) {
     const { 
-        url, searchParams, setAccessToken
+        url, setAccessToken, accessToken
     } = props;
+
+    const navigate = useNavigate();
+
+    useEffect(()=> {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var error = urlParams.get("error")
+        if (error === 'access_denied') {
+            navigate('/mixin-jam')
+        } else {
+            let accessToken = window.location.hash.split('&')[0].split('#access_token=')[1]
+            setAccessToken(accessToken)
+        }
+    })
+
+    const searchParams = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + accessToken
+        }
+    }
 
     const [ albums, setAlbums ] = useState([])
     // const [ artistTracks, setArtistTracks ] = useState([])
@@ -22,51 +44,13 @@ export function HomePage(props) {
 
     // Style
     const [ searchResultLayout, setSearchResultLayout ] = useState({});
-
-    // useEffect(()=> {
-    //     if (accessToken !== '' || accessToken !== null) {
-    //         console.log(`The access token is: ${accessToken}`)
-    //     } else {
-    //         navigate('/mixin-jam')
-    //     }
-    // })
-
-    // const saveAccessToken = () => {
-    //     const urlParams = new URLSearchParams(window.location.search);
-    //     let accessToken = urlParams.get('access_token');
-    //     setAccessToken(accessToken);
-    // }
-
-    // const checkAccessToken = () => {
-    //     console.log(accessToken);
-    // }
-    
-    useEffect(() => {
-        let accessToken = handleRedirect();
-        console.log(accessToken);
-    })
-
-    const handleRedirect = () => {
-        let accessToken = getAccessToken();
-        return accessToken;
-    }
-
-    const getAccessToken = () => {
-        let accessToken = null;
-        const queryString = window.location.search;
-        if (queryString.length > 0) {
-            const urlParams = new URLSearchParams(queryString);
-            accessToken = urlParams.get('access_token');
-        }
-        return accessToken;
-    }
     
     return (
         <>
             <div className='Body'> 
 
                 <SearchBar 
-                    url={url} searchParams={searchParams}
+                    url={url} searchParams={searchParams} accessToken={accessToken}
                     setSearchResultLayout={setSearchResultLayout} 
 
                     setTracks={setTracks}
@@ -81,7 +65,7 @@ export function HomePage(props) {
                     addedTracks={addedTracks} setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}
                 />
-
+                
             </div>
         </>
     )

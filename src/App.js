@@ -14,13 +14,7 @@ function App() {
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
   const url = 'https://api.spotify.com/v1' 
-  const searchParams = {
-    method: 'GET',
-    headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + accessToken
-    }
-  }
+
 
   // Router
   const router = createBrowserRouter(createRoutesFromElements(
@@ -31,7 +25,7 @@ function App() {
       />
       <Route path='home' element={ <HomePage 
         accessToken={accessToken} setAccessToken={setAccessToken}
-        url={url} searchParams={searchParams} /> }
+        url={url} /> }
       />
     </Route>
   ))

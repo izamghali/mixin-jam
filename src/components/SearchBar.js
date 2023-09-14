@@ -11,7 +11,6 @@ export function SearchBar(props) {
     const [ searchInput, setSearchInput ] = useState('')
     const handleChange = ({target}) => {
         setSearchInput(target.value)
-        console.log(searchInput)
     }
 
     const handleSubmit = async (event) => {
@@ -20,14 +19,14 @@ export function SearchBar(props) {
         if (searchInput.length > 0) {
             // GET request artist ID
             const getArtistID = await (await fetch(`${url}/search?q=${searchInput}&type=artist`, searchParams)).json()
-            // const artistID = getArtistID.artists.items[0].id
+            const artistID = getArtistID.artists.items[0].id
             console.log(getArtistID)
             
             // GET request artist album using artist ID
-            // const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
-            // const artistAlbums = getArtistAlbums.items;
+            const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
+            const artistAlbums = getArtistAlbums.items;
             // setAlbums(artistAlbums)
-            // console.log(getArtistAlbums)
+            console.log(getArtistAlbums)
             
             // GET request artist tracks using artist ID
             // const getArtistTracks = await (await fetch(`${url}/artists/${artistID}/top-tracks?market=US&limit=5`, searchParams)).json()

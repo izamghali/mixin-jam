@@ -33,17 +33,16 @@ export function LoginSpotifyButton(props) {
         url += '&scope=' + encodeURIComponent(scope);
         url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
         url += '&state=' + encodeURIComponent(state);
-        url += '&show_dialog=true';
 
         try {
             window.location = url;
         } catch(error) {
             console.log(error)
         }
-
+        
+        setAccessToken(accessToken);
         // const urlParams = new URLSearchParams(window.location.search);
         // let accessToken = urlParams.get('access_token');
-        setAccessToken(accessToken);
     }
 
     return (
