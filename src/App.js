@@ -13,6 +13,9 @@ function App() {
   // API
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
+  localStorage.setItem("client_id", CLIENT_ID)
+  localStorage.setItem("client_secret", CLIENT_SECRET)
+  
   const url = 'https://api.spotify.com/v1' 
 
   // Router

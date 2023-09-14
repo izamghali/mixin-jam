@@ -4,42 +4,86 @@ import './LoginSpotifyButton.scss'
 
 export function LoginSpotifyButton(props) {
 
+    const implicitGrant = async(event) => {
+        event.preventDefault();
+        // Implicit grantFlow
+
+        // let generateRandomString = (length) => {
+        //     let text = '';
+        //     let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+            
+        //     for (let i = 0; i < length; i++) {
+        //       text += possible.charAt(Math.floor(Math.random() * possible.length));
+        //     }
+        //     return text;
+        // }
+
+        // var client_id = clientId;
+        // var redirect_uri = 'http://localhost:3000/home';
+
+        // var state = generateRandomString(16);
+
+        // localStorage.setItem('stateKey', state);
+        // var scope = 'user-read-private user-read-email';
+
+        // var url = 'https://accounts.spotify.com/authorize';
+        // url += '?response_type=token';
+        // url += '&client_id=' + encodeURIComponent(client_id);
+        // url += '&scope=' + encodeURIComponent(scope);
+        // url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
+        // url += '&state=' + encodeURIComponent(state);
+
+        // try {
+        //     window.location = url;
+        // } catch(error) {
+        //     console.log(error)
+        // }
+
+        
+    }
+
     const { clientId } = props;
 
-    const handleAuthorize = async(event) => {
-        // Implicit grantFlow
+    var redirect_uri = 'http://localhost:3000/home';
+
+    const AUTHORIZE = 'https://accounts.spotify.com/authorize';
+
+    const handleAuthorize = (event) => {
         event.preventDefault();
+
+        const client_id = '89cc9f4988ea4c7985a164bf3392cd1d';
+        const client_secret = 'f1348b92b74240898b500661ba3339d5';
+
+        localStorage.setItem('client_id', client_id)
+        localStorage.setItem('client_secret', client_secret)
+
+        let url = AUTHORIZE;
+
         let generateRandomString = (length) => {
             let text = '';
             let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-          
+            
             for (let i = 0; i < length; i++) {
-              text += possible.charAt(Math.floor(Math.random() * possible.length));
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
             }
             return text;
         }
-
-        var client_id = clientId;
-        var redirect_uri = 'http://localhost:3000/home';
-
-        var state = generateRandomString(16);
-
-        localStorage.setItem('stateKey', state);
+        // var state = generateRandomString(16);
+        // localStorage.setItem(stateKey, state);
         var scope = 'user-read-private user-read-email';
 
-        var url = 'https://accounts.spotify.com/authorize';
-        url += '?response_type=token';
+        url += '?response_type=code';
         url += '&client_id=' + encodeURIComponent(client_id);
         url += '&scope=' + encodeURIComponent(scope);
         url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-        url += '&state=' + encodeURIComponent(state);
+        url += '&show_dialog=true';
+        // url += '&state=' + encodeURIComponent(state);
 
-        try {
-            window.location = url;
-        } catch(error) {
-            console.log(error)
-        }
+        window.location.href = url;
+
     }
+
+    
 
     return (
         <>

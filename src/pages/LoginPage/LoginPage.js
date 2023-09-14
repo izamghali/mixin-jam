@@ -5,7 +5,7 @@ import { DarkLightModeButton } from '../../components/DarkLightModeButton';
 import './LoginPage.scss'
 
 export function LoginPage(props) {
-    const { clientId, setAccessToken, accessToken } = props;
+    const { clientId, setAccessToken } = props;
 
     return (
         <>

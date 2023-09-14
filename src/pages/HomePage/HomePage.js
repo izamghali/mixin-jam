@@ -20,10 +20,20 @@ export function HomePage(props) {
         if (error === 'access_denied') {
             navigate('/mixin-jam')
         } else {
-            var accessToken = window.location.hash.split('&')[0].split('#access_token=')[1]
-            // console.log(window.location)
-            // console.log(window.location.hash.split('&'))
-            setAccessToken(JSON.stringify(accessToken))
+            // var accessToken = window.location.hash.split('&')[0].split('#access_token=')[1]
+            // // console.log(window.location)
+            // // console.log(window.location.hash.split('&'))
+            // setAccessToken(JSON.stringify(accessToken))
+            // localStorage.setItem('access_token', JSON.stringify(accessToken))
+
+            if (window.location.search.length > 0) {
+                const queryString = window.location.search;
+                if (queryString.length > 0) {
+                    const urlParams = new URLSearchParams(queryString);
+                    let code = urlParams.get('code');
+                    console.log(code)
+                } 
+            } 
         }
         
     })

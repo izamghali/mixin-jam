@@ -4,9 +4,11 @@ import './SearchBar.scss'
 export function SearchBar(props) {
 
     const {
-        url, setSearchResultLayout, accessToken,
+        url, setSearchResultLayout,
         setTracks, setAlbums
     } = props
+
+    var accessToken = localStorage.getItem('access_token');
 
     const [ searchInput, setSearchInput ] = useState('')
     const handleChange = ({target}) => {
@@ -16,8 +18,8 @@ export function SearchBar(props) {
     var searchParams = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `${window.location.hash.split('&')[1].split('token_type')} ${accessToken}`,
+            // 'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
         }
     }
 
