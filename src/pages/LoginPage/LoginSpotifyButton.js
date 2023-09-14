@@ -18,7 +18,7 @@ export function LoginSpotifyButton(props) {
         //     return text;
         // }
 
-        // var client_id = clientId;
+        // var client_id = CLIENT_ID;
         // var redirect_uri = 'http://localhost:3000/home';
 
         // var state = generateRandomString(16);
@@ -41,49 +41,103 @@ export function LoginSpotifyButton(props) {
 
         
     }
-
-    const { clientId } = props;
-
-    var redirect_uri = 'http://localhost:3000/home';
-
-    const AUTHORIZE = 'https://accounts.spotify.com/authorize';
-
-    const handleAuthorize = (event) => {
+    const youTubeTutorial = (event) => {
         event.preventDefault();
 
-        const client_id = '89cc9f4988ea4c7985a164bf3392cd1d';
-        const client_secret = 'f1348b92b74240898b500661ba3339d5';
+        // const client_id = '89cc9f4988ea4c7985a164bf3392cd1d';
+        // const client_secret = 'f1348b92b74240898b500661ba3339d5';
 
-        localStorage.setItem('client_id', client_id)
-        localStorage.setItem('client_secret', client_secret)
+        // localStorage.setItem('client_id', client_id)
+        // localStorage.setItem('client_secret', client_secret)
 
-        let url = AUTHORIZE;
+        // let url = AUTHORIZE;
 
-        let generateRandomString = (length) => {
-            let text = '';
-            let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        // let generateRandomString = (length) => {
+        //     let text = '';
+        //     let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
             
-            for (let i = 0; i < length; i++) {
-                text += possible.charAt(Math.floor(Math.random() * possible.length));
-            }
-            return text;
-        }
-        // var state = generateRandomString(16);
-        // localStorage.setItem(stateKey, state);
-        var scope = 'user-read-private user-read-email';
+        //     for (let i = 0; i < length; i++) {
+        //         text += possible.charAt(Math.floor(Math.random() * possible.length));
+        //     }
+        //     return text;
+        // }
+        // // var state = generateRandomString(16);
+        // // localStorage.setItem(stateKey, state);
+        // var scope = 'user-read-private user-read-email';
 
-        url += '?response_type=code';
-        url += '&client_id=' + encodeURIComponent(client_id);
-        url += '&scope=' + encodeURIComponent(scope);
-        url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-        url += '&show_dialog=true';
-        // url += '&state=' + encodeURIComponent(state);
+        // url += '?response_type=code';
+        // url += '&client_id=' + encodeURIComponent(client_id);
+        // url += '&scope=' + encodeURIComponent(scope);
+        // url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
+        // url += '&show_dialog=true';
+        // // url += '&state=' + encodeURIComponent(state);
 
-        window.location.href = url;
+        // window.location.href = url;
 
     }
 
-    
+    const { CLIENT_ID } = props;
+
+    var redirect_uri = 'http://localhost:3000';
+
+    const handleAuthorize = async (event) => {
+        event.preventDefault();
+
+        function generateRandomString(length) {
+            let text = '';
+            let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+          
+            for (let i = 0; i < length; i++) {
+              text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+            return text;
+        }
+
+        // generating value usnig SHA256 algorithm method
+        const generateCodeChallenge = async (codeVerifier) => {
+            function base64encode(string) {
+                return btoa(String.fromCharCode.apply(null, new Uint8Array(string)))
+                    .replace(/\+/g, '-')
+                    .replace(/\//g, '_')
+                    .replace(/=+$/, '');
+            }
+          
+            const encoder = new TextEncoder();
+            const data = encoder.encode(codeVerifier);
+            const digest = await window.crypto.subtle.digest('SHA-256', data);
+          
+            return base64encode(digest);
+        }
+        
+        // REQUEST USER AUTHORIZATION
+        const CLIENT_ID = localStorage.getItem('client_id');
+
+        let codeVerifier = generateRandomString(128);
+
+        generateCodeChallenge(codeVerifier).then(codeChallenge => {
+            let state = generateRandomString(16);
+            let scope = 'user-read-private user-read-email';
+
+            localStorage.setItem('code_verifier', codeVerifier);
+
+            let args = new URLSearchParams({
+                response_type: 'code',
+                client_id: CLIENT_ID,
+                scope: scope,
+                redirect_uri: redirect_uri,
+                state: state,
+                code_challenge_method: 'S256',
+                code_challenge: codeChallenge
+            });
+
+            window.location = 'https://accounts.spotify.com/authorize?' + args;
+        });
+
+    }
+
+    const clearLocalStorage = () => {
+        localStorage.clear();
+    }
 
     return (
         <>
@@ -96,6 +150,13 @@ export function LoginSpotifyButton(props) {
                     value='Login using Spotify'
                     >
                 </input>
+            </form>
+            <form>
+                <input 
+                    type='button'
+                    value='clear localStorage'
+                    onClick={clearLocalStorage}
+                />
             </form>
         </>
     )
