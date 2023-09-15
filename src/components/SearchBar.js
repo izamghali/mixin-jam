@@ -5,7 +5,7 @@ export function SearchBar(props) {
 
     const {
         url, setSearchResultLayout,
-        setTracks, setAlbums, generateRandomString, CLIENT_ID, CLIENT_SECRET, redirect_uri
+        setTracks, setAlbums, generateRandomString, CLIENT_ID, CLIENT_SECRET, redirect_uri, refreshAccessToken
     } = props
 
     const [ searchInput, setSearchInput ] = useState('')
@@ -28,67 +28,30 @@ export function SearchBar(props) {
         }
     }
 
-    const requestAccessToken = async () => {
-        var urlParams = new URLSearchParams(window.location.search);
-        alert("the access token is expired, we're fetching the new one!")
-        let code = urlParams.get('code');
-
-        let codeVerifier = localStorage.getItem('code_verifier');
-
-        let body = new URLSearchParams({
-            grant_type: 'authorization_code',
-            code: code,
-            redirect_uri: redirect_uri,
-            client_id: CLIENT_ID,
-            code_verifier: codeVerifier
-        });
-
-        const response = fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: body
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('HTTP status ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                localStorage.setItem('access_token', data.access_token);
-                alert("we got the access token")
-                
-                localStorage.setItem('refresh_token', data.refresh_token);
-                alert("and we got the refresh token!!!")
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         if (searchInput.length > 0) {
-
+            
+            let artistID = '';
             // GET request artist ID
             try {
                 var response = await (await fetch(`${url}/search?q=${searchInput}&type=artist`, searchParams)).json()
-                // const artistID = response.artists.items[0].id
-                if (response) {
-                    console.log(response)
-                } else if (response.error.message === 'The access token expired') {
-                    // if token expired, clear the localStorage & request the new access token by requesting authorization again.
-                    localStorage.clear()
-                    localStorage.setItem("client_id", CLIENT_ID)
-                    localStorage.setItem("client_secret", CLIENT_SECRET)
-                    requestAccessToken();
-                    var response = await (await fetch(`${url}/search?q=${searchInput}&type=artist`, searchParams)).json()
-                }
+                artistID = response.artists.items[0].id
+                console.log(response)
             } catch(error) {
                 console.log(error)
+                if (response.error.message === 'The access token expired') {
+                    alert('the access token has expired. Starting to refresh the new one!')
+                    // if token expired, refresh access token & try to fetch again.
+                    refreshAccessToken();
+                    try {
+                        alert('access token has been refreshed. Fetching the last request...')
+                        var response = await (await fetch(`${url}/search?q=${searchInput}&type=artist`, searchParams)).json()
+                    } catch(error) {
+                        console.log(error)
+                    }
+                }
             }
             
             // GET request artist album using artist ID

@@ -9,10 +9,12 @@ import { MixinJam } from '../../components/MixinJam';
 export function HomePage(props) {
     const { 
         CLIENT_ID, CLIENT_SECRET,
-        url, generateRandomString
+        generateRandomString
     } = props;
 
+    const url = 'https://api.spotify.com/v1';
     var redirect_uri = 'http://localhost:3000/home';
+    let accessToken = localStorage.getItem('access_token');
 
     const [ albums, setAlbums ] = useState([])
     // const [ artistTracks, setArtistTracks ] = useState([])
@@ -68,12 +70,6 @@ export function HomePage(props) {
             localStorage.setItem("client_id", CLIENT_ID)
             localStorage.setItem("client_secret", CLIENT_SECRET)
         } else {
-            
-            if (queryString.length < 1) {
-                // get access token using implicit grant
-                // let access_token = window.location.hash.split('#access_token=')[1].split('&')[0]
-                // localStorage.setItem('access_token', access_token);
-            } 
 
             if (window.location.search.length > 0 && localStorage.getItem('refresh_token') === null) {
                 // get access token using PKCE method
@@ -122,12 +118,11 @@ export function HomePage(props) {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            // 'Authorization': 'Bearer ' + accessToken
+            'Authorization': 'Bearer ' + localStorage.getItem('access_token')
         }
     }
 
     const getProfile = async () => {
-        let accessToken = localStorage.getItem('access_token');
       
         const response = await fetch('https://api.spotify.com/v1/me', {
           headers: {
@@ -139,31 +134,37 @@ export function HomePage(props) {
         console.log(data)
     }
 
-    const handleMe = async (event) => {
-        event.preventDefault()
-
-        let accessToken = localStorage.getItem('access_token');
-
-        const body = new URLSearchParams({
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${accessToken}`
-            }
-        })
-
+    const getTopArtist = async () => {
+        
         try {
-            const endpoint = await fetch('https://api.spotify.com/v1/me', body);
-            console.log(endpoint)
+            const response = await fetch('https://api.spotify.com/v1/me/top/artists', {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                }
+            });
+            const data = await response.json();
+            console.log(data)
         } catch(error) {
             console.log(error)
         }
+    
     }
 
-    const printAccessToken = async (event) => {
-        event.preventDefault()
-        console.log(localStorage.getItem('access_token'))
+    const getTopTracks = async () => {
+        
+        try {
+            const response = await fetch('https://api.spotify.com/v1/me/top/tracks', {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                }
+            });
+            const data = await response.json();
+            console.log(data)
+        } catch(error) {
+            console.log(error)
+        }
+    
     }
-
 
     // addedTrackIDs are IDs used to identify or filter tracks to be added or to be removed.
     const addedTrackIDs = addedTracks.map(track => { return track.trackID });
@@ -176,8 +177,10 @@ export function HomePage(props) {
             <div className='Body' > 
 
                 <SearchBar 
-                    url={url} searchParams={searchParams} generateRandomString={generateRandomString}
-                    setSearchResultLayout={setSearchResultLayout} CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} redirect_uri={redirect_uri}
+                    url={url} generateRandomString={generateRandomString}
+                    setSearchResultLayout={setSearchResultLayout} 
+                    CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
+                    redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken}
 
                     setTracks={setTracks}
                     setAlbums={setAlbums}
@@ -199,18 +202,27 @@ export function HomePage(props) {
                         type='button'
                     />
                 </form>
+
                 <form>
                     <input 
-                        onClick={handleMe}
-                        value='me endpoint'
+                        onClick={refreshAccessToken}
+                        value='refresh access token'
                         type='button'
                     />
                 </form>
 
                 <form>
                     <input 
-                        onClick={refreshAccessToken}
-                        value='refresh access token'
+                        onClick={getTopArtist}
+                        value='get top artists'
+                        type='button'
+                    />
+                </form>
+
+                <form>
+                    <input 
+                        onClick={getTopTracks}
+                        value='get top tracks'
                         type='button'
                     />
                 </form>
