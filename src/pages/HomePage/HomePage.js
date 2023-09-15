@@ -21,6 +21,38 @@ export function HomePage(props) {
 
     const navigate = useNavigate();
 
+    const refreshAccessToken = async () => {
+        console.log("we're getting refresh token")
+        console.log("loading...")
+
+        let refresh_token = '';
+
+        const response = fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: {
+                grant_type: 'refresh_token',
+                refresh_token: refresh_token,
+                client_id: CLIENT_ID
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('HTTP status ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                localStorage.setItem('refresh_token', data.refresh_token);
+                console.log("we got the refresh token")
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
     useEffect(() => {
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
@@ -33,19 +65,54 @@ export function HomePage(props) {
         } else {
             
             if (queryString.length < 1) {
-                let access_token = window.location.hash.split('#access_token=')[1].split('&')[0]
-                localStorage.setItem('access_token', access_token);
+                // get access token using implicit grant
+                // let access_token = window.location.hash.split('#access_token=')[1].split('&')[0]
+                // localStorage.setItem('access_token', access_token);
             } 
 
-            
-            // if (access_token === null || access_token === undefined) {
-            //     requestAccessToken()
-            // }
-            
+            if (window.location.search.length > 0 && localStorage.getItem('refresh_token') === null) {
+                // get access token using PKCE method
+                // get code
+                alert("we're trying to get access token & refresh token")
+                let code = urlParams.get('code');
+    
+                let codeVerifier = localStorage.getItem('code_verifier');
+    
+                let body = new URLSearchParams({
+                    grant_type: 'authorization_code',
+                    code: code,
+                    redirect_uri: redirect_uri,
+                    client_id: CLIENT_ID,
+                    code_verifier: codeVerifier
+                });
+    
+                const response = fetch('https://accounts.spotify.com/api/token', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: body
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('HTTP status ' + response.status);
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        localStorage.setItem('access_token', data.access_token);
+                        alert("we got the access token")
+                        
+                        localStorage.setItem('refresh_token', data.refresh_token);
+                        alert("and we got the refresh token!!!")
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+            }
 
-            // requestRefreshToken();
         }
-    }, )
+    }, [])
 
     const searchParams = {
         method: 'GET',
@@ -70,8 +137,18 @@ export function HomePage(props) {
 
     const handleMe = async (event) => {
         event.preventDefault()
+
+        let accessToken = localStorage.getItem('access_token');
+
+        const body = new URLSearchParams({
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+
         try {
-            const endpoint = await fetch('https://api.spotify.com/v1/me');
+            const endpoint = await fetch('https://api.spotify.com/v1/me', body);
             console.log(endpoint)
         } catch(error) {
             console.log(error)
@@ -83,7 +160,6 @@ export function HomePage(props) {
         console.log(localStorage.getItem('access_token'))
     }
 
-    
 
     // addedTrackIDs are IDs used to identify or filter tracks to be added or to be removed.
     const addedTrackIDs = addedTracks.map(track => { return track.trackID });
