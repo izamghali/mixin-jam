@@ -10,6 +10,16 @@ function App() {
   // State
   let [ accessToken, setAccessToken ] = useState('')
 
+  function generateRandomString(length) {
+    let text = '';
+    let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  
+    for (let i = 0; i < length; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+  }
+
   // API
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
@@ -22,11 +32,13 @@ function App() {
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' >
       <Route path='mixin-jam' element={ <LoginPage 
-        CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} /> }
+        CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET}
+        generateRandomString={generateRandomString}
+        /> }
       />
       <Route path='home' element={ <HomePage 
         CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET}
-        accessToken={accessToken} setAccessToken={setAccessToken}
+        accessToken={accessToken} setAccessToken={setAccessToken} generateRandomString={generateRandomString}
         url={url} /> }
       />
     </Route>

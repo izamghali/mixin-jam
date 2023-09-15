@@ -9,7 +9,7 @@ import { MixinJam } from '../../components/MixinJam';
 export function HomePage(props) {
     const { 
         CLIENT_ID, CLIENT_SECRET,
-        url,
+        url, generateRandomString
     } = props;
 
     var redirect_uri = 'http://localhost:3000/home';
@@ -33,7 +33,7 @@ export function HomePage(props) {
         } else {
             
             if (queryString.length < 1) {
-                let access_token = window.location.hash.split('#access_token=')[1];
+                let access_token = window.location.hash.split('#access_token=')[1].split('&')[0]
                 localStorage.setItem('access_token', access_token);
             } 
 
@@ -68,6 +68,23 @@ export function HomePage(props) {
         console.log(data)
     }
 
+    const handleMe = async (event) => {
+        event.preventDefault()
+        try {
+            const endpoint = await fetch('https://api.spotify.com/v1/me');
+            console.log(endpoint)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+
+    const printAccessToken = async (event) => {
+        event.preventDefault()
+        console.log(localStorage.getItem('access_token'))
+    }
+
+    
+
     // addedTrackIDs are IDs used to identify or filter tracks to be added or to be removed.
     const addedTrackIDs = addedTracks.map(track => { return track.trackID });
 
@@ -79,8 +96,8 @@ export function HomePage(props) {
             <div className='Body' > 
 
                 <SearchBar 
-                    url={url} searchParams={searchParams}
-                    setSearchResultLayout={setSearchResultLayout} 
+                    url={url} searchParams={searchParams} generateRandomString={generateRandomString}
+                    setSearchResultLayout={setSearchResultLayout} CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET}
 
                     setTracks={setTracks}
                     setAlbums={setAlbums}
@@ -99,6 +116,20 @@ export function HomePage(props) {
                     <input 
                         onClick={getProfile}
                         value='get profile'
+                        type='button'
+                    />
+                </form>
+                <form>
+                    <input 
+                        onClick={handleMe}
+                        value='me endpoint'
+                        type='button'
+                    />
+                </form>
+                <form>
+                    <input 
+                        onClick={printAccessToken}
+                        value='print access token'
                         type='button'
                     />
                 </form>

@@ -76,19 +76,9 @@ export function LoginSpotifyButton(props) {
 
     }
 
-    const { CLIENT_ID } = props;
+    const { CLIENT_ID, generateRandomString } = props;
 
     var redirect_uri = 'http://localhost:3000/home';
-
-    function generateRandomString(length) {
-        let text = '';
-        let possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-      
-        for (let i = 0; i < length; i++) {
-          text += possible.charAt(Math.floor(Math.random() * possible.length));
-        }
-        return text;
-    }
 
     const handleAuthorize = async (event) => {
         event.preventDefault();
