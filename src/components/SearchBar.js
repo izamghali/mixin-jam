@@ -5,7 +5,7 @@ export function SearchBar(props) {
 
     const {
         url, setSearchResultLayout,
-        setTracks, setAlbums, generateRandomString, CLIENT_ID, CLIENT_SECRET
+        setTracks, setAlbums, generateRandomString, CLIENT_ID, CLIENT_SECRET, redirect_uri
     } = props
 
     const [ searchInput, setSearchInput ] = useState('')
@@ -29,21 +29,43 @@ export function SearchBar(props) {
     }
 
     const requestAccessToken = async () => {
-        let CLIENT_ID = localStorage.getItem('client_id')
-        var redirect_uri = 'http://localhost:3000/home';
+        var urlParams = new URLSearchParams(window.location.search);
+        alert("the access token is expired, we're fetching the new one!")
+        let code = urlParams.get('code');
 
-        var state = generateRandomString(16);
-        localStorage.setItem('state_key', state);
-        var scope = 'user-read-private user-read-email';
+        let codeVerifier = localStorage.getItem('code_verifier');
 
-        var url = 'https://accounts.spotify.com/authorize';
-        url += '?response_type=token';
-        url += '&client_id=' + encodeURIComponent(CLIENT_ID);
-        url += '&scope=' + encodeURIComponent(scope);
-        url += '&redirect_uri=' + encodeURIComponent(redirect_uri);
-        url += '&state=' + encodeURIComponent(state);
+        let body = new URLSearchParams({
+            grant_type: 'authorization_code',
+            code: code,
+            redirect_uri: redirect_uri,
+            client_id: CLIENT_ID,
+            code_verifier: codeVerifier
+        });
 
-        window.location = url;
+        const response = fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: body
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('HTTP status ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                localStorage.setItem('access_token', data.access_token);
+                alert("we got the access token")
+                
+                localStorage.setItem('refresh_token', data.refresh_token);
+                alert("and we got the refresh token!!!")
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
     }
 
     const handleSubmit = async (event) => {

@@ -22,21 +22,21 @@ export function HomePage(props) {
     const navigate = useNavigate();
 
     const refreshAccessToken = async () => {
-        console.log("we're getting refresh token")
+        console.log("we're refreshing the access token")
         console.log("loading...")
 
-        let refresh_token = '';
+        const body = new URLSearchParams({
+            grant_type: 'refresh_token',
+            refresh_token: localStorage.getItem('refresh_token'),
+            client_id: CLIENT_ID
+        })
 
         const response = fetch('https://accounts.spotify.com/api/token', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },
-            body: {
-                grant_type: 'refresh_token',
-                refresh_token: refresh_token,
-                client_id: CLIENT_ID
-            }
+            body: body
         })
             .then(response => {
                 if (!response.ok) {
@@ -45,8 +45,13 @@ export function HomePage(props) {
                 return response.json();
             })
             .then(data => {
+                localStorage.removeItem('access_token');
+                localStorage.setItem('access_token', data.access_token);
+                alert("WE GOT THE NEW ACCESS TOKEN")
+                
+                localStorage.removeItem('refresh_token');
                 localStorage.setItem('refresh_token', data.refresh_token);
-                console.log("we got the refresh token")
+                alert("AND WE GOT THE NEW REFRESH TOKEN!!!")
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -110,7 +115,6 @@ export function HomePage(props) {
                         console.error('Error:', error);
                     });
             }
-
         }
     }, [])
 
@@ -173,7 +177,7 @@ export function HomePage(props) {
 
                 <SearchBar 
                     url={url} searchParams={searchParams} generateRandomString={generateRandomString}
-                    setSearchResultLayout={setSearchResultLayout} CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET}
+                    setSearchResultLayout={setSearchResultLayout} CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} redirect_uri={redirect_uri}
 
                     setTracks={setTracks}
                     setAlbums={setAlbums}
@@ -202,10 +206,11 @@ export function HomePage(props) {
                         type='button'
                     />
                 </form>
+
                 <form>
                     <input 
-                        onClick={printAccessToken}
-                        value='print access token'
+                        onClick={refreshAccessToken}
+                        value='refresh access token'
                         type='button'
                     />
                 </form>
