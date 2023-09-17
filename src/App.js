@@ -7,8 +7,14 @@ import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } 
 
 function App() {
 
-  // State
-  let [ accessToken, setAccessToken ] = useState('')
+  const [ accessToken, setAccessToken ] = useState('')
+  const [ refreshToken, setRefreshToken ] = useState('')
+
+  // CLIENTSETUP
+  const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
+  const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
+
+  var redirect_uri = 'http://localhost:3000/home';
 
   function generateRandomString(length) {
     let text = '';
@@ -20,14 +26,6 @@ function App() {
     return text;
   }
 
-  // CLIENTSETUP
-  const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
-  const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
-  localStorage.setItem("client_id", CLIENT_ID)
-  localStorage.setItem("client_secret", CLIENT_SECRET)
-
-  var redirect_uri = 'http://localhost:3000/home';
-
   // Router
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' >
@@ -37,24 +35,16 @@ function App() {
         /> }
       />
       <Route path='home' element={ <HomePage 
-        CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET}
-        accessToken={accessToken} setAccessToken={setAccessToken} generateRandomString={generateRandomString} /> }
+        CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
+        generateRandomString={generateRandomString} 
+        accessToken={accessToken} setAccessToken={setAccessToken}
+        refreshToken={refreshToken} setRefreshToken={setRefreshToken}
+        /> }
       />
     </Route>
   ))
 
-  return (
-    <RouterProvider router={router} />
-    // <div className="App">
-    //   {/* <header className="App-header">
-    //     <h1>Mixin' Jam</h1>
-    //   </header> */}
-
-    //   {/* <LoginPage clientId={CLIENT_ID} accessToken={accessToken} /> */}
-
-    //   <HomePage />
-    // </div>
-  );
+  return ( <RouterProvider router={router} /> );
 }
 
 export default App;

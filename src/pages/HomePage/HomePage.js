@@ -8,13 +8,12 @@ import { MixinJam } from '../../components/MixinJam';
 
 export function HomePage(props) {
     const { 
-        CLIENT_ID, CLIENT_SECRET,
-        generateRandomString
+        CLIENT_ID, CLIENT_SECRET, 
+        generateRandomString, 
     } = props;
 
     const url = 'https://api.spotify.com/v1';
     var redirect_uri = 'http://localhost:3000/home';
-    let accessToken = localStorage.getItem('access_token');
 
     const [ albums, setAlbums ] = useState([])
     // const [ artistTracks, setArtistTracks ] = useState([])
@@ -70,13 +69,14 @@ export function HomePage(props) {
             localStorage.setItem("client_id", CLIENT_ID)
             localStorage.setItem("client_secret", CLIENT_SECRET)
         } else {
-
+            // search object is not undefined & access token in the localStorage is not exist
             if (window.location.search.length > 0 && localStorage.getItem('refresh_token') === null) {
                 // get access token using PKCE method
-                // get code
+                // get code from the url
                 alert("we're trying to get access token & refresh token")
                 let code = urlParams.get('code');
     
+                // get code verifier from localStorage
                 let codeVerifier = localStorage.getItem('code_verifier');
     
                 let body = new URLSearchParams({
@@ -87,7 +87,8 @@ export function HomePage(props) {
                     code_verifier: codeVerifier
                 });
     
-                const response = fetch('https://accounts.spotify.com/api/token', {
+                // requesting access token
+                let response = fetch('https://accounts.spotify.com/api/token', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -112,7 +113,26 @@ export function HomePage(props) {
                     });
             }
         }
+        if (localStorage.getItem('access_token') !== null) {
+            console.log("we're clearing the url bar")
+            window.history.pushState("", "", redirect_uri) // clear url bar
+        } 
     }, [])
+
+    const getTopArtist = async () => {
+        try {
+            let response = await fetch('https://api.spotify.com/v1/me/top/artists', {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                }
+            });
+            let data = await response.json();
+            console.log(data)
+        } catch(error) {
+            console.log(error)
+        }
+    }
+    getTopArtist();
 
     const searchParams = {
         method: 'GET',
@@ -122,49 +142,55 @@ export function HomePage(props) {
         }
     }
 
-    const getProfile = async () => {
+    // const getProfile = async () => {
       
-        const response = await fetch('https://api.spotify.com/v1/me', {
-          headers: {
-            Authorization: 'Bearer ' + accessToken
-          }
-        });
-      
-        const data = await response.json();
-        console.log(data)
-    }
+    //     try {
+    //         const response = await fetch('https://api.spotify.com/v1/me', {
+    //           headers: {
+    //             Authorization: 'Bearer ' + accessToken
+    //           }
+    //         });
+          
+    //         const data = await response.json();
+    //         console.log(data)
+    //     } catch(error) {
+    //         console.log(error)
+    //     }
+    // }
 
-    const getTopArtist = async () => {
+    // const getTopTracks = async () => {
         
-        try {
-            const response = await fetch('https://api.spotify.com/v1/me/top/artists', {
-                headers: {
-                    Authorization: 'Bearer ' + accessToken
-                }
-            });
-            const data = await response.json();
-            console.log(data)
-        } catch(error) {
-            console.log(error)
-        }
+    //     try {
+    //         let response = await fetch('https://api.spotify.com/v1/me/top/tracks', {
+    //             headers: {
+    //                 Authorization: 'Bearer ' + accessToken
+    //             }
+    //         });
+    //         let data = await response.json();
+    //         console.log(data)
+    //     } catch(error) {
+    //         console.log(error)
+    //     }
     
-    }
+    // }
 
-    const getTopTracks = async () => {
-        
-        try {
-            const response = await fetch('https://api.spotify.com/v1/me/top/tracks', {
-                headers: {
-                    Authorization: 'Bearer ' + accessToken
-                }
-            });
-            const data = await response.json();
-            console.log(data)
-        } catch(error) {
-            console.log(error)
-        }
-    
-    }
+    // const getRecentlyPlayed = async () => {
+    //     try {
+    //         let response = await fetch(`https://api.spotify.com/v1/me/player/recently-played?limit=3`, {
+    //             headers: {
+    //                 Authorization: 'Bearer ' + accessToken
+    //             }
+    //         })
+    //         let data = await response.json();
+    //         if (!data) {
+    //             console.log(`data might not be present`)
+    //         } else {
+    //             console.log(data)
+    //         }
+    //     } catch (error) {
+    //         console.log(error)
+    //     }
+    // }
 
     // addedTrackIDs are IDs used to identify or filter tracks to be added or to be removed.
     const addedTrackIDs = addedTracks.map(track => { return track.trackID });
@@ -195,37 +221,48 @@ export function HomePage(props) {
                     addedTrackIDs={addedTrackIDs}
                 />
 
-                <form>
-                    <input 
-                        onClick={getProfile}
-                        value='get profile'
-                        type='button'
-                    />
-                </form>
+                {/* <div className='debug-API-buttons'>
+                    <form>
+                        <input 
+                            onClick={getProfile}
+                            value='get profile'
+                            type='button'
+                        />
+                    </form>
 
-                <form>
-                    <input 
-                        onClick={refreshAccessToken}
-                        value='refresh access token'
-                        type='button'
-                    />
-                </form>
+                    <form>
+                        <input 
+                            onClick={refreshAccessToken}
+                            value='refresh access token'
+                            type='button'
+                        />
+                    </form>
 
-                <form>
-                    <input 
-                        onClick={getTopArtist}
-                        value='get top artists'
-                        type='button'
-                    />
-                </form>
+                    <form>
+                        <input 
+                            onClick={getTopArtist}
+                            value='get top artists'
+                            type='button'
+                        />
+                    </form>
 
-                <form>
-                    <input 
-                        onClick={getTopTracks}
-                        value='get top tracks'
-                        type='button'
-                    />
-                </form>
+                    <form>
+                        <input 
+                            onClick={getTopTracks}
+                            value='get top tracks'
+                            type='button'
+                        />
+                    </form>
+
+                    <form>
+                        <input 
+                            onClick={getRecentlyPlayed}
+                            value='get recently played'
+                            type='button'
+                        />
+                    </form>
+
+                </div> */}
 
             </div>
         </>
