@@ -19,6 +19,7 @@ export function HomePage(props) {
     // const [ artistTracks, setArtistTracks ] = useState([])
     const [ tracks, setTracks ] = useState([])
     const [ addedTracks, setAddedTracks ] = useState([]);
+    const [ topArtists, setTopArtists ] = useState([])
 
     const navigate = useNavigate();
 
@@ -114,20 +115,28 @@ export function HomePage(props) {
             }
         }
         if (localStorage.getItem('access_token') !== null) {
-            console.log("we're clearing the url bar")
             window.history.pushState("", "", redirect_uri) // clear url bar
         } 
     }, [])
 
+    let access_token = localStorage.getItem('access_token')
+    let refresh_token = localStorage.getItem('refresh_token')
+
     const getTopArtist = async () => {
+        let index = 1;
         try {
             let response = await fetch('https://api.spotify.com/v1/me/top/artists', {
                 headers: {
                     Authorization: 'Bearer ' + localStorage.getItem('access_token')
                 }
             });
+
             let data = await response.json();
-            console.log(data)
+            // setTopArtists(data);
+            index += 1;
+            // console.log(`we've have run this ${index} times!`)
+            return;
+            // console.log(data.items)
         } catch(error) {
             console.log(error)
         }
@@ -142,21 +151,25 @@ export function HomePage(props) {
         }
     }
 
-    // const getProfile = async () => {
-      
-    //     try {
-    //         const response = await fetch('https://api.spotify.com/v1/me', {
-    //           headers: {
-    //             Authorization: 'Bearer ' + accessToken
-    //           }
-    //         });
-          
-    //         const data = await response.json();
-    //         console.log(data)
-    //     } catch(error) {
-    //         console.log(error)
-    //     }
-    // }
+    const getProfile = async () => {
+        try {
+            console.log(`we're requesting GET profile`)
+            const response = await fetch('https://api.spotify.com/v1/me', {
+                headers: {
+                    Authorization: 'Bearer ' + access_token
+                }
+            });
+            let data = response.json()
+            
+        } catch(error) {
+            console.log(error)
+            if (error.message === 'The access token expired') {
+                alert('the access token has expired. Starting to refresh the new one!')
+                refreshAccessToken();
+            } 
+            alert('New access token acquired!')
+        }
+    }
 
     // const getTopTracks = async () => {
         
@@ -209,7 +222,7 @@ export function HomePage(props) {
                     redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken}
 
                     setTracks={setTracks}
-                    setAlbums={setAlbums}
+                    setAlbums={setAlbums} getProfile={getProfile}
                 />
 
                 <MixinJam 

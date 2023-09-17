@@ -4,7 +4,7 @@ import './SearchBar.scss'
 export function SearchBar(props) {
 
     const {
-        url, setSearchResultLayout,
+        url, setSearchResultLayout, getProfile,
         setTracks, setAlbums, generateRandomString, CLIENT_ID, CLIENT_SECRET, redirect_uri, refreshAccessToken
     } = props
 
@@ -20,7 +20,7 @@ export function SearchBar(props) {
     //         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
     //     }
     // })
-    var searchParams = {
+    let searchParams = {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
@@ -32,43 +32,42 @@ export function SearchBar(props) {
         event.preventDefault();
 
         if (searchInput.length > 0) {
-            
+
             let artistID = '';
+            let artistAlbums = [];
+            let artistTracks = [];
+            let tracks = [];
+            getProfile();
+            
             // GET request artist ID
             try {
                 var response = await (await fetch(`${url}/search?q=${searchInput}&type=artist`, searchParams)).json()
-                artistID = response.artists.items[0].id
                 console.log(response)
+                artistID = response.artists.items[0].id
+                console.log(`Artist ID for ${searchInput}: ${artistID}`);
             } catch(error) {
                 console.log(error)
-                if (response.error.message === 'The access token expired') {
-                    alert('the access token has expired. Starting to refresh the new one!')
-                    // if token expired, refresh access token & try to fetch again.
-                    refreshAccessToken();
-                    try {
-                        alert('access token has been refreshed. Fetching the last request...')
-                        var response = await (await fetch(`${url}/search?q=${searchInput}&type=artist`, searchParams)).json()
-                    } catch(error) {
-                        console.log(error)
-                    }
-                }
             }
             
             // GET request artist album using artist ID
-            // const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
-            // const artistAlbums = getArtistAlbums.items;
-            // setAlbums(artistAlbums)
-            // console.log(getArtistAlbums)
+            const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
+            artistAlbums = getArtistAlbums.items;
+            console.log("artist's albums: ")
+            console.log(getArtistAlbums)
+            setAlbums(artistAlbums)
             
             // GET request artist tracks using artist ID
-            // const getArtistTracks = await (await fetch(`${url}/artists/${artistID}/top-tracks?market=US&limit=5`, searchParams)).json()
-            // const artistTracks = getArtistTracks.tracks;
+            const getArtistTracks = await (await fetch(`${url}/artists/${artistID}/top-tracks?market=US&limit=5`, searchParams)).json()
+            artistTracks = getArtistTracks.tracks;
+            console.log("artist's tracks: ")
+            console.log(getArtistTracks)
             
             // GET request tracks
-            // const getTrackID = await ( await fetch(url + '/search?q=' + searchInput + '&type=track&market=US&limit=10&include_external=audio&offset=5', searchParams)).json();
-            // const tracks = getTrackID.tracks.items;
-            // console.log(getTrackID)
-            // setTracks(tracks)
+            const getTrackID = await ( await fetch(url + '/search?q=' + searchInput + '&type=track&market=US&limit=10&include_external=audio&offset=5', searchParams)).json();
+            tracks = getTrackID.tracks.items;
+            console.log(`artist's tracks:`)
+            console.log(getTrackID)
+            setTracks(tracks)
         }
     }
     

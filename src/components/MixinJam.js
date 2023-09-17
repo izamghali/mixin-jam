@@ -19,7 +19,7 @@ export function MixinJam(props) {
         <>
             <div style={searchResultLayout} className="MixinJam">
 
-                <SearchResult  
+                <SearchResult
                     url={url} searchParams={searchParams}
 
                     albums={albums} tracks={tracks}
@@ -27,11 +27,11 @@ export function MixinJam(props) {
                     addedTrackIDs={addedTrackIDs}
                 />
 
-                <Playlist 
+                {/* <Playlist 
                     addedTracks={addedTracks} // addedTracks are a list of tracks added to playlist
                     setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}
-                />
+                /> */}
 
             </div>
         </>
