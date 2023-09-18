@@ -1,0 +1,23 @@
+@import '../sass-helpers/placeholders';
+
+.Playlist {
+    transition-duration: 400ms;
+    border: solid black;
+    width: 14rem;
+    // height: 20rem;
+    border-radius: 12px;
+    padding: 1rem;
+
+    .playlist-img-container {
+
+        width: 14rem;
+        height: 14rem;
+        margin-inline: auto;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+}

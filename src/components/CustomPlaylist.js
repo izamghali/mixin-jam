@@ -23,7 +23,7 @@ export function Playlist(props) {
 
     return (
         <>
-            <div className='Playlist'>
+            <div className='Custom-Playlist'>
                 <form className='playlist-title-form'>
                     <input 
                         className='playlist-title'

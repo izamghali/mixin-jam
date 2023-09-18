@@ -6,6 +6,7 @@ import './HomePage.scss'
 import { SearchBar } from '../../components/SearchBar';
 import { MixinJam } from '../../components/MixinJam';
 import { TopArtists } from '../../components/TopArtists';
+import { TopPlaylists } from '../../components/TopPlaylists';
 
 export function HomePage(props) {
     const { 
@@ -143,7 +144,9 @@ export function HomePage(props) {
                 window.location.reload()
             }
         } catch(error) {
-            console.log(error)
+            if (error === "TypeError: Cannot read properties of undefined (reading 'message')") {
+                return;
+            }
         }
     }
     // getTopArtist();
@@ -184,12 +187,22 @@ export function HomePage(props) {
                     Authorization: 'Bearer ' + localStorage.getItem('access_token')
                 }
             });
-
+            
             let data = await response.json();
             console.log(data)
             
+            if (data.error.message === undefined)  {
+                // console.log(`error message doesn't exist!`)
+            } else if (data.error.message !== undefined || data.error.message === 'Invalid access token') {
+                // console.log("GET top artists request failed! We're reloading the page")
+                console.log("access token doesn't exist")
+                console.log("reloading page...")
+                window.location.reload()
+            }
         } catch(error) {
-            console.log(error)
+            if (error === "TypeError: Cannot read properties of undefined (reading 'message')") {
+                return;
+            }
         }
     }
     // getFeaturedPlaylist();
@@ -249,7 +262,8 @@ export function HomePage(props) {
                 />
 
                 <div>
-                    <TopArtists ></TopArtists>
+                    <TopArtists />
+                    <TopPlaylists />
                 </div>
 
                 {/* <MixinJam 

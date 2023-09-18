@@ -1,16 +1,16 @@
 import React from "react"
-import { Artist } from './Artist';
+import { Playlist } from './Playlist';
 
 import './TopContainer.scss';
 
-export const TopArtists = () => {
+export const TopPlaylists = () => {
 
     return (
         <>
             <div className="top-container">
-                <h2>Top Artists</h2>
+                <h2>Top Playlist</h2>
                 <div className="container">
-                    <Artist />
+                    <Playlist />
                 </div>
                 <p>Scroll right to see more</p>
             </div>

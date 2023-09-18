@@ -1,17 +1,16 @@
 @import '../sass-helpers/breakpoints';
 
-.top-artist-container {
-    // border: solid orange;
+.top-container {
     width: 100vw;
     h2 {
         margin-top: 0;
         margin-inline: 3%;
     }
     
-    .artists-container {
+    .container {
         display: flex;
         margin-inline: 3%;
-        gap: 1rem;
+        gap: 2rem;
         overflow-x: scroll;
         &::-webkit-scrollbar { // hide scrollbar
             display: none;
