@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { Playlist } from './Playlist';
+import { CustomPlaylist } from './CustomPlaylist';
 import { SearchResult } from './SearchResult';
 
 export function MixinJam(props) {
@@ -27,7 +27,7 @@ export function MixinJam(props) {
                     addedTrackIDs={addedTrackIDs}
                 />
 
-                {/* <Playlist 
+                {/* <CustomPlaylist 
                     addedTracks={addedTracks} // addedTracks are a list of tracks added to playlist
                     setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}

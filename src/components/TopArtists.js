@@ -13,7 +13,7 @@ export const TopArtists = () => {
                 <div className="artists-container">
                     <Artist />
                 </div>
-                <p>Scroll to the right to see more</p>
+                <p>Scroll right to see more</p>
             </div>
         </>
     )

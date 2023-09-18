@@ -176,6 +176,24 @@ export function HomePage(props) {
         }
     }
 
+    const getFeaturedPlaylist = async () => {
+        console.log("Requesting featured playlist ...")
+        try {
+            let response = await fetch('https://api.spotify.com/v1/browse/featured-playlists?limit=5', {
+                headers: {
+                    Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                }
+            });
+
+            let data = await response.json();
+            console.log(data)
+            
+        } catch(error) {
+            console.log(error)
+        }
+    }
+    // getFeaturedPlaylist();
+
     // const getTopTracks = async () => {
         
     //     try {
