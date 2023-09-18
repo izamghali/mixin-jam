@@ -5,6 +5,7 @@ import './HomePage.scss'
 // Components
 import { SearchBar } from '../../components/SearchBar';
 import { MixinJam } from '../../components/MixinJam';
+import { TopArtists } from '../../components/TopArtists';
 
 export function HomePage(props) {
     const { 
@@ -22,43 +23,6 @@ export function HomePage(props) {
     const [ topArtists, setTopArtists ] = useState([])
 
     const navigate = useNavigate();
-
-    const refreshAccessToken = async () => {
-        console.log("we're refreshing the access token")
-        console.log("loading...")
-
-        const body = new URLSearchParams({
-            grant_type: 'refresh_token',
-            refresh_token: localStorage.getItem('refresh_token'),
-            client_id: CLIENT_ID
-        })
-
-        const response = fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: body
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('HTTP status ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                localStorage.removeItem('access_token');
-                localStorage.setItem('access_token', data.access_token);
-                alert("WE GOT THE NEW ACCESS TOKEN")
-                
-                localStorage.removeItem('refresh_token');
-                localStorage.setItem('refresh_token', data.refresh_token);
-                alert("AND WE GOT THE NEW REFRESH TOKEN!!!")
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
 
     useEffect(() => {
         var queryString = window.location.search;
@@ -122,8 +86,47 @@ export function HomePage(props) {
     let access_token = localStorage.getItem('access_token')
     let refresh_token = localStorage.getItem('refresh_token')
 
+    const refreshAccessToken = async () => {
+        console.log("we're refreshing the access token")
+        console.log("loading...")
+
+        const body = new URLSearchParams({
+            grant_type: 'refresh_token',
+            refresh_token: localStorage.getItem('refresh_token'),
+            client_id: CLIENT_ID
+        })
+
+        const response = fetch('https://accounts.spotify.com/api/token', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: body
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('HTTP status ' + response.status);
+                }
+                return response.json();
+            })
+            .then(data => {
+                localStorage.removeItem('access_token');
+                localStorage.setItem('access_token', data.access_token);
+                alert("WE GOT THE NEW ACCESS TOKEN")
+                
+                localStorage.removeItem('refresh_token');
+                localStorage.setItem('refresh_token', data.refresh_token);
+                alert("AND WE GOT THE NEW REFRESH TOKEN!!!")
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+
     const getTopArtist = async () => {
-        let index = 1;
+        // let index = 1;
+        // console.log(`we're getting top artist the ${index += 1} times!`)
+        // console.log(`access token: ${localStorage.getItem('access_token')}`)
         try {
             let response = await fetch('https://api.spotify.com/v1/me/top/artists', {
                 headers: {
@@ -132,11 +135,13 @@ export function HomePage(props) {
             });
 
             let data = await response.json();
-            // setTopArtists(data);
-            index += 1;
-            // console.log(`we've have run this ${index} times!`)
-            return;
-            // console.log(data.items)
+            console.log(data)
+            if (data.error.message === undefined)  {
+                // console.log(`error message doesn't exist!`)
+            } else if (data.error.message !== undefined || data.error.message === 'Invalid access token') {
+                // console.log("GET top artists request failed! We're reloading the page")
+                window.location.reload()
+            }
         } catch(error) {
             console.log(error)
         }
@@ -225,14 +230,18 @@ export function HomePage(props) {
                     setAlbums={setAlbums} getProfile={getProfile}
                 />
 
-                <MixinJam 
+                <div>
+                    <TopArtists ></TopArtists>
+                </div>
+
+                {/* <MixinJam 
                     url={url} searchParams={searchParams}
 
                     searchResultLayout={searchResultLayout}
                     albums={albums} tracks={tracks}
                     addedTracks={addedTracks} setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}
-                />
+                /> */}
 
                 {/* <div className='debug-API-buttons'>
                     <form>
