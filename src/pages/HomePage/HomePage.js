@@ -146,7 +146,7 @@ export function HomePage(props) {
             console.log(error)
         }
     }
-    getTopArtist();
+    // getTopArtist();
 
     const searchParams = {
         method: 'GET',

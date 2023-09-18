@@ -22,3 +22,8 @@
     @extend %flex-justify-between;
     align-items: center;
 }
+
+%flex-col-justify-between {
+    @extend %flex-justify-between;
+    flex-direction: column;
+}

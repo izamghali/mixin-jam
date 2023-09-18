@@ -8,12 +8,12 @@ export const TopArtists = () => {
 
     return (
         <>
-            <div>
+            <div className="top-artist-container">
                 <h2>Top Artists</h2>
-                <div className="top-artists-container">
+                <div className="artists-container">
                     <Artist />
-
                 </div>
+                <p>Scroll to the right to see more</p>
             </div>
         </>
     )

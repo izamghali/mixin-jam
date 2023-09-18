@@ -1,6 +1,24 @@
-.top-artists-container {
-    border: solid red;
-    display: flex;
-    width: 100%;
-    gap: 1rem;
+@import '../sass-helpers/breakpoints';
+
+.top-artist-container {
+    // border: solid orange;
+    width: 100vw;
+    h2 {
+        margin-top: 0;
+        margin-inline: 3%;
+    }
+    
+    .artists-container {
+        display: flex;
+        margin-inline: 3%;
+        gap: 1rem;
+        overflow-x: scroll;
+        &::-webkit-scrollbar { // hide scrollbar
+            display: none;
+        }
+    }
+
+    p {
+        margin-inline: 3%;
+    }
 }
