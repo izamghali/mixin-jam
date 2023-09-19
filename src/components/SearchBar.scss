@@ -2,33 +2,29 @@
 @import '../sass-helpers/variables';
 
 .SearchBar {
-    @extend %flex-justify-align-center;
-    gap: 1.5rem;
-    width: 100%;
-    padding-block: 2rem;
-    // border: solid orange;
-    
-    .search-bar-input-tags {
-        padding-block: 0.5rem;
-        border-radius: 6px;
-        border: none;
+
+    .search-bar-form {
+        input {
+            transition-duration: 400ms;
+            border: none;
+            border-radius: 40px;
+            width: 20rem;
+            padding-block: 0.5rem;
+            padding-inline: 3rem 1rem;
+            height: $regular-input-height;
+            &:focus {
+                outline: none;
+            }
+        }
     }
-    
-    #searchBarInput {
-        padding-inline: 0.5rem;
-        width: 20%;
-        &:focus { outline: $standard-bg-color1; }
-    }
-    
-    #searchBarSubmit {
-        padding-inline: 2rem;
-        font-weight: 700;
-        background-color: $standard-accent-color1;
-        border-radius: 20px;
-        transition-duration: $regular-transition-duration-quick;
-        &:hover {
-            cursor: pointer;
-            background-color: $standard-accent-color1-more-light;
+
+    .search-bar-glass {
+        position: relative;
+        span {
+            transition-duration: 400ms;
+            position: absolute;
+            bottom: $regular-input-height / 2.5;
+            padding-left: 1rem;
         }
     }
 }
