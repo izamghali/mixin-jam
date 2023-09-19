@@ -8,7 +8,7 @@ export const TopPlaylists = () => {
     return (
         <>
             <div className="top-container">
-                <h2>Top Playlist</h2>
+                <h2>Featured Playlists</h2>
                 <div className="container">
                     <Playlist />
                 </div>

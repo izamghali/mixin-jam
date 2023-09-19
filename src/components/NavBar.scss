@@ -1,0 +1,32 @@
+@import '../sass-helpers/variables';
+
+.NavBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+
+    h1 {
+        width: max-content;
+        margin-left: 3%;
+    }
+    
+    .navbar-right {
+        margin-right: 3%;
+        display: flex;
+        gap: 2rem;
+
+        .navbar-logout-button {
+            border: solid black;
+            padding-inline: 2rem;
+            border-radius: 12px;
+            transition-duration: $regular-transition-duration-medium;
+            &:hover{
+                cursor: pointer;
+                background-color: black;
+                color: whitesmoke;
+                border-radius: 40px;
+            }
+        }
+    }
+}

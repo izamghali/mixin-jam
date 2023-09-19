@@ -7,6 +7,7 @@ import { SearchBar } from '../../components/SearchBar';
 import { MixinJam } from '../../components/MixinJam';
 import { TopArtists } from '../../components/TopArtists';
 import { TopPlaylists } from '../../components/TopPlaylists';
+import { NavBar } from '../../components/NavBar';
 
 export function HomePage(props) {
     const { 
@@ -26,6 +27,9 @@ export function HomePage(props) {
     const navigate = useNavigate();
 
     useEffect(() => {
+        if (localStorage.getItem('code_verifier') === null) {
+            navigate('/mixin-jam') // check if code_verifier is stored, if not navigate to login page
+        }
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var error = urlParams.get("error")
@@ -251,12 +255,12 @@ export function HomePage(props) {
         <>
             <div className='Body' > 
 
-                <SearchBar 
+                <NavBar 
                     url={url} generateRandomString={generateRandomString}
                     setSearchResultLayout={setSearchResultLayout} 
                     CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
                     redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken}
-
+    
                     setTracks={setTracks}
                     setAlbums={setAlbums} getProfile={getProfile}
                 />
