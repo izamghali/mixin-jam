@@ -26,7 +26,9 @@ export function SearchResult(props) {
 
     return (
         <>
-            <div style={columnGap} className="SearchResult">
+
+            <h2>Hello, this is Mixin Jam Page</h2>
+            {/* <div style={columnGap} className="SearchResult">
                 
                 <div className='SearchResult-Album-div'>
                     {albums.map(album => {
@@ -53,7 +55,7 @@ export function SearchResult(props) {
                     })}
                 </div>
 
-            </div>
+            </div> */}
         </>
     )
 }

@@ -1,8 +1,8 @@
 import React from 'react';
 
 // Components
-import { CustomPlaylist } from './CustomPlaylist';
-import { SearchResult } from './SearchResult';
+import { CustomPlaylist } from '../../components/CustomPlaylist';
+import { SearchResult } from '../../components/SearchResult';
 
 export function MixinJam(props) {
     const {

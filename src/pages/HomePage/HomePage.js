@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './HomePage.scss'
 
 // Components
-import { SearchBar } from '../../components/SearchBar';
-import { MixinJam } from '../../components/MixinJam';
 import { TopArtists } from '../../components/TopArtists';
 import { TopPlaylists } from '../../components/TopPlaylists';
 import { NavBar } from '../../components/NavBar';
@@ -16,7 +14,7 @@ export function HomePage(props) {
     } = props;
 
     const url = 'https://api.spotify.com/v1';
-    var redirect_uri = 'http://localhost:3000/home';
+    var redirect_uri = 'http://localhost:3000/mixin-jam/home';
 
     const [ albums, setAlbums ] = useState([])
     // const [ artistTracks, setArtistTracks ] = useState([])
@@ -81,11 +79,12 @@ export function HomePage(props) {
                     .catch(error => {
                         console.error('Error:', error);
                     });
+
+                window.history.pushState("", "", redirect_uri) // clear url bar
             }
         }
-        if (localStorage.getItem('access_token') !== null) {
-            window.history.pushState("", "", redirect_uri) // clear url bar
-        } 
+
+        
     }, [])
 
     let access_token = localStorage.getItem('access_token')

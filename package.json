@@ -44,5 +44,5 @@
   "devDependencies": {
     "gh-pages": "^6.0.0"
   },
-  "proxy": "http://localhost:3000/home"
+  "proxy": "http://localhost:3000/mixin-jam/login"
 }
