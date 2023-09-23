@@ -29,4 +29,25 @@
             }
         }
     }
+
+    .menu-button {
+        border: solid orange;
+        border-radius: 8px;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        .button-stripes {
+            transition-duration: 400ms;
+            border: 1.5px solid black;
+            width: 2rem;
+            height: 0.2rem;
+            border-radius: 40px;
+        }
+    }
 }

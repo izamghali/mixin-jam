@@ -3,7 +3,6 @@ import './NavBar.scss';
 import { SearchBar } from "./SearchBar";
 import { DarkLightModeButton } from './DarkLightModeButton';
 
-
 export const NavBar = (props) => {
 
     const { 
@@ -30,6 +29,11 @@ export const NavBar = (props) => {
                 <div className="navbar-right">
                     <DarkLightModeButton />
                     <button className="navbar-logout-button">Log Out</button>
+                </div>
+                <div className="menu-button">
+                    <div className="button-stripes"></div>
+                    <div className="button-stripes"></div>
+                    <div className="button-stripes"></div>
                 </div>
             </div>
         </>
