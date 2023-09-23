@@ -21,7 +21,7 @@ export const NavBar = (props) => {
         <>
             <div className="NavBar">
                 <h1>Mixin' Jam</h1>
-                <SearchBar 
+                <SearchBar
                     url={url} generateRandomString={generateRandomString}
                     setSearchResultLayout={setSearchResultLayout} 
                     CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 

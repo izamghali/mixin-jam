@@ -1,15 +1,23 @@
 @import '../sass-helpers/variables';
 @import '../sass-helpers/breakpoints';
 
+    
 .NavBar {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin-block: 3%;
+    transition-duration: 400ms;
 
     h1 {
         width: max-content;
         margin-left: 3%;
+        margin-block: 0;
+
+        @include mobile-landscape {
+            display: none;
+        }
     }
 
     // responsive debugger
@@ -18,7 +26,11 @@
     @include tablet { background-color: slateblue; }
     @include mobile-landscape { background-color: palegoldenrod; }
     @include mobile-portrait { background-color: pink; }
-    
+
+    .navbar-search-bar {
+        border: solid red;
+    }
+
     .navbar-right {
         margin-right: 3%;
         display: flex;
@@ -50,13 +62,18 @@
         flex-direction: column;
         gap: 4px;
         margin-right: 3%;
-
+        transition-duration: 400ms;
+    
         &:hover { cursor: pointer; }
-
+    
         @include mobile-landscape {
             display: flex;
         }
 
+        @include mobile-portrait {
+            transform: scale(0.75);
+        }
+    
         .button-stripes {
             transition-duration: 400ms;
             border: 1.5px solid black;

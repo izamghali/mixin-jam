@@ -1,19 +1,38 @@
 @use '/src/sass-helpers/placeholders'; 
 @import '../sass-helpers/variables';
+@import '../sass-helpers/breakpoints';
 
 .SearchBar {
 
+    // border: 1.5px solid black;
+    // background-color:turquoise;
+    // @include desktop { background-color: palegreen; }
+    // @include tablet { background-color: slateblue; }
+    // @include mobile-landscape { background-color: palegoldenrod; }
+    // @include mobile-portrait { background-color: pink; }
+
+    @include mobile-landscape {
+        margin-left: 3%;
+    }
+
     .search-bar-form {
         input {
-            transition-duration: 400ms;
+            transition-duration: 350ms;
             border: none;
             border-radius: 40px;
             width: 20rem;
             padding-block: 0.5rem;
             padding-inline: 3rem 1rem;
             height: $regular-input-height;
-            &:focus {
-                outline: none;
+            &:focus { outline: none; }
+            
+            @include tablet {
+                width: 15rem;
+            }
+            
+            @include mobile-portrait {
+                width: 55vw;
+                padding-inline: 2.5rem 1rem;
             }
         }
     }
