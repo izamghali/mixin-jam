@@ -1,4 +1,5 @@
 @import '../sass-helpers/variables';
+@import '../sass-helpers/breakpoints';
 
 .NavBar {
     display: flex;
@@ -10,11 +11,22 @@
         width: max-content;
         margin-left: 3%;
     }
+
+    // responsive debugger
+    background-color:turquoise;
+    @include desktop { background-color: palegreen; }
+    @include tablet { background-color: slateblue; }
+    @include mobile-landscape { background-color: palegoldenrod; }
+    @include mobile-portrait { background-color: pink; }
     
     .navbar-right {
         margin-right: 3%;
         display: flex;
         gap: 2rem;
+
+        @include mobile-landscape {
+            display: none;
+        }
 
         .navbar-logout-button {
             border: 1.5px solid black;
@@ -31,15 +43,18 @@
     }
 
     .menu-button {
-        border: solid orange;
+        border: 1.5px solid black;
         border-radius: 8px;
         padding: 0.5rem;
-        display: flex;
+        display: none;
         flex-direction: column;
         gap: 4px;
+        margin-right: 3%;
 
-        &:hover {
-            cursor: pointer;
+        &:hover { cursor: pointer; }
+
+        @include mobile-landscape {
+            display: flex;
         }
 
         .button-stripes {

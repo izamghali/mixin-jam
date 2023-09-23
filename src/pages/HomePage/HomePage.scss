@@ -1,11 +1,19 @@
 @import '../../sass-helpers/variables';
 @import '../../sass-helpers/placeholders';
+@import '../../sass-helpers/breakpoints';
 
 .Body {
     @extend %flex-justify-align-center;
     flex-direction: column;
     background-color: whitesmoke;
     align-items: start;
+
+    // responsive debugger
+    background-color:turquoise;
+    @include desktop { background-color: palegreen; }
+    @include tablet { background-color: slateblue; }
+    @include mobile-landscape { background-color: palegoldenrod; }
+    @include mobile-portrait { background-color: pink; }
 
     .MixinJam {
       padding-block: 2rem;

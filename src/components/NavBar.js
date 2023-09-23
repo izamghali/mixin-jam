@@ -13,6 +13,10 @@ export const NavBar = (props) => {
         setTracks, setAlbums, getProfile
     } = props;
 
+    const handleMenuButtonClick = () => {
+        console.log('you click menu button!')
+    }
+
     return (
         <>
             <div className="NavBar">
@@ -30,7 +34,7 @@ export const NavBar = (props) => {
                     <DarkLightModeButton />
                     <button className="navbar-logout-button">Log Out</button>
                 </div>
-                <div className="menu-button">
+                <div className="menu-button" onClick={handleMenuButtonClick}>
                     <div className="button-stripes"></div>
                     <div className="button-stripes"></div>
                     <div className="button-stripes"></div>
