@@ -6,7 +6,7 @@ export function DarkLightModeButton() {
 
     const [ toggleState, setToggleState ] = useState(true);
 
-    const handleClick = (event) => {
+    const handleClick = () => {
         if (toggleState) {
             gsap.to('.toggle-button', { x: '100%', duration: 0.4, })
         } else {

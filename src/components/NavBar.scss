@@ -27,18 +27,12 @@
     @include mobile-landscape { background-color: palegoldenrod; }
     @include mobile-portrait { background-color: pink; }
 
-    .navbar-search-bar {
-        border: solid red;
-    }
-
     .navbar-right {
         margin-right: 3%;
         display: flex;
         gap: 2rem;
 
-        @include mobile-landscape {
-            display: none;
-        }
+        @include mobile-landscape { display: none; }
 
         .navbar-logout-button {
             border: 1.5px solid black;
@@ -60,17 +54,18 @@
         padding: 0.5rem;
         display: none;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
         gap: 4px;
         margin-right: 3%;
         transition-duration: 400ms;
+        width: 2rem;
+        height: 2rem;
     
         &:hover { cursor: pointer; }
     
         @include mobile-landscape {
             display: flex;
-        }
-
-        @include mobile-portrait {
             transform: scale(0.75);
         }
     
@@ -80,6 +75,7 @@
             width: 2rem;
             height: 0.2rem;
             border-radius: 40px;
+            // position: relative;
         }
     }
 }
