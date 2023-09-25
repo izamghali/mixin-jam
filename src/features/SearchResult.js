@@ -2,8 +2,8 @@ import React from 'react';
 import './SearchResult.scss'
 
 // Components
-import { Album } from './Album';
-import { Track } from './Track';
+import { Album } from '../components/Album';
+import { Track } from '../components/Track';
 
 export function SearchResult(props) {
     const {

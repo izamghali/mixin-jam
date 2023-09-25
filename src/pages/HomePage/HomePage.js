@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './HomePage.scss'
 
 // Components
-import { TopArtists } from '../../components/TopArtists';
+import { TopArtists } from '../../features/TopArtists';
 import { TopPlaylists } from '../../components/TopPlaylists';
 import { NavBar } from '../../components/NavBar';
 

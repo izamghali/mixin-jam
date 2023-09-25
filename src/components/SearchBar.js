@@ -14,6 +14,8 @@ export function SearchBar(props) {
         setSearchInput(target.value)
     }
 
+    const navigate = useNavigate();
+
     // var searchParams = new URLSearchParams({
     //     method: 'GET',
     //     headers: {
@@ -70,6 +72,8 @@ export function SearchBar(props) {
             console.log(getTrackID)
             setTracks(tracks)
         }
+
+        navigate('/mixin-jam/search-result')
     }
     
     const flexWhenClicked = () => {

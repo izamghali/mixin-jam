@@ -4,13 +4,6 @@
 
 .SearchBar {
 
-    // border: 1.5px solid black;
-    // background-color:turquoise;
-    // @include desktop { background-color: palegreen; }
-    // @include tablet { background-color: slateblue; }
-    // @include mobile-landscape { background-color: palegoldenrod; }
-    // @include mobile-portrait { background-color: pink; }
-
     @include mobile-landscape {
         margin-left: 3%;
     }

@@ -20,13 +20,6 @@
         }
     }
 
-    // responsive debugger
-    background-color:turquoise;
-    @include desktop { background-color: palegreen; }
-    @include tablet { background-color: slateblue; }
-    @include mobile-landscape { background-color: palegoldenrod; }
-    @include mobile-portrait { background-color: pink; }
-
     .navbar-right {
         margin-right: 3%;
         display: flex;
@@ -75,7 +68,6 @@
             width: 2rem;
             height: 0.2rem;
             border-radius: 40px;
-            // position: relative;
         }
     }
 }

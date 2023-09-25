@@ -2,6 +2,7 @@ import './App.scss';
 import React, { useState, useEffect } from 'react';
 import { LoginPage } from './pages/LoginPage/LoginPage'
 import { HomePage } from './pages/HomePage/HomePage';
+import { MixinJam } from './pages/MixinJam/MixinJam';
 
 import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
 
@@ -40,7 +41,14 @@ function App() {
         accessToken={accessToken} setAccessToken={setAccessToken}
         refreshToken={refreshToken} setRefreshToken={setRefreshToken}
         /> }
-      />
+        />
+      <Route path='/mixin-jam/search-result' element={ <MixinJam 
+        CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
+        generateRandomString={generateRandomString} 
+        accessToken={accessToken} setAccessToken={setAccessToken}
+        refreshToken={refreshToken} setRefreshToken={setRefreshToken}
+      
+      /> } />
     </Route>
   ))
 
