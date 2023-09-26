@@ -8,6 +8,7 @@
     }
     
     .container {
+        transition-duration: 400ms;
         display: flex;
         margin-inline: 3%;
         gap: 2rem;
@@ -15,6 +16,10 @@
         &::-webkit-scrollbar { // hide scrollbar
             display: none;
         }
+
+        @include tablet { gap: 1.5rem; }
+        @include mobile-landscape { gap: 1.2rem; }
+        @include mobile-landscape { gap: 1.1rem; }
     }
 
     p { margin-inline: 3%; }

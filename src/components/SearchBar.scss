@@ -20,7 +20,7 @@
             &:focus { outline: none; }
             
             @include tablet {
-                width: 15rem;
+                width: 12rem;
             }
             
             @include mobile-portrait {

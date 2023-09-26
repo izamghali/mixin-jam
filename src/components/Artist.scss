@@ -1,4 +1,5 @@
 @import '../sass-helpers/placeholders';
+@import '../sass-helpers/breakpoints';
 
 .Artist {
     border: 1.5px solid black;
@@ -8,6 +9,10 @@
     border-radius: 12px;
     transition-duration: 400ms;
     @extend %flex-justify-between;
+    
+    @include tablet { min-width: 23rem; }
+    @include mobile-landscape { min-width: 20rem; }
+    @include mobile-landscape { min-width: 16rem; }
 
     .artist-profile {
         text-align: center;

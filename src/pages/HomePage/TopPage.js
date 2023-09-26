@@ -7,7 +7,7 @@ export const TopPage = () => {
 
     return (
         <>
-            <div>
+            <div className='TopPage'>
                 <TopArtists />
                 <TopPlaylists />
             </div>

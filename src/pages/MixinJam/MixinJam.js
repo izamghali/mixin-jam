@@ -36,11 +36,11 @@ export function MixinJam(props) {
                     addedTrackIDs={addedTrackIDs}
                 /> */}
 
-                {/* <CustomPlaylist 
+                <CustomPlaylist 
                     addedTracks={addedTracks} // addedTracks are a list of tracks added to playlist
                     setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}
-                /> */}
+                />
 
             </div>
         </>

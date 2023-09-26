@@ -3,7 +3,7 @@ import './CustomPlaylist.scss';
 
 import { CompactTrack } from './CompactTrack';
 
-export function Playlist(props) {
+export function CustomPlaylist(props) {
 
     const {
         addedTracks, setAddedTracks, 
