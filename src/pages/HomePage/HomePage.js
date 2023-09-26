@@ -90,32 +90,40 @@ export function HomePage(props) {
         
     }, [])
 
+    let topArtistCalled = 0;
     const getTopArtist = async () => {
         // let index = 1;
         // console.log(`we're getting top artist the ${index += 1} times!`)
         // console.log(`access token: ${localStorage.getItem('access_token')}`)
-        try {
-            let response = await fetch('https://api.spotify.com/v1/me/top/artists', {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('access_token')
+        if (topArtistCalled < 1) {
+            console.log('requesting top artists ...')
+            topArtistCalled += 1;
+            try {
+                let response = await fetch('https://api.spotify.com/v1/me/top/artists', {
+                    headers: {
+                        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                    }
+                });
+    
+                let data = await response.json();
+                console.log(data)
+                setTopArtists(data)
+                if (data.error.message === undefined)  {
+                    // console.log(`error message doesn't exist!`)
+                } else if (data.error.message !== undefined || data.error.message === 'Invalid access token') {
+                    // console.log("GET top artists request failed! We're reloading the page")
+                    window.location.reload()
                 }
-            });
-
-            let data = await response.json();
-            console.log(data)
-            if (data.error.message === undefined)  {
-                // console.log(`error message doesn't exist!`)
-            } else if (data.error.message !== undefined || data.error.message === 'Invalid access token') {
-                // console.log("GET top artists request failed! We're reloading the page")
-                window.location.reload()
+            } catch(error) {
+                if (error === "TypeError: Cannot read properties of undefined (reading 'message')") {
+                    return;
+                }
             }
-        } catch(error) {
-            if (error === "TypeError: Cannot read properties of undefined (reading 'message')") {
-                return;
-            }
+        } else {
+            console.log('stop requesting')
+            return;
         }
     }
-    // getTopArtist();
 
     const searchParams = {
         method: 'GET',
@@ -192,7 +200,7 @@ export function HomePage(props) {
     
     return (
         <>
-            <div className='Body' > 
+            <div className='Body' onLoad={getTopArtist}> 
 
                 <NavBar 
                     generateRandomString={generateRandomString}
@@ -216,7 +224,7 @@ export function HomePage(props) {
                         /> 
                         // otherwise it's gonna render TopPage
                         : <TopPage
-
+                            topArtists={topArtists}
                         /> 
                     }
                 </div>
