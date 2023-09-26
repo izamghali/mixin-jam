@@ -32,30 +32,12 @@ export function Album(props) {
         testText2 = `${testText2.slice(0, 30)}...`
         testText3 = `${testText3.slice(0, 30)}...`
     }
-
-    const [ prevX, setPrevX ] = useState();
-    const [ prevY, setPrevY ] = useState();
     
+    let timer;
+    var timeout = () => { console.log('No movement!'); }
     const handleMouseMove = (event) => {
-        setPrevX(event.clientX);
-        setPrevY(event.clientY);
-        let albumTitle = event.target.innerText;
-        let albumAriaDesc = event.target.ariaDescription;
-        if (prevX === event.clientX && prevY === event.clientY) {
-            setTimeout(() => {
-                if (albumTitle) {
-                    console.log(event)
-                    console.log(albumTitle);
-                } else {
-                    console.log(event)
-                    console.log(albumAriaDesc);
-                }
-                
-            },2000)
-        } else {
-            return;
-        }
-
+        clearTimeout(timer)
+        timer = setTimeout(timeout, 1500);
     }
 
     return (
@@ -63,7 +45,7 @@ export function Album(props) {
         {/* Mock Data */}
             <div className='ShadowAlbum' onMouseMove={handleMouseMove}>
                 <div className='Album' onClick={handleClick}>
-                    <div className='album-img-div'>
+                    <div className='album-img-div' >
                         {/* mock album img */}
                         {/* <img src={albumImgSrc} alt="" /> aria-description={albumNames} */}
                         <img src='https://images.unsplash.com/photo-1509114397022-ed747cca3f65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1935&q=80' alt="" aria-description={testText1}/> 
