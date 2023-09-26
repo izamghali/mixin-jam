@@ -4,6 +4,8 @@ import { SearchBar } from "./SearchBar";
 import { DarkLightModeButton } from './DarkLightModeButton';
 import gsap from "gsap";
 
+import { NavLink } from "react-router-dom";
+
 export const NavBar = (props) => {
 
     const { 
@@ -11,7 +13,8 @@ export const NavBar = (props) => {
         setSearchResultLayout, CLIENT_ID, CLIENT_SECRET,
         redirect_uri, refreshAccessToken, access_token,
 
-        setTracks, setAlbums, getProfile
+        setTracks, setAlbums, getProfile,
+        searchBarIsClicked, setSearchBarIsClicked
     } = props;
 
     let menuBtnState = true;
@@ -41,7 +44,12 @@ export const NavBar = (props) => {
     return (
         <>
             <div className="NavBar">
-                <h1>Mixin' Jam</h1>
+
+                <div className="navbar-left">
+                    <h1>Mixin' Jam</h1>
+                    <p onClick={() => {setSearchBarIsClicked(false)}}>For You</p>
+                </div>
+
                 <SearchBar
                     generateRandomString={generateRandomString}
                     setSearchResultLayout={setSearchResultLayout} 
@@ -51,6 +59,8 @@ export const NavBar = (props) => {
 
                     setTracks={setTracks}
                     setAlbums={setAlbums} getProfile={getProfile}
+
+                    searchBarIsClicked={searchBarIsClicked} setSearchBarIsClicked={setSearchBarIsClicked}
                 />
                 <div className="navbar-right">
                     <DarkLightModeButton />

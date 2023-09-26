@@ -5,22 +5,25 @@ import './HomePage.scss'
 // Components
 import { TopArtists } from '../../features/TopArtists';
 import { TopPlaylists } from '../../features/TopPlaylists';
+import { TopPage } from './TopPage';
 import { NavBar } from '../../components/NavBar';
+import { MixinJam } from '../MixinJam/MixinJam';
 
 export function HomePage(props) {
     const { 
         CLIENT_ID, CLIENT_SECRET, 
         generateRandomString, getProfile,
-        refreshAccessToken, access_token,
+        refreshAccessToken, access_token, 
     } = props;
 
     var redirect_uri = 'http://localhost:3000/mixin-jam/home';
 
-    const [ albums, setAlbums ] = useState([])
     // const [ artistTracks, setArtistTracks ] = useState([])
+    const [ albums, setAlbums ] = useState([])
     const [ tracks, setTracks ] = useState([])
     const [ addedTracks, setAddedTracks ] = useState([]);
     const [ topArtists, setTopArtists ] = useState([])
+    const [ searchBarIsClicked, setSearchBarIsClicked ] = useState(false);
 
     const navigate = useNavigate();
 
@@ -202,21 +205,20 @@ export function HomePage(props) {
     
                     setTracks={setTracks}
                     setAlbums={setAlbums} getProfile={getProfile}
+
+                    searchBarIsClicked={searchBarIsClicked} setSearchBarIsClicked={setSearchBarIsClicked}
                 />
 
                 <div>
-                    <TopArtists />
-                    <TopPlaylists />
+                    { searchBarIsClicked ? 
+                        <MixinJam 
+                            setAlbums={setAlbums}
+                        /> 
+                        : <TopPage
+
+                    /> }
                 </div>
 
-                {/* <MixinJam 
-                    url={url} searchParams={searchParams}
-
-                    searchResultLayout={searchResultLayout}
-                    albums={albums} tracks={tracks}
-                    addedTracks={addedTracks} setAddedTracks={setAddedTracks}
-                    addedTrackIDs={addedTrackIDs}
-                /> */}
 
                 {/* <div className='debug-API-buttons'>
                     <form>

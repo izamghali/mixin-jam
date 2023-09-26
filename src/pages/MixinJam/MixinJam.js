@@ -26,17 +26,6 @@ export function MixinJam(props) {
         <>
             <div style={searchResultLayout} className="Body">
 
-                <NavBar 
-                    generateRandomString={generateRandomString}
-                    setSearchResultLayout={setSearchResultLayout} 
-                    CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
-                    redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken}
-                    access_token={access_token}
-    
-                    setTracks={setTracks}
-                    setAlbums={setAlbums} getProfile={getProfile}
-                />
-
                 <h3>This is Mixin Jam Result</h3>
 
                 {/* <SearchResult

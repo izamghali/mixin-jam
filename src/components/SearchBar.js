@@ -6,7 +6,8 @@ export function SearchBar(props) {
 
     const {
         url, setSearchResultLayout, getProfile, access_token,
-        setTracks, setAlbums, generateRandomString, CLIENT_ID, CLIENT_SECRET, redirect_uri, refreshAccessToken
+        setTracks, setAlbums, generateRandomString, CLIENT_ID, CLIENT_SECRET, redirect_uri, refreshAccessToken,
+        searchBarIsClicked, setSearchBarIsClicked
     } = props
 
     const [ searchInput, setSearchInput ] = useState('')
@@ -53,11 +54,11 @@ export function SearchBar(props) {
             }
             
             // // GET request artist album using artist ID
-            // const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
-            // artistAlbums = getArtistAlbums.items;
-            // console.log("artist's albums: ")
-            // console.log(getArtistAlbums)
-            // setAlbums(artistAlbums)
+            const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
+            artistAlbums = getArtistAlbums.items;
+            console.log("artist's albums: ")
+            console.log(getArtistAlbums)
+            setAlbums(artistAlbums)
             
             // // GET request artist tracks using artist ID
             // const getArtistTracks = await (await fetch(`${url}/artists/${artistID}/top-tracks?market=US&limit=5`, searchParams)).json()
@@ -73,7 +74,7 @@ export function SearchBar(props) {
             // setTracks(tracks)
         }
 
-        navigate('/mixin-jam/search-result')
+        setSearchBarIsClicked(true)
     }
     
     const flexWhenClicked = () => {
