@@ -9,6 +9,7 @@
     
     .result-artist-album-container {
       width: 30vw;
+      border: 2px solid orange;
       
       .containers {
         display: flex;
@@ -30,7 +31,15 @@
     }
     
     .result-track-container {
-      @extend %flex-col-direction;
-      gap: 1rem;
+      // @extend %flex-col-direction;
+      // gap: 1rem;
+      border: 2px solid orange;
+      width: 30vw;
+
+      .track-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
     }
   }

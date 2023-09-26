@@ -3,32 +3,61 @@
 @import '../sass-helpers/components';
 
 .Track {
+    transition-duration: 400ms;
     display: flex;
-    border: solid black;
+    justify-content: space-between;
+    border: 1.5px solid black;
     border-radius: 8px;
     gap: 1.5rem;
     align-items: center;
-    max-width: 27rem;
-    padding: 1rem;
+    // min-width: 18rem;
+    padding: 0.8rem;
 
     &:hover {
         cursor: pointer;
     }
 
-    .track-img-div {
-        width: 8rem;
-        height: 8rem;
-        object-fit: cover;
-        overflow: hidden;
-        img { width: 100%; }
+    .track-left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        .track-img-div {
+            width: 4rem;
+            height: 4rem;
+            object-fit: cover;
+            overflow: hidden;
+            img {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    
+        .track-content {
+            h3 {
+                margin-top: 0;
+            }
+
+            a {
+                text-decoration: none;
+                color: black;
+    
+                &:hover { text-decoration: underline; }
+
+                p {
+                    margin: 0;
+                }
+            }
+        }
+
     }
 
-    .track-content {
-        a {
-            text-decoration: none;
-            color: $standard-accent-color2;
 
-            &:hover { text-decoration: underline; }
+    .track-plus-btn {
+        svg {
+            width: 1.6rem;
+            height: 1.6rem;
         }
     }
 }
