@@ -9,7 +9,7 @@ export const NavBar = (props) => {
     const { 
         url, generateRandomString, 
         setSearchResultLayout, CLIENT_ID, CLIENT_SECRET,
-        redirect_uri, refreshAccessToken,
+        redirect_uri, refreshAccessToken, access_token,
 
         setTracks, setAlbums, getProfile
     } = props;
@@ -43,10 +43,11 @@ export const NavBar = (props) => {
             <div className="NavBar">
                 <h1>Mixin' Jam</h1>
                 <SearchBar
-                    url={url} generateRandomString={generateRandomString}
+                    generateRandomString={generateRandomString}
                     setSearchResultLayout={setSearchResultLayout} 
                     CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
                     redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken}
+                    access_token={access_token}
 
                     setTracks={setTracks}
                     setAlbums={setAlbums} getProfile={getProfile}

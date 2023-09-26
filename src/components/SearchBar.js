@@ -5,7 +5,7 @@ import './SearchBar.scss'
 export function SearchBar(props) {
 
     const {
-        url, setSearchResultLayout, getProfile,
+        url, setSearchResultLayout, getProfile, access_token,
         setTracks, setAlbums, generateRandomString, CLIENT_ID, CLIENT_SECRET, redirect_uri, refreshAccessToken
     } = props
 
@@ -16,23 +16,16 @@ export function SearchBar(props) {
 
     const navigate = useNavigate();
 
-    // var searchParams = new URLSearchParams({
-    //     method: 'GET',
-    //     headers: {
-    //         'Content-Type': 'x-www-form-urlencoded',
-    //         'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
-    //     }
-    // })
     let searchParams = {
         method: 'GET',
         headers: {
-            'Content-Type': 'application/json',
             'Authorization': `Bearer ${localStorage.getItem('access_token')}`,
         }
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const url = 'https://api.spotify.com/v1';
 
         if (searchInput.length > 0) {
 
@@ -44,33 +37,40 @@ export function SearchBar(props) {
             
             // GET request artist ID
             try {
+                console.log(`checking access token: ${localStorage.getItem('access_token')}`)
+                console.log('requesting artist ID ...')
                 var response = await (await fetch(`${url}/search?q=${searchInput}&type=artist`, searchParams)).json()
-                console.log(response)
+                
+                if (response) {
+                    console.log(response)
+                } else {
+                    console.log(response.status)
+                }
                 artistID = response.artists.items[0].id
                 console.log(`Artist ID for ${searchInput}: ${artistID}`);
             } catch(error) {
                 console.log(error)
             }
             
-            // GET request artist album using artist ID
-            const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
-            artistAlbums = getArtistAlbums.items;
-            console.log("artist's albums: ")
-            console.log(getArtistAlbums)
-            setAlbums(artistAlbums)
+            // // GET request artist album using artist ID
+            // const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
+            // artistAlbums = getArtistAlbums.items;
+            // console.log("artist's albums: ")
+            // console.log(getArtistAlbums)
+            // setAlbums(artistAlbums)
             
-            // GET request artist tracks using artist ID
-            const getArtistTracks = await (await fetch(`${url}/artists/${artistID}/top-tracks?market=US&limit=5`, searchParams)).json()
-            artistTracks = getArtistTracks.tracks;
-            console.log("artist's tracks: ")
-            console.log(getArtistTracks)
+            // // GET request artist tracks using artist ID
+            // const getArtistTracks = await (await fetch(`${url}/artists/${artistID}/top-tracks?market=US&limit=5`, searchParams)).json()
+            // artistTracks = getArtistTracks.tracks;
+            // console.log("artist's tracks: ")
+            // console.log(getArtistTracks)
             
-            // GET request tracks
-            const getTrackID = await ( await fetch(url + '/search?q=' + searchInput + '&type=track&market=US&limit=10&include_external=audio&offset=5', searchParams)).json();
-            tracks = getTrackID.tracks.items;
-            console.log(`artist's tracks:`)
-            console.log(getTrackID)
-            setTracks(tracks)
+            // // GET request tracks
+            // const getTrackID = await ( await fetch(url + '/search?q=' + searchInput + '&type=track&market=US&limit=10&include_external=audio&offset=5', searchParams)).json();
+            // tracks = getTrackID.tracks.items;
+            // console.log(`artist's tracks:`)
+            // console.log(getTrackID)
+            // setTracks(tracks)
         }
 
         navigate('/mixin-jam/search-result')

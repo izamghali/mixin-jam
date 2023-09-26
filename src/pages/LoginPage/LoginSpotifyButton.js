@@ -66,13 +66,6 @@ export function LoginSpotifyButton(props) {
                     >
                 </input>
             </form>
-            {/* <form>
-                <input 
-                    type='button'
-                    value='clear localStorage'
-                    onClick={clearLocalStorage}
-                />
-            </form> */}
         </>
     )
 }

@@ -13,6 +13,7 @@ export function MixinJam(props) {
 
         generateRandomString, CLIENT_ID, CLIENT_SECRET,
         redirect_uri, refreshAccessToken, getProfile,
+        access_token,
 
         albums, tracks,
         setTracks, setAlbums,
@@ -26,10 +27,11 @@ export function MixinJam(props) {
             <div style={searchResultLayout} className="Body">
 
                 <NavBar 
-                    url={url} generateRandomString={generateRandomString}
+                    generateRandomString={generateRandomString}
                     setSearchResultLayout={setSearchResultLayout} 
                     CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
                     redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken}
+                    access_token={access_token}
     
                     setTracks={setTracks}
                     setAlbums={setAlbums} getProfile={getProfile}

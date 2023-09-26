@@ -4,16 +4,16 @@ import './HomePage.scss'
 
 // Components
 import { TopArtists } from '../../features/TopArtists';
-import { TopPlaylists } from '../../components/TopPlaylists';
+import { TopPlaylists } from '../../features/TopPlaylists';
 import { NavBar } from '../../components/NavBar';
 
 export function HomePage(props) {
     const { 
         CLIENT_ID, CLIENT_SECRET, 
-        generateRandomString, 
+        generateRandomString, getProfile,
+        refreshAccessToken, access_token,
     } = props;
 
-    const url = 'https://api.spotify.com/v1';
     var redirect_uri = 'http://localhost:3000/mixin-jam/home';
 
     const [ albums, setAlbums ] = useState([])
@@ -87,46 +87,6 @@ export function HomePage(props) {
         
     }, [])
 
-    let access_token = localStorage.getItem('access_token')
-    let refresh_token = localStorage.getItem('refresh_token')
-
-    const refreshAccessToken = async () => {
-        console.log("we're refreshing the access token")
-        console.log("loading...")
-
-        const body = new URLSearchParams({
-            grant_type: 'refresh_token',
-            refresh_token: localStorage.getItem('refresh_token'),
-            client_id: CLIENT_ID
-        })
-
-        const response = fetch('https://accounts.spotify.com/api/token', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: body
-        })
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('HTTP status ' + response.status);
-                }
-                return response.json();
-            })
-            .then(data => {
-                localStorage.removeItem('access_token');
-                localStorage.setItem('access_token', data.access_token);
-                alert("WE GOT THE NEW ACCESS TOKEN")
-                
-                localStorage.removeItem('refresh_token');
-                localStorage.setItem('refresh_token', data.refresh_token);
-                alert("AND WE GOT THE NEW REFRESH TOKEN!!!")
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-
     const getTopArtist = async () => {
         // let index = 1;
         // console.log(`we're getting top artist the ${index += 1} times!`)
@@ -159,26 +119,6 @@ export function HomePage(props) {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-        }
-    }
-
-    const getProfile = async () => {
-        try {
-            console.log(`we're requesting GET profile`)
-            const response = await fetch('https://api.spotify.com/v1/me', {
-                headers: {
-                    Authorization: 'Bearer ' + access_token
-                }
-            });
-            let data = response.json()
-            
-        } catch(error) {
-            console.log(error)
-            if (error.message === 'The access token expired') {
-                alert('the access token has expired. Starting to refresh the new one!')
-                refreshAccessToken();
-            } 
-            alert('New access token acquired!')
         }
     }
 
@@ -255,10 +195,10 @@ export function HomePage(props) {
             <div className='Body' > 
 
                 <NavBar 
-                    url={url} generateRandomString={generateRandomString}
+                    generateRandomString={generateRandomString}
                     setSearchResultLayout={setSearchResultLayout} 
                     CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
-                    redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken}
+                    redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken} access_token={access_token}
     
                     setTracks={setTracks}
                     setAlbums={setAlbums} getProfile={getProfile}
