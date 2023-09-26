@@ -3,15 +3,13 @@
 @import '../sass-helpers/components';
 
 .Custom-Playlist {
-    height: auto;
     padding: 1rem;
     @extend %flex-col-direction;
     align-items: center;
     gap: 2rem;
-    // border-right: solid black;
-    // border-left: solid black;
-    // width: 25rem;
     border: solid orange;
+    width: 30vw;
+    margin-right: 3%;
 
     .playlist-title-form {
         @extend %flex-col-direction;
