@@ -27,8 +27,6 @@ export function MixinJam(props) {
         <>
             <div style={searchResultLayout} className="MixinJam">
 
-                <h3>This is Mixin Jam Result</h3>
-
                 <SearchResult
                     url={url} searchParams={searchParams}
 

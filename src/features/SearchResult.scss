@@ -1,13 +1,32 @@
 @import '../sass-helpers/placeholders';
 @import '../sass-helpers/variables';
+@import '../sass-helpers/breakpoints';
 
 .SearchResult {
     display: flex;
     justify-content: space-around;
+    margin-left: 3%;
     
-    .result-album-artist-container {
-      @extend %flex-col-direction;
-      gap: 1rem;
+    .result-artist-album-container {
+      width: 30vw;
+      
+      .containers {
+        display: flex;
+        overflow-x: scroll;
+        overflow-y: visible;
+        gap: 2rem;
+        &::-webkit-scrollbar { // hide scrollbar
+          display: none;
+        }
+      }
+      
+      #albumContainer {
+        padding: 1rem 0.7rem;
+      }
+
+      // @include tablet { gap: 1.5rem; }
+      // @include mobile-landscape { gap: 1.2rem; }
+      // @include mobile-landscape { gap: 1.1rem; }
     }
     
     .result-track-container {

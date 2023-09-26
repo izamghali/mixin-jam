@@ -4,6 +4,8 @@ import './SearchResult.scss'
 // Components
 import { Album } from '../components/Album';
 import { Track } from '../components/Track';
+import { Playlist } from '../components/Playlist';
+import { Artist } from '../components/Artist';
 
 export function SearchResult(props) {
     const {
@@ -30,8 +32,15 @@ export function SearchResult(props) {
             <div style={columnGap} className="SearchResult">
                 
                 {/* Mock Data */}
-                <div className='result-album-artist-container'>
-                    <Album />
+                <div className='result-artist-album-container'>
+                    <h2>Artist</h2>
+                    <div className='containers'>
+                        <Artist />
+                    </div>
+                    <h2>Albums</h2>
+                    <div className='containers' id='albumContainer'>
+                        <Album />
+                    </div>
                     {/* {albums.map(album => {
                         return <Album 
                                     url={url} searchParams={searchParams}
@@ -41,7 +50,7 @@ export function SearchResult(props) {
                 </div>
 
                 <div className='result-track-container'>
-                    {/* <Track /> */}
+                    <Track />
                     {/* {tracks.map(track => {
                         return <Track 
                                     addedTrackIDs={addedTrackIDs}
