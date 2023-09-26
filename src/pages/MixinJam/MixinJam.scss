@@ -1,0 +1,9 @@
+@import '../../sass-helpers/breakpoints';
+@import '../../sass-helpers/placeholders';
+@import '../../sass-helpers/variables';
+
+.MixinJam {
+    // border: solid red;
+    display: flex;
+    width: 100vw;
+}

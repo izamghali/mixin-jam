@@ -5,12 +5,12 @@
     display: flex;
     justify-content: space-around;
     
-    .SearchResult-Album-div {
+    .result-album-artist-container {
       @extend %flex-col-direction;
       gap: 1rem;
     }
     
-    .SearchResult-Track-div {
+    .result-track-container {
       @extend %flex-col-direction;
       gap: 1rem;
     }

@@ -27,20 +27,22 @@ export function SearchResult(props) {
     return (
         <>
 
-            <h2>Hello, this is Mixin Jam Page</h2>
-            {/* <div style={columnGap} className="SearchResult">
+            <div style={columnGap} className="SearchResult">
                 
-                <div className='SearchResult-Album-div'>
-                    {albums.map(album => {
+                {/* Mock Data */}
+                <div className='result-album-artist-container'>
+                    <Album />
+                    {/* {albums.map(album => {
                         return <Album 
                                     url={url} searchParams={searchParams}
                                     albumNames={album.name}  albumID={album.id} albumImgSrc={album.images[0].url} 
                                 />
-                    })}
+                    })} */}
                 </div>
 
-                <div className='SearchResult-Track-div'>
-                    {tracks.map(track => {
+                <div className='result-track-container'>
+                    {/* <Track /> */}
+                    {/* {tracks.map(track => {
                         return <Track 
                                     addedTrackIDs={addedTrackIDs}
                                     addedTracks={addedTracks} 
@@ -52,10 +54,10 @@ export function SearchResult(props) {
                                     trackUrl={track.external_urls.spotify} 
                                     imgSrc={track.album.images[0].url} 
                                 />
-                    })}
+                    })} */}
                 </div>
 
-            </div> */}
+            </div>
         </>
     )
 }

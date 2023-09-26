@@ -189,9 +189,6 @@ export function HomePage(props) {
 
     // addedTrackIDs are IDs used to identify or filter tracks to be added or to be removed.
     const addedTrackIDs = addedTracks.map(track => { return track.trackID });
-
-    // Style
-    const [ searchResultLayout, setSearchResultLayout ] = useState({});
     
     return (
         <>
@@ -199,7 +196,6 @@ export function HomePage(props) {
 
                 <NavBar 
                     generateRandomString={generateRandomString}
-                    setSearchResultLayout={setSearchResultLayout} 
                     CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
                     redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken} access_token={access_token}
     
@@ -211,12 +207,18 @@ export function HomePage(props) {
 
                 <div>
                     { searchBarIsClicked ? 
+                        // if searchbar is submitted, it'll render MixinJam
                         <MixinJam 
-                            setAlbums={setAlbums}
+                            tracks={tracks}
+                            albums={albums} setAlbums={setAlbums}
+                            addedTracks={addedTracks} setAddedTracks={setAddedTracks}
+                            addedTrackIDs={addedTrackIDs}
                         /> 
+                        // otherwise it's gonna render TopPage
                         : <TopPage
 
-                    /> }
+                        /> 
+                    }
                 </div>
 
 

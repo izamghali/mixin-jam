@@ -1,15 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './MixinJam.scss'
 
 // Components
-import { NavBar } from '../../components/NavBar';
 import { CustomPlaylist } from '../../components/CustomPlaylist';
 import { SearchResult } from '../../features/SearchResult';
 
 export function MixinJam(props) {
     const {
         url, searchParams,
-
-        searchResultLayout, setSearchResultLayout,
 
         generateRandomString, CLIENT_ID, CLIENT_SECRET,
         redirect_uri, refreshAccessToken, getProfile,
@@ -21,20 +19,23 @@ export function MixinJam(props) {
         addedTrackIDs
     } = props;
 
+    // Style
+    const [ searchResultLayout, setSearchResultLayout ] = useState({});
+
 
     return (
         <>
-            <div style={searchResultLayout} className="Body">
+            <div style={searchResultLayout} className="MixinJam">
 
                 <h3>This is Mixin Jam Result</h3>
 
-                {/* <SearchResult
+                <SearchResult
                     url={url} searchParams={searchParams}
 
                     albums={albums} tracks={tracks}
                     addedTracks={addedTracks} setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}
-                /> */}
+                />
 
                 <CustomPlaylist 
                     addedTracks={addedTracks} // addedTracks are a list of tracks added to playlist
