@@ -16,7 +16,8 @@ export function HomePage(props) {
         refreshAccessToken, access_token, 
     } = props;
 
-    var redirect_uri = 'http://localhost:3000/mixin-jam/home';
+    // var redirect_uri = 'http://localhost:3000/mixin-jam/home';
+    var redirect_uri = 'https://izamghali.github.io/mixin-jam/home';
 
     // const [ artistTracks, setArtistTracks ] = useState([])
     const [ albums, setAlbums ] = useState([])
