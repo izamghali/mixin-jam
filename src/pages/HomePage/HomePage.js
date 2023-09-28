@@ -44,7 +44,7 @@ export function HomePage(props) {
             if (window.location.search.length > 0 && localStorage.getItem('refresh_token') === null) {
                 // get access token using PKCE method
                 // get code from the url
-                alert("we're trying to get access token & refresh token")
+                console.log("we're trying to get access token & refresh token")
                 let code = urlParams.get('code');
     
                 // get code verifier from localStorage
@@ -74,10 +74,10 @@ export function HomePage(props) {
                     })
                     .then(data => {
                         localStorage.setItem('access_token', data.access_token);
-                        alert("we got the access token")
+                        console.log("we got the access token")
                         
                         localStorage.setItem('refresh_token', data.refresh_token);
-                        alert("and we got the refresh token!!!")
+                        console.log("and we got the refresh token!!!")
                     })
                     .catch(error => {
                         console.error('Error:', error);
@@ -95,34 +95,37 @@ export function HomePage(props) {
         // let index = 1;
         // console.log(`we're getting top artist the ${index += 1} times!`)
         // console.log(`access token: ${localStorage.getItem('access_token')}`)
-        if (topArtistCalled < 1) {
-            console.log('requesting top artists ...')
-            topArtistCalled += 1;
-            try {
-                let response = await fetch('https://api.spotify.com/v1/me/top/artists', {
-                    headers: {
-                        Authorization: 'Bearer ' + localStorage.getItem('access_token')
+        // console.log('requesting top artists ...')
+        setTimeout( async () => {
+            if (topArtistCalled < 1 && localStorage.getItem('access_token')) {
+                // console.log('access token exists! continue requesting...')
+                topArtistCalled += 1;
+                try {
+                    let response = await fetch('https://api.spotify.com/v1/me/top/artists', {
+                        headers: {
+                            Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                        }
+                    });
+        
+                    let data = await response.json();
+                    setTopArtists(data)
+                    if (data.error.message === undefined)  {
+                        // console.log(`error message doesn't exist!`)
+                    } else if (data.error.message !== undefined || data.error.message === 'Invalid access token') {
+                        // console.log("GET top artists request failed! We're reloading the page")
+                        window.location.reload()
                     }
-                });
-    
-                let data = await response.json();
-                console.log(data)
-                setTopArtists(data)
-                if (data.error.message === undefined)  {
-                    // console.log(`error message doesn't exist!`)
-                } else if (data.error.message !== undefined || data.error.message === 'Invalid access token') {
-                    // console.log("GET top artists request failed! We're reloading the page")
-                    window.location.reload()
+                } catch(error) {
+                    if (error === "TypeError: Cannot read properties of undefined (reading 'message')") {
+                        return;
+                    }
                 }
-            } catch(error) {
-                if (error === "TypeError: Cannot read properties of undefined (reading 'message')") {
-                    return;
-                }
+            } else {
+                // console.log('stop requesting')
+                return;
             }
-        } else {
-            console.log('stop requesting')
-            return;
-        }
+
+        }, 1000)
     }
 
     const searchParams = {
