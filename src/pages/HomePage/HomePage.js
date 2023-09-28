@@ -23,6 +23,7 @@ export function HomePage(props) {
     const [ tracks, setTracks ] = useState([])
     const [ addedTracks, setAddedTracks ] = useState([]);
     const [ topArtists, setTopArtists ] = useState([])
+    const [ featuredPlaylists, setFeaturedPlaylists ] = useState([]);
     const [ searchBarIsClicked, setSearchBarIsClicked ] = useState(false);
 
     const navigate = useNavigate();
@@ -84,11 +85,22 @@ export function HomePage(props) {
                     });
 
                 window.history.pushState("", "", redirect_uri) // clear url bar
+
+                // getTopArtist();
+                // getFeaturedPlaylist();
             }
         }
 
         
     }, [])
+
+    const searchParams = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('access_token')
+        }
+    }
 
     let topArtistCalled = 0;
     const getTopArtist = async () => {
@@ -125,43 +137,50 @@ export function HomePage(props) {
                 return;
             }
 
-        }, 1000)
+        }, 2000)
     }
 
-    const searchParams = {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + localStorage.getItem('access_token')
-        }
-    }
-
+    let featurePlaylistCalled = 0;
     const getFeaturedPlaylist = async () => {
-        console.log("Requesting featured playlist ...")
-        try {
-            let response = await fetch('https://api.spotify.com/v1/browse/featured-playlists?limit=5', {
-                headers: {
-                    Authorization: 'Bearer ' + localStorage.getItem('access_token')
+        // console.log("Requesting featured playlist ...")
+
+        setTimeout( async () => {
+
+            if (featurePlaylistCalled < 1 && localStorage.getItem('access_token')) {
+
+                featurePlaylistCalled += 1;
+                try {
+                    let response = await fetch('https://api.spotify.com/v1/browse/featured-playlists?limit=5', {
+                        headers: {
+                            Authorization: 'Bearer ' + localStorage.getItem('access_token')
+                        }
+                    });
+                    
+                    let data = await response.json();
+                    // console.log(data)
+                    setFeaturedPlaylists(data);
+                    
+                    if (data.error.message === undefined)  {
+                        // console.log(`error message doesn't exist!`)
+                    } else if (data.error.message !== undefined || data.error.message === 'Invalid access token') {
+                        // console.log("GET top artists request failed! We're reloading the page")
+                        console.log("access token doesn't exist")
+                        console.log("reloading page...")
+                        // window.location.reload()
+                    }
+                } catch(error) {
+                    if (error === "TypeError: Cannot read properties of undefined (reading 'message')") {
+                        return;
+                    }
                 }
-            });
-            
-            let data = await response.json();
-            console.log(data)
-            
-            if (data.error.message === undefined)  {
-                // console.log(`error message doesn't exist!`)
-            } else if (data.error.message !== undefined || data.error.message === 'Invalid access token') {
-                // console.log("GET top artists request failed! We're reloading the page")
-                console.log("access token doesn't exist")
-                console.log("reloading page...")
-                window.location.reload()
-            }
-        } catch(error) {
-            if (error === "TypeError: Cannot read properties of undefined (reading 'message')") {
+
+            } else {
                 return;
             }
-        }
+
+        }, 2000);
     }
+    // getTopArtist();
     // getFeaturedPlaylist();
 
     // const getTopTracks = async () => {
@@ -228,6 +247,7 @@ export function HomePage(props) {
                         // otherwise it's gonna render TopPage
                         : <TopPage
                             topArtists={topArtists}
+                            featuredPlaylists={featuredPlaylists}
                         /> 
                     }
                 </div>

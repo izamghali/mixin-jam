@@ -7,8 +7,9 @@ export function LoginSpotifyButton(props) {
     const { CLIENT_ID, generateRandomString, redirect_uri } = props;    
 
     const handleAuthorization = async (event) => {
-        alert("we're useing PKCE method")
+        // PKCE Method
         event.preventDefault();
+        alert("The web app is in the development and most of the data are mocked. But hopefully you'll see your popular artists whose songs you listen to on daily basis at the top artists section")
 
         // generating value usnig SHA256 algorithm method
         const generateCodeChallenge = async (codeVerifier) => {
