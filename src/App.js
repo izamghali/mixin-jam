@@ -14,7 +14,9 @@ function App() {
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
 
-  var redirect_uri = 'http://localhost:3000/#/dashboard';
+  // var redirect_uri = 'http://localhost:3000/#/dashboard'; // local
+  var redirect_uri = 'https://izamghali.github.io/mixin-jam/#/dashboard'; //remote
+  
   // var redirect_uri = 'http://localhost:3000/#/mixin-jam/dashboard';
   // var redirect_uri = 'http://localhost:3000/#/mixin-jam/';
   // var redirect_uri = 'http://localhost:3000/dashboard';
