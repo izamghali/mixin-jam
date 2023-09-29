@@ -46,7 +46,8 @@ export const NavBar = (props) => {
 
     const handleLogOut = () => {
         localStorage.clear();
-        window.location.reload();
+        window.history.pushState("", "", redirect_uri) // clear url bar
+        navigate('/login');
     }
 
     return (

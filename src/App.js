@@ -14,7 +14,10 @@ function App() {
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
   const CLIENT_SECRET = 'f1348b92b74240898b500661ba3339d5';
 
-  var redirect_uri = 'http://localhost:3000/dashboard';
+  var redirect_uri = 'http://localhost:3000/#/dashboard';
+  // var redirect_uri = 'http://localhost:3000/#/mixin-jam/dashboard';
+  // var redirect_uri = 'http://localhost:3000/#/mixin-jam/';
+  // var redirect_uri = 'http://localhost:3000/dashboard';
   // var redirect_uri = 'http://localhost:3000/mixin-jam/home';
 
   function generateRandomString(length) {
@@ -159,7 +162,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path='/mixin-jam' element={
+        <Route path='/login' element={
           <LoginPage
             CLIENT_ID={CLIENT_ID} redirect_uri={redirect_uri}
             generateRandomString={generateRandomString}

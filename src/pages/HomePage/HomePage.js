@@ -225,7 +225,6 @@ export function HomePage(props) {
     return (
         <>
             <div className='Body' onLoad={getTopArtist}> 
-
                 <NavBar 
                     generateRandomString={generateRandomString}
                     CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
@@ -253,7 +252,7 @@ export function HomePage(props) {
                         /> 
                     }
                 </div>
-
+            </div>
 
                 {/* <div className='debug-API-buttons'>
                     <form>
@@ -297,8 +296,6 @@ export function HomePage(props) {
                     </form>
 
                 </div> */}
-
-            </div>
         </>
     )
 }
