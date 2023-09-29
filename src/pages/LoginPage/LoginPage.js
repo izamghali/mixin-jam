@@ -7,7 +7,7 @@ import './LoginPage.scss'
 export function LoginPage(props) {
     const { CLIENT_ID, generateRandomString, redirect_uri } = props;
 
-    localStorage.clear();
+    // localStorage.clear();
 
     return (
         <>

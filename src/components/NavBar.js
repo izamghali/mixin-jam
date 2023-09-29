@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import './NavBar.scss';
 import { SearchBar } from "./SearchBar";
 import { DarkLightModeButton } from './DarkLightModeButton';
+import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
 
 import { NavLink } from "react-router-dom";
@@ -16,6 +17,8 @@ export const NavBar = (props) => {
         setTracks, setAlbums, getProfile,
         searchBarIsClicked, setSearchBarIsClicked
     } = props;
+
+    const navigate = useNavigate();
 
     let menuBtnState = true;
     const transformStripes = () => {
@@ -41,6 +44,11 @@ export const NavBar = (props) => {
         transformStripes();
     }
 
+    const handleLogOut = () => {
+        localStorage.clear();
+        window.location.reload();
+    }
+
     return (
         <>
             <div className="NavBar">
@@ -64,7 +72,7 @@ export const NavBar = (props) => {
                 />
                 <div className="navbar-right">
                     <DarkLightModeButton />
-                    <button className="navbar-logout-button">Log Out</button>
+                    <button className="navbar-logout-button" onClick={handleLogOut}>Log Out</button>
                 </div>
                 <div className="menu-button" onClick={handleMenuButtonClick}>
                     <div className="button-stripes" id="stripe1"></div>

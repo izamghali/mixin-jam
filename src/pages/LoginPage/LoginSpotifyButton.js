@@ -51,10 +51,6 @@ export function LoginSpotifyButton(props) {
 
     }
 
-    const clearLocalStorage = () => {
-        localStorage.clear();
-    }
-
     return (
         <>
             <form onClick={handleAuthorization} className='LoginSpotifyButton'>
