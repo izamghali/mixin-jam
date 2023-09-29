@@ -47,7 +47,7 @@ export const NavBar = (props) => {
     const handleLogOut = () => {
         localStorage.clear();
         window.history.pushState("", "", redirect_uri) // clear url bar
-        navigate('/login');
+        navigate('/mixin-jam');
     }
 
     return (
