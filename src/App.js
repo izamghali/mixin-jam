@@ -4,7 +4,7 @@ import { LoginPage } from './pages/LoginPage/LoginPage'
 import { HomePage } from './pages/HomePage/HomePage';
 import { MixinJam } from './pages/MixinJam/MixinJam';
 
-import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Route, createRoutesFromElements, createHashRouter } from 'react-router-dom';
 
 function App() {
 
@@ -88,7 +88,7 @@ function App() {
   }
 
   // Router
-  const router = createBrowserRouter(createRoutesFromElements(
+  const router = createHashRouter(createRoutesFromElements(
     <Route >
       <Route path='/mixin-jam' element={ <LoginPage 
         CLIENT_ID={CLIENT_ID} redirect_uri={redirect_uri}
