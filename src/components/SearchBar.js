@@ -54,7 +54,7 @@ export function SearchBar(props) {
             }
             
             // // GET request artist album using artist ID
-            const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US&limit=5`, searchParams)).json()
+            const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US`, searchParams)).json()
             artistAlbums = getArtistAlbums.items;
             console.log("artist's albums: ")
             console.log(getArtistAlbums)

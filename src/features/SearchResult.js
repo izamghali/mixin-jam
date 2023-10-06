@@ -39,14 +39,16 @@ export function SearchResult(props) {
                     </div>
                     <h2>Albums</h2>
                     <div className='containers' id='albumContainer'>
-                        <Album />
+                        {/* <Album 
+                            albums={albums.items}
+                        /> */}
+                        {albums.map(album => {
+                            return <Album 
+                                        url={url} searchParams={searchParams}
+                                        albumTitle={album.name}  albumID={album.id} albumImgSrc={album.images[0].url} 
+                                    />
+                        })}
                     </div>
-                    {/* {albums.map(album => {
-                        return <Album 
-                                    url={url} searchParams={searchParams}
-                                    albumNames={album.name}  albumID={album.id} albumImgSrc={album.images[0].url} 
-                                />
-                    })} */}
                 </div>
 
                 <div className='result-track-container'>

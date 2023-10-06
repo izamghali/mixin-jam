@@ -142,6 +142,8 @@ export function HomePage(props) {
         }, 2000)
     }
 
+
+
     let featurePlaylistCalled = 0;
     const getFeaturedPlaylist = async () => {
         // console.log("Requesting featured playlist ...")
@@ -182,6 +184,13 @@ export function HomePage(props) {
 
         }, 2000);
     }
+
+    // remove this soon
+    const getTops = () => {
+        getTopArtist();
+        getFeaturedPlaylist();    
+    }
+
     // getTopArtist();
     // getFeaturedPlaylist();
 
