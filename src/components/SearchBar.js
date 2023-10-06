@@ -68,11 +68,11 @@ export function SearchBar(props) {
             // console.log(getArtistTracks)
             
             // // GET request tracks
-            // const getTrackID = await ( await fetch(url + '/search?q=' + searchInput + '&type=track&market=US&limit=10&include_external=audio&offset=5', searchParams)).json();
-            // tracks = getTrackID.tracks.items;
-            // console.log(`artist's tracks:`)
-            // console.log(getTrackID)
-            // setTracks(tracks)
+            const getTrackID = await ( await fetch(url + '/search?q=' + searchInput + '&type=track&market=US&include_external=audio&offset=5', searchParams)).json();
+            tracks = getTrackID.tracks.items;
+            console.log(`artist's tracks:`)
+            console.log(getTrackID)
+            setTracks(tracks)
         }
 
         setSearchBarIsClicked(true)

@@ -55,21 +55,21 @@ export function SearchResult(props) {
                 <div className='result-track-container'>
                     <h2>Tracks</h2>
                     <div className='track-container'>
-                        <Track />
+                        {/* <Track /> */}
+                        {tracks.map(track => {
+                            return <Track 
+                                        addedTrackIDs={addedTrackIDs}
+                                        addedTracks={addedTracks} 
+                                        setAddedTracks={setAddedTracks} 
+                                        
+                                        trackID={track.id}
+                                        trackTitle={track.name} 
+                                        artistName={track.artists[0].name} 
+                                        trackUrl={track.external_urls.spotify} 
+                                        imgSrc={track.album.images[0].url} 
+                                    />
+                        })}
                     </div>
-                    {/* {tracks.map(track => {
-                        return <Track 
-                                    addedTrackIDs={addedTrackIDs}
-                                    addedTracks={addedTracks} 
-                                    setAddedTracks={setAddedTracks} 
-                                    
-                                    trackID={track.id}
-                                    trackTitle={track.name} 
-                                    artistName={track.artists[0].name} 
-                                    trackUrl={track.external_urls.spotify} 
-                                    imgSrc={track.album.images[0].url} 
-                                />
-                    })} */}
                 </div>
 
             </div>

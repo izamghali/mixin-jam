@@ -15,6 +15,7 @@ export const Artist = (props) => {
                 <span>{artistGenre}</span>
             </div>
 
+            {/* Mock Data */}
             {/* <div className='Artist'>
                 <div className='artist-profile'>
                     <div className='artist-img-container'>
