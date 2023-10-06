@@ -2,7 +2,7 @@ import React from 'react';
 import './Artist.scss'
 
 export const Artist = (props) => {
-    const { artistName, artistImg, artistGenre } = props;
+    const { artistName, artistGenre, artistImg, artistURL } = props;
     return (
         <>
             <div className='Artist'>

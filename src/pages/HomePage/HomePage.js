@@ -19,6 +19,7 @@ export function HomePage(props) {
     // var redirect_uri = 'https://izamghali.github.io/mixin-jam/home';
 
     // const [ artistTracks, setArtistTracks ] = useState([])
+    const [ artist, setArtist ] = useState("");
     const [ albums, setAlbums ] = useState([])
     const [ tracks, setTracks ] = useState([])
     const [ addedTracks, setAddedTracks ] = useState([]);
@@ -142,8 +143,6 @@ export function HomePage(props) {
         }, 2000)
     }
 
-
-
     let featurePlaylistCalled = 0;
     const getFeaturedPlaylist = async () => {
         // console.log("Requesting featured playlist ...")
@@ -239,7 +238,7 @@ export function HomePage(props) {
                     CLIENT_ID={CLIENT_ID} CLIENT_SECRET={CLIENT_SECRET} 
                     redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken} access_token={access_token}
     
-                    setTracks={setTracks}
+                    setTracks={setTracks} setArtist={setArtist}
                     setAlbums={setAlbums} getProfile={getProfile}
 
                     searchBarIsClicked={searchBarIsClicked} setSearchBarIsClicked={setSearchBarIsClicked}
@@ -251,6 +250,7 @@ export function HomePage(props) {
                         <MixinJam 
                             tracks={tracks}
                             albums={albums} setAlbums={setAlbums}
+                            artist={artist} 
                             addedTracks={addedTracks} setAddedTracks={setAddedTracks}
                             addedTrackIDs={addedTrackIDs}
                         /> 

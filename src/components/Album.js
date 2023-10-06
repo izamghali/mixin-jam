@@ -29,7 +29,6 @@ export function Album(props) {
 
     return (
         <>
-        {/* Mock Data */}
             <div className='ShadowAlbum' >
                 <div className='Album' onClick={handleClick}>
                     <div className='album-img-div' onMouseEnter={handleMouseEnter}>
@@ -42,6 +41,8 @@ export function Album(props) {
                     <h3 className='album-title'>{albumTitle.length > 50 ? `${albumTitle.slice(0, 30)}...` : albumTitle}</h3>
                 </div>
             </div>
+            
+            {/* Mock Data */}
             {/* <div className='ShadowAlbum' >
                 <div className='Album' onClick={handleClick}>
                     <div className='album-img-div' onMouseEnter={handleMouseEnter}>

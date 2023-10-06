@@ -14,6 +14,7 @@ export function MixinJam(props) {
         access_token,
 
         albums, tracks,
+        artist, setArtist,
         setTracks, setAlbums,
         addedTracks, setAddedTracks,
         addedTrackIDs
@@ -31,6 +32,7 @@ export function MixinJam(props) {
                     url={url} searchParams={searchParams}
 
                     albums={albums} tracks={tracks}
+                    artist={artist}
                     addedTracks={addedTracks} setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}
                 />

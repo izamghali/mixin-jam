@@ -6,7 +6,7 @@ export function SearchBar(props) {
 
     const {
         url, setSearchResultLayout, getProfile, access_token,
-        setTracks, setAlbums, generateRandomString, CLIENT_ID, CLIENT_SECRET, redirect_uri, refreshAccessToken,
+        setTracks, setAlbums, setArtist, generateRandomString, CLIENT_ID, CLIENT_SECRET, redirect_uri, refreshAccessToken,
         searchBarIsClicked, setSearchBarIsClicked
     } = props
 
@@ -47,6 +47,7 @@ export function SearchBar(props) {
                 } else {
                     console.log(response.status)
                 }
+                setArtist(response.artists.items[0]);
                 artistID = response.artists.items[0].id
                 console.log(`Artist ID for ${searchInput}: ${artistID}`);
             } catch(error) {

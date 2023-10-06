@@ -14,7 +14,7 @@ export const NavBar = (props) => {
         setSearchResultLayout, CLIENT_ID, CLIENT_SECRET,
         redirect_uri, refreshAccessToken, access_token,
 
-        setTracks, setAlbums, getProfile,
+        setTracks, setAlbums, setArtist, getProfile,
         searchBarIsClicked, setSearchBarIsClicked
     } = props;
 
@@ -66,7 +66,7 @@ export const NavBar = (props) => {
                     redirect_uri={redirect_uri} refreshAccessToken={refreshAccessToken}
                     access_token={access_token}
 
-                    setTracks={setTracks}
+                    setTracks={setTracks} setArtist={setArtist}
                     setAlbums={setAlbums} getProfile={getProfile}
 
                     searchBarIsClicked={searchBarIsClicked} setSearchBarIsClicked={setSearchBarIsClicked}

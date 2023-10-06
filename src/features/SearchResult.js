@@ -11,6 +11,7 @@ export function SearchResult(props) {
     const {
         url, searchParams,
 
+        artist, setArtist,
         albums, tracks,
         addedTracks, setAddedTracks,
         addedTrackIDs
@@ -30,18 +31,18 @@ export function SearchResult(props) {
         <>
 
             <div style={columnGap} className="SearchResult">
-                
-                {/* Mock Data */}
                 <div className='result-artist-album-container'>
                     <h2>Artist</h2>
                     <div className='containers'>
-                        <Artist />
+                        <Artist 
+                            artistName = {artist.name}
+                            artistGenre = {artist.genre}        
+                            artistImg = {artist.images[0].url}
+                            artistURL = {artist.external_urls.spotify}
+                        />
                     </div>
                     <h2>Albums</h2>
                     <div className='containers' id='albumContainer'>
-                        {/* <Album 
-                            albums={albums.items}
-                        /> */}
                         {albums.map(album => {
                             return <Album 
                                         url={url} searchParams={searchParams}
