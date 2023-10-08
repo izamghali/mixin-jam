@@ -17,7 +17,8 @@ export function MixinJam(props) {
         artist, setArtist,
         setTracks, setAlbums,
         addedTracks, setAddedTracks,
-        addedTrackIDs
+        addedTrackIDs, 
+        searchBarIsClicked,
     } = props;
 
     // Style
@@ -35,6 +36,7 @@ export function MixinJam(props) {
                     artist={artist}
                     addedTracks={addedTracks} setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}
+                    searchBarIsClicked={searchBarIsClicked}
                 />
 
                 <CustomPlaylist 

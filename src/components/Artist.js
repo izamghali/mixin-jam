@@ -2,10 +2,22 @@ import React from 'react';
 import './Artist.scss'
 
 export const Artist = (props) => {
-    const { artistName, artistGenre, artistImg, artistURL } = props;
+    const { artistName, artistGenre, artistImg, artistURL, searchBarIsClicked } = props;
+
+    const artistBox = {}
+
+    const adjustArtistBox = () => {
+        if (searchBarIsClicked === true) {
+            artistBox.width = "100%";
+        } else {
+            artistBox.width = "26rem";
+            // artistBox.width = "100%";
+        }
+    }
+
     return (
         <>
-            <div className='Artist'>
+            <div style={artistBox} className='Artist'>
                 <div className='artist-profile'>
                     <div className='artist-img-container'>
                         <img src={artistImg} />

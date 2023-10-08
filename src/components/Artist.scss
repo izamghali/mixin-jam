@@ -4,15 +4,16 @@
 .Artist {
     border: 1.5px solid black;
     padding: 1rem;
-    min-width: 26rem;
     height: 12rem;
     border-radius: 12px;
     transition-duration: 400ms;
     @extend %flex-justify-between;
     
-    @include tablet { min-width: 23rem; }
-    @include mobile-landscape { min-width: 20rem; }
-    @include mobile-landscape { min-width: 16rem; }
+    // width: 26rem;
+    // min-width: 26rem;
+    @include tablet { width: 23rem; }
+    @include mobile-landscape { width: 20rem; }
+    @include mobile-landscape { width: 16rem; }
 
     .artist-profile {
         text-align: center;

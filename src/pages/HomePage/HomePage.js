@@ -253,11 +253,13 @@ export function HomePage(props) {
                             artist={artist} 
                             addedTracks={addedTracks} setAddedTracks={setAddedTracks}
                             addedTrackIDs={addedTrackIDs}
+                            searchBarIsClicked={searchBarIsClicked}
                         /> 
                         // otherwise it's gonna render TopPage
                         : <TopPage
                             topArtists={topArtists}
                             featuredPlaylists={featuredPlaylists}
+                            searchBarIsClicked={searchBarIsClicked}
                         /> 
                     }
                 </div>

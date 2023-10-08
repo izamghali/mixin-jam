@@ -14,7 +14,8 @@ export function SearchResult(props) {
         artist, setArtist,
         albums, tracks,
         addedTracks, setAddedTracks,
-        addedTrackIDs
+        addedTrackIDs, 
+        searchBarIsClicked,
     } = props;
 
     const columnGap = {}
@@ -39,6 +40,7 @@ export function SearchResult(props) {
                             artistGenre = {artist.genre}        
                             artistImg = {artist.images[0].url}
                             artistURL = {artist.external_urls.spotify}
+                            searchBarIsClicked = {searchBarIsClicked}
                         />
                     </div>
                     <h2>Albums</h2>
