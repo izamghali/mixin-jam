@@ -21,6 +21,17 @@ export function CustomPlaylist(props) {
         console.log("your playlist is saved!");
     }
 
+    let clicked = 0;
+    const handlePrivateCheckBox = (event) => {
+        clicked += 1;
+
+        if (clicked % 2 === 0) {
+            console.log("off")
+        } else {
+            console.log("on")
+        }
+    }
+
     return (
         <>
             <div className='Custom-Playlist'>
@@ -48,6 +59,10 @@ export function CustomPlaylist(props) {
                 <form className='playlist-desc-form'>
                     <label for="">Tell us what the playlist is about</label>
                     <textarea></textarea>
+                    <div className='playlist-type'>
+                        <input type='checkbox' id='playlistType' onClick={handlePrivateCheckBox} />
+                        <label for="playlistType">Private Playlist</label>
+                    </div>
                 </form>
                 <button className='playlist-submit'
                         type='submit'

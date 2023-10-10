@@ -32,7 +32,7 @@ export function LoginSpotifyButton(props) {
 
         generateCodeChallenge(codeVerifier).then(codeChallenge => {
             let state = generateRandomString(16);
-            let scope = 'user-read-private user-read-email user-top-read user-read-recently-played'; // might wanna tweak this
+            let scope = 'user-read-private user-read-email user-top-read user-read-recently-played playlist-modify-public playlist-modify-private'; // might wanna tweak this
 
             localStorage.setItem('code_verifier', codeVerifier);
 

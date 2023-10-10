@@ -47,6 +47,11 @@
             padding: 1rem;
             font-family: sans-serif;
         }
+
+        .playlist-type {
+            display: flex;
+            gap: 0.5rem;
+        }
     }
 
     .playlist-submit { @extend %add-button; }
