@@ -11,9 +11,19 @@ export function CustomPlaylist(props) {
     } = props;
 
     const [ playlistTitle, setPlaylistTitle ] = useState('')
+    const [ playlistDesc, setPlaylistDesc ] = useState('')
+    const [ playlistType, setPlaylistType ] = useState(true)
 
-    const handleChange = ({target}) => {
-        setPlaylistTitle(target.value)
+    let clicked = 0;
+    const handlePrivateCheckBox = () => {
+        clicked += 1;
+
+        // the value of checkbox needs to be boolean
+        if (clicked % 2 === 0) {
+            setPlaylistType(true) 
+        } else {
+            setPlaylistType(false)
+        }
     }
 
     const exportToSpotify = async () => {
@@ -30,10 +40,10 @@ export function CustomPlaylist(props) {
         // create new playlist
         try {
             searchParams.body = JSON.stringify({
-                name: "Mixin Jam Playlist Test",
-                description: "playlist description bla bla bla bla...",
+                name: playlistTitle,
+                description: playlistDesc,
                 collaborative: false,
-                public: true
+                public: playlistType
             })
             const response = await (await fetch(`https://api.spotify.com/v1/users/${user_id}/playlists`, searchParams)).json();
             newPlaylistID = response.id;
@@ -64,18 +74,6 @@ export function CustomPlaylist(props) {
         console.log(addedTracks)
     }
 
-    let clicked = 0;
-    const handlePrivateCheckBox = (event) => {
-        clicked += 1;
-
-        // the value of checkbox needs to be boolean
-        if (clicked % 2 === 0) {
-            console.log("off") 
-        } else {
-            console.log("on")
-        }
-    }
-
     return (
         <>
             <div className='Custom-Playlist'>
@@ -84,7 +82,7 @@ export function CustomPlaylist(props) {
                         type='text'
                         placeholder='Your New Playlist'
                         value={playlistTitle}
-                        onChange={handleChange}
+                        onChange={({target}) => {setPlaylistTitle(target.value)}}
                         >
                     </input>
                 </form>
@@ -101,7 +99,9 @@ export function CustomPlaylist(props) {
                 </div>
                 <form className='playlist-desc-form'>
                     <label for="">Tell us what the playlist is about</label>
-                    <textarea></textarea>
+                    <textarea
+                        onChange={({target}) => {setPlaylistDesc(target.value)}}
+                    ></textarea>
                     <div className='playlist-type'>
                         <input type='checkbox' id='playlistType' onClick={handlePrivateCheckBox} />
                         <label for="playlistType">Private Playlist</label>
@@ -116,11 +116,11 @@ export function CustomPlaylist(props) {
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
                     </svg>Save to Spotify
                 </button>
-                <button
+                {/* <button
                     onClick={getUserPlayslist}
                 >
                     Check User Playlist
-                </button>
+                </button> */}
             </div>
         </>
     )
