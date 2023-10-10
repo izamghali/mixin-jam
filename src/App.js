@@ -94,9 +94,6 @@ function App() {
                 });
 
             window.history.pushState("", "", redirect_uri) // clear url bar
-
-            // getTopArtist();
-            // getFeaturedPlaylist();
         }
     }
 

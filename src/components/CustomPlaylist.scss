@@ -15,10 +15,10 @@
         @extend %flex-col-direction;
         gap: 1rem;
         
-        .playlist-title {
+        input {
             border: none;
             border-bottom: 0.7px solid black;
-            background-color: whitesmoke;
+            background-color: transparent;
             padding-block: 0.5rem;
             padding-inline: 0.7rem;
             outline: none;
