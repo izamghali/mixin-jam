@@ -58,7 +58,9 @@ export function CustomPlaylist(props) {
                 position: 0,
             })
             const response = await (await fetch(`https://api.spotify.com/v1/playlists/${newPlaylistID}/tracks`, searchParams)).json();
-            console.log(response)
+            if (response.snapshot_id) {
+                alert(`New playlist: ${playlistTitle} \nStatus: Saved to your spotify account!`)
+            }
         } catch(error) {
             console.log(error)
         }
