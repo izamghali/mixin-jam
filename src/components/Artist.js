@@ -6,7 +6,7 @@ export const Artist = (props) => {
 
     const artistBox = {}
 
-    const adjustArtistBox = () => {
+    const adjustArtistBox = () => { // need to adjust artist box on different page
         if (searchBarIsClicked === true) {
             artistBox.width = "100%";
         } else {

@@ -18,12 +18,11 @@ export function MixinJam(props) {
         setTracks, setAlbums,
         addedTracks, setAddedTracks,
         addedTrackIDs, 
-        searchBarIsClicked,
+        searchBarIsClicked, user_id
     } = props;
 
     // Style
     const [ searchResultLayout, setSearchResultLayout ] = useState({});
-
 
     return (
         <>
@@ -43,6 +42,8 @@ export function MixinJam(props) {
                     addedTracks={addedTracks} // addedTracks are a list of tracks added to playlist
                     setAddedTracks={setAddedTracks}
                     addedTrackIDs={addedTrackIDs}
+                    user_id={user_id}
+                    searchParams={searchParams}
                 />
 
             </div>

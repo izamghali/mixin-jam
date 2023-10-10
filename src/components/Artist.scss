@@ -10,7 +10,7 @@
     @extend %flex-justify-between;
     
     // width: 26rem;
-    // min-width: 26rem;
+    min-width: 24rem;
     @include tablet { width: 23rem; }
     @include mobile-landscape { width: 20rem; }
     @include mobile-landscape { width: 16rem; }

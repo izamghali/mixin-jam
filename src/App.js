@@ -9,6 +9,7 @@ function App() {
 
   const [ accessToken, setAccessToken ] = useState('')
   const [ refreshToken, setRefreshToken ] = useState('')
+  const [ user_id, set_user_id ] = useState('')
 
   // CLIENTSETUP
   const CLIENT_ID = '89cc9f4988ea4c7985a164bf3392cd1d';
@@ -151,6 +152,8 @@ function App() {
             }
         });
         let data = await response.json()
+        let userID = data.id;
+        set_user_id(userID);
         
     } catch(error) {
         console.log(error)
@@ -178,6 +181,7 @@ function App() {
             generateRandomString={generateRandomString} getProfile={getProfile}
             access_token={access_token}
             refreshToken={refreshToken} setRefreshToken={setRefreshToken}
+            user_id={user_id}
           />
         }/>
       </Routes>

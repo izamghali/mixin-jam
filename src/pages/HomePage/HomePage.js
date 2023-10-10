@@ -13,7 +13,7 @@ export function HomePage(props) {
     const { 
         CLIENT_ID, CLIENT_SECRET, 
         generateRandomString, getProfile,
-        refreshAccessToken, access_token, redirect_uri
+        refreshAccessToken, access_token, redirect_uri, user_id
     } = props;
 
     // var redirect_uri = 'https://izamghali.github.io/mixin-jam/home';
@@ -254,6 +254,8 @@ export function HomePage(props) {
                             addedTracks={addedTracks} setAddedTracks={setAddedTracks}
                             addedTrackIDs={addedTrackIDs}
                             searchBarIsClicked={searchBarIsClicked}
+                            user_id={user_id}
+                            searchParams={searchParams}
                         /> 
                         // otherwise it's gonna render TopPage
                         : <TopPage

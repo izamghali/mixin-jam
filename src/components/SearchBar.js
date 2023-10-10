@@ -38,18 +38,18 @@ export function SearchBar(props) {
             
             // GET request artist ID
             try {
-                console.log(`checking access token: ${localStorage.getItem('access_token')}`)
-                console.log('requesting artist ID ...')
+                // console.log(`checking access token: ${localStorage.getItem('access_token')}`)
+                // console.log('requesting artist ID ...')
                 var response = await (await fetch(`${url}/search?q=${searchInput}&type=artist`, searchParams)).json()
                 
-                if (response) {
-                    console.log(response)
-                } else {
-                    console.log(response.status)
-                }
+                // if (response) {
+                //     console.log(response)
+                // } else {
+                //     console.log(response.status)
+                // }
                 setArtist(response.artists.items[0]);
                 artistID = response.artists.items[0].id
-                console.log(`Artist ID for ${searchInput}: ${artistID}`);
+                // console.log(`Artist ID for ${searchInput}: ${artistID}`);
             } catch(error) {
                 console.log(error)
             }
@@ -57,8 +57,8 @@ export function SearchBar(props) {
             // // GET request artist album using artist ID
             const getArtistAlbums = await (await fetch(`${url}/artists/${artistID}/albums?include_groups=album&market=US`, searchParams)).json()
             artistAlbums = getArtistAlbums.items;
-            console.log("artist's albums: ")
-            console.log(getArtistAlbums)
+            // console.log("artist's albums: ")
+            // console.log(getArtistAlbums)
             setAlbums(artistAlbums)
             
             // // GET request artist tracks using artist ID
@@ -70,8 +70,8 @@ export function SearchBar(props) {
             // // GET request tracks
             const getTrackID = await ( await fetch(url + '/search?q=' + searchInput + '&type=track&market=US&include_external=audio&offset=5', searchParams)).json();
             tracks = getTrackID.tracks.items;
-            console.log(`artist's tracks:`)
-            console.log(getTrackID)
+            // console.log(`artist's tracks:`)
+            // console.log(getTrackID)
             setTracks(tracks)
         }
 

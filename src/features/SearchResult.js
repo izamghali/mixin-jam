@@ -57,7 +57,6 @@ export function SearchResult(props) {
                 <div className='result-track-container'>
                     <h2>Tracks</h2>
                     <div className='track-container'>
-                        {/* <Track /> */}
                         {tracks.map(track => {
                             return <Track 
                                         addedTrackIDs={addedTrackIDs}
