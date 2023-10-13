@@ -33,7 +33,7 @@ export function SearchResult(props) {
 
             <div style={columnGap} className="SearchResult">
                 <div className='result-artist-album-container'>
-                    <h2>Artist</h2>
+                    <h2 className='container-heading'>Artist</h2>
                     <div className='containers'>
                         <Artist 
                             artistName = {artist.name}
@@ -55,7 +55,7 @@ export function SearchResult(props) {
                 </div>
 
                 <div className='result-track-container'>
-                    <h2>Tracks</h2>
+                    <h2 className='container-heading'>Tracks</h2>
                     <div className='track-container'>
                         {tracks.map(track => {
                             return <Track 
