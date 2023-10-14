@@ -6,14 +6,14 @@
     @extend %flex-justify-between-align-center;
     // gap: 1rem;
     width: 100%;
-    margin-block: 3%;
+    padding-block: 3%;
     transition-duration: 400ms;
 
-    background-color:turquoise;
-    @include desktop { background-color: palegreen; }
-    @include tablet { background-color: slateblue; }
-    @include mobile-landscape { background-color: palegoldenrod; }
-    @include mobile-portrait { background-color: pink; }
+    background-color: $regular-khaki;
+    // @include desktop { background-color: palegreen; }
+    // @include tablet { background-color: slateblue; }
+    // @include mobile-landscape { background-color: palegoldenrod; }
+    // @include mobile-portrait { background-color: pink; }
 
     .navbar-left {
         @extend %flex-align-center;
@@ -51,12 +51,14 @@
         .navbar-logout-button {
             border: 1.5px solid black;
             padding-inline: 2rem;
-            border-radius: 12px;
+            border-radius: 8px;
+            background-color: $regular-black;
+            color: whitesmoke;
             transition-duration: $regular-transition-duration-medium;
             &:hover{
                 cursor: pointer;
-                background-color: black;
-                color: whitesmoke;
+                // background-color: black;
+                // color: whitesmoke;
                 border-radius: 40px;
             }
         }

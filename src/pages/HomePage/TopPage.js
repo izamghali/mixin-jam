@@ -8,7 +8,7 @@ export const TopPage = (props) => {
     return (
         <>
             <div className='TopPage'>
-                <TopArtists 
+                <TopArtists
                     topArtists={topArtists.items}
                 />
                 <TopPlaylists 

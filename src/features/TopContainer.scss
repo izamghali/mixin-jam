@@ -2,6 +2,8 @@
 
 .top-container {
     width: 100vw;
+
+    
     h2 {
         margin-top: 0;
         margin-inline: 3%;
@@ -16,11 +18,15 @@
         &::-webkit-scrollbar { // hide scrollbar
             display: none;
         }
-
+        
         @include tablet { gap: 1.5rem; }
         @include mobile-landscape { gap: 1.2rem; }
         @include mobile-landscape { gap: 1.1rem; }
     }
 
     p { margin-inline: 3%; }
+}
+
+.top-artist-container {
+    padding-top: 2rem;
 }

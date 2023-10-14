@@ -10,11 +10,11 @@
     transition-duration: 400ms;
 
     // responsive debugger
-    background-color:turquoise;
-    @include desktop { background-color: palegreen; }
-    @include tablet { background-color: slateblue; }
-    @include mobile-landscape { background-color: palegoldenrod; }
-    @include mobile-portrait { background-color: pink; }
+    // background-color:turquoise;
+    // @include desktop { background-color: palegreen; }
+    // @include tablet { background-color: slateblue; }
+    // @include mobile-landscape { background-color: palegoldenrod; }
+    // @include mobile-portrait { background-color: pink; }
 
     .MixinJam {
       padding-block: 2rem;

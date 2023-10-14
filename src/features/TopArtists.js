@@ -8,7 +8,7 @@ export const TopArtists = (props) => {
 
     return (
         <>
-            <div className="top-container">
+            <div className="top-container top-artist-container">
                 <h2>Top Artists</h2>
                 <div className="container">
                     {topArtists ? topArtists.map(artist => {
