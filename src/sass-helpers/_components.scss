@@ -2,16 +2,16 @@
 
 %add-button {
     border: none;
-    border-radius: 8px;
     @extend %flex-justify-align-center;
     gap: 0.4rem;
-    padding: 0.7rem;
-    background-color: $standard-accent-color1;
+    padding: 0.7rem 1.5rem;
+    background-color: $regular-emerald;
     transition-duration: 150ms;
+    border-radius: 30px;
     &:hover {
         cursor: pointer;
         transform: scale(1.03);
-        background-color: $standard-accent-color1-more-light;
+        // background-color: $standard-accent-color1-more-light;
     }
 
     svg { fill: black; }
