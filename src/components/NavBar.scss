@@ -6,10 +6,13 @@
     @extend %flex-justify-between-align-center;
     // gap: 1rem;
     width: 100%;
-    padding-block: 3%;
+    padding-block: 1.5%;
     transition-duration: 400ms;
-
+    
     background-color: $regular-khaki;
+    @include desktop {
+        padding-block: 1%;
+    }
     // @include desktop { background-color: palegreen; }
     // @include tablet { background-color: slateblue; }
     // @include mobile-landscape { background-color: palegoldenrod; }

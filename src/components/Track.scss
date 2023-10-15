@@ -23,9 +23,8 @@
         justify-content: space-between;
         gap: 1rem;
         .track-img-div {
-            width: 4rem;
-            height: 4rem;
-            object-fit: cover;
+            max-width: 4rem;
+            height: max-content;
             overflow: hidden;
             img {
                 object-fit: cover;
