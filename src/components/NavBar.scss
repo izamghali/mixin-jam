@@ -43,7 +43,6 @@
         }
     }
 
-
     .navbar-right {
         margin-right: 3%;
         display: flex;
@@ -52,7 +51,7 @@
         @include mobile-landscape { display: none; }
 
         .navbar-logout-button {
-            border: 1.5px solid black;
+            border: 1.5px solid $regular-black;
             padding-inline: 2rem;
             border-radius: 8px;
             background-color: $regular-black;
@@ -60,8 +59,6 @@
             transition-duration: $regular-transition-duration-medium;
             &:hover{
                 cursor: pointer;
-                // background-color: black;
-                // color: whitesmoke;
                 border-radius: 40px;
             }
         }
