@@ -4,14 +4,12 @@
     
 .NavBar {
     @extend %flex-justify-between-align-center;
-    // gap: 1rem;
     width: 100%;
-    padding-block: 1.5%;
+    padding-block: 1.7%;
     transition-duration: 400ms;
-    
     background-color: $regular-khaki;
     @include desktop {
-        padding-block: 1%;
+        padding-block: 1.5%;
     }
     // @include desktop { background-color: palegreen; }
     // @include tablet { background-color: slateblue; }

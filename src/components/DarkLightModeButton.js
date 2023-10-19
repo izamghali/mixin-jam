@@ -43,10 +43,9 @@ export function DarkLightModeButton() {
             gsap.to(".track-plus-btn svg", { fill: darkLightSlate })
             gsap.to(".track-plus-btn svg", { fill: darkLightSlate })
             gsap.to(".playlist-title-form input", { borderBottom: `0.7px solid ${darkLightSlate}` })
+            gsap.to(".playlist-desc-form label", { color: darkLightSlate })
             gsap.to(".playlist-submit", { backgroundColor: darkEggplant, color: darkLightSlate })
             gsap.to(".playlist-submit svg", { fill: darkLightSlate })
-            
-            
             
         } else {
             gsap.to('.toggle-button', { x: '-100%', duration: 0.4, })
@@ -63,6 +62,7 @@ export function DarkLightModeButton() {
             gsap.to(".compact-track-inner-div button svg", { fill: lightBlack })
             gsap.to(".track-plus-btn svg", { fill: lightBlack })
             gsap.to(".playlist-title-form input", { borderBottom: `0.7px solid ${lightBlack}` })
+            gsap.to(".playlist-desc-form label", { color: lightBlack })
             gsap.to(".playlist-submit", { backgroundColor: lightEmerald, color: lightBlack })
             gsap.to(".playlist-submit svg", { fill: lightBlack })
             
